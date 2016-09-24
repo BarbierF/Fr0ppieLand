@@ -1,10 +1,5 @@
-.vscode/*
-<<<<<<< HEAD
 CMakeCache.txt
 bin/*
 Makefile
 cmake_install.cmake
 CMakeFiles/*
-=======
-bin/*
->>>>>>> 3b390bcf606c6ae708781fd70ca084ba56e2dc7f
