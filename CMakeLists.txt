@@ -11,7 +11,13 @@ SET ( EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE} )
 SET( CMAKE_CXX_FLAGS "-std=c++11")
 
 # Création des exécutables.
-ADD_EXECUTABLE( froggyland src/main.cpp )
+ADD_EXECUTABLE( froggyland 
+	src/main.cpp 
+	src/Malade.cpp
+	src/Mort.cpp
+	src/Sain.cpp
+)
+
 
 
 # Faire parler le make.
