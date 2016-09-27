@@ -6,10 +6,13 @@ namespace froppieLand{
     namespace modele{
         class Petit:public SurfEtat{
         public:
-            //const SurfEtat& get_instance()override;
-            const int& get_size()const override;
+            static SurfEtat& getInstance();
+            const SurfEtat& age()const override;
         private:
             Petit();
+        public:
+        private:
+            static Petit* _instance;
         };
     }
 }

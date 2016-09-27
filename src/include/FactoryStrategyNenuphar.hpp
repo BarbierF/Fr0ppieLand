@@ -11,6 +11,7 @@ namespace froppieLand{
             static const StrategyNenuphar& getImmortel();
             static const StrategyNenuphar& getVeneneux();
             static const StrategyNenuphar& getNormal();
+            static const StrategyNenuphar& getNutritif();
             static const StrategyNenuphar& getDopant();
             static const StrategyNenuphar& getMortel();
         private:
@@ -18,6 +19,7 @@ namespace froppieLand{
             static StrategyNenuphar* _immortel;
             static StrategyNenuphar* _veneneux;
             static StrategyNenuphar* _normal;
+            static StrategyNenuphar* _nutritif;
             static StrategyNenuphar* _dopant;
             static StrategyNenuphar* _mortel;
         };

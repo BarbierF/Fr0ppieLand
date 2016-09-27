@@ -7,10 +7,13 @@ namespace froppieLand{
     namespace modele{
         class Moyen:public SurfEtat{
         public:
-            //const SurfEtat& get_instance() override;
-            const int& get_size()const override;
+            static SurfEtat& getInstance();
+            const SurfEtat& age()const override;
         private:
             Moyen();
+        public:
+        private:
+            static Moyen* _instance;
         };
     }
 }

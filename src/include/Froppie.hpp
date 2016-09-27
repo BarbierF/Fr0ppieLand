@@ -27,6 +27,7 @@
                 bool deplacer(const Direction&, const unsigned int& tailleEnv);
                 bool subir(const int& degats);
                 bool changeEtat();
+                void souffre(const StrategyNenuphar& nenuphar);
                 const Position& getPosition()const;
                 void setPosition(int, int);
 

@@ -1,5 +1,6 @@
 #include "include/Surface.hpp"
 #include "include/FactorySurfEtat.hpp"
+#include "include/Grand.hpp"
 
 namespace froppieLand{
     namespace modele{
@@ -25,16 +26,19 @@ namespace froppieLand{
         }
 
         void Surface::generateNenuphar(StrategyNenuphar& strategyNenuphar){
-            FactorySurfEtat::getGrand();
+            _surfEtat = &Grand::getInstance();
             _strategyNenuphar = &strategyNenuphar;
         }
 
-        const FropEtat& Surface::affectFropEtat()const {
-            return _strategyNenuphar->affectFropEtat();
-        }
+        // const FropEtat& Surface::affectFropEtat()const {
+        //     return _strategyNenuphar->affectFropEtat();
+        // }
 
-        const int& Surface::affectHealth(const int& pv)const {
-            return _strategyNenuphar->affectHealth(pv);
+        // const int& Surface::affectHealth(const int& pv)const {
+        //     return _strategyNenuphar->affectHealth(pv);
+        // }
+        void Surface::souffrir(Froppie& victim)const{
+            _strategyNenuphar->souffrir(victim);
         }
     }
 }

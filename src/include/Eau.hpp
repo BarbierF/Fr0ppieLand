@@ -6,12 +6,13 @@
 namespace froppieLand{
     namespace modele{
         class Eau: public StrategyNenuphar{
+            friend class FactoryStrategyNenuphar;
         public:
             const StrategyNenuphar& get_instance();
-            const bool& can_die()const;
-            const int& affect_health()const;
-            const bool& can_kill()const =0;
-            void affect_froppie(Froppie& froppie)const;
+            const bool& canDie()const;
+            //const int& affect_health()const;
+            //const bool& canKill()const =0;
+            void souffrir(Froppie& victim)const;
         };
     }
 }

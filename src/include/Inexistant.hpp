@@ -7,10 +7,13 @@ namespace froppieLand{
     namespace modele{
         class Inexistant:public SurfEtat{
         public:
-            //const SurfEtat& get_instance() override;
-            const int& get_size()const override;
+            static SurfEtat& getInstance();
+            const SurfEtat& age()const override;
         private:
             Inexistant();
+        public:
+        private:
+            static Inexistant* _instance;
         };
     }
 }
