@@ -69,7 +69,7 @@ namespace froppieLand{
         void Grill::notifyMove(){
 
             Position currPos = _froppie->getPosition();
-            (*_terrain[currPos.X, currPos.Y])->makeItSuffer(&_froppie);
+            (*_terrain[currPos.X, currPos.Y])->souffrir(&_froppie);
         }
     }
 }
