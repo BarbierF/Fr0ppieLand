@@ -1,20 +1,16 @@
 #ifndef STRATEGYNENUPHAR_HPP
 #define STRATEGYNENUPHAR_HPP
 
-#include "dummy/DummyFropEtat.hpp"
+#include "FropEtat.hpp"
 
 namespace froppieLand{
     namespace modele{
-        class Froppie;
         class StrategyNenuphar{
         public:
-            virtual const StrategyNenuphar& get_instance()=0;
             virtual const bool& can_die()const =0;
-            virtual const int& affect_health()const =0;
-            virtual const bool& can_kill()const =0;
-            virtual DummyFropEtat& affectFroppie(int& pv)const=0;
-        protected:
-            static StrategyNenuphar* _instance;
+            virtual const int& affectHealth(const int& pv)const =0;
+            //virtual const bool& can_kill()const =0;
+            virtual const FropEtat& affectFropEtat()const=0;
         };
     }
 }

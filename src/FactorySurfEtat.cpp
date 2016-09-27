@@ -2,29 +2,29 @@
 
 
 const SurfEtat& froppieLand::modele::FactorySurfEtat::getInexistant() {
-    if(!_inexistant){
-        _inexistant = new froppieLand::modele::Inexistant();
+    if(!froppieLand::modele::FactorySurfEtat::_inexistant){
+        froppieLand::modele::FactorySurfEtat::_inexistant = new froppieLand::modele::Inexistant();
     }
-    return _inexistant;
+    return froppieLand::modele::FactorySurfEtat::_inexistant;
 }
 
 const SurfEtat& froppieLand::modele::FactorySurfEtat::getGrand() {
-    if(!_grand){
-        _grand = new froppieLand::modele::grand();
+    if(!froppieLand::modele::FactorySurfEtat::_grand){
+        froppieLand::modele::FactorySurfEtat::_grand = new froppieLand::modele::grand();
     }
-    return _grand;
+    return froppieLand::modele::FactorySurfEtat::_grand;
 }
 
 const SurfEtat& froppieLand::modele::FactorySurfEtat::getMoyen() {
-    if(!_moyen){
-        _moyen = new froppieLand::modele::moyen();
+    if(!froppieLand::modele::FactorySurfEtat::_moyen){
+        froppieLand::modele::FactorySurfEtat::_moyen = new froppieLand::modele::moyen();
     }
-    return _moyen;
+    return froppieLand::modele::FactorySurfEtat::_moyen;
 }
 
 const SurfEtat& froppieLand::modele::FactorySurfEtat::getPetit() {
-    if(!_petit){
-        _petit = new froppieLand::modele::petit();
+    if(!froppieLand::modele::FactorySurfEtat::_petit){
+        _froppieLand::modele::FactorySurfEtat::petit = new froppieLand::modele::petit();
     }
-    return _petit;
+    return _froppieLand::modele::FactorySurfEtat::petit;
 }

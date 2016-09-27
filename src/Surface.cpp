@@ -29,8 +29,12 @@ namespace froppieLand{
             _strategyNenuphar = &strategyNenuphar;
         }
 
-        DummyFropEtat& Surface::affectFroppie(int& pv)const {
-            return _strategyNenuphar->affectFroppie(pv);
+        const FropEtat& Surface::affectFropEtat()const {
+            return _strategyNenuphar->affectFropEtat();
+        }
+
+        const int& Surface::affectHealth(const int& pv)const {
+            return _strategyNenuphar->affectHealth(pv);
         }
     }
 }

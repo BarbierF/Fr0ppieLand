@@ -12,10 +12,10 @@ namespace froppieLand{
             static const SurfEtat& getMoyen();
             static const SurfEtat& getPetit();
         private:
-            SurfEtat* _inexistant;
-            SurfEtat* _grand;
-            SurfEtat* _moyen;
-            SurfEtat* _petit;
+            static SurfEtat* _inexistant;
+            static SurfEtat* _grand;
+            static SurfEtat* _moyen;
+            static SurfEtat* _petit;
         };
     }
 }
