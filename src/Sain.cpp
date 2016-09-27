@@ -2,8 +2,7 @@
  * Définition de la classe Sain. *
  ***********************************************/
 
-#include "FropEtat.hpp"
-#include "Sain.hpp"
+#include "include/Sain.hpp"
 
 #include <string>
 

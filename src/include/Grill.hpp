@@ -4,7 +4,7 @@
 #include "Position.hpp"
 #include "FroppieMoveObserver.hpp"
 #include "NonCopyable.hpp"
-#include "Surface.hpp"
+//#include "Surface.hpp"
 #include "Froppie.hpp"
 
 namespace froppieLand{

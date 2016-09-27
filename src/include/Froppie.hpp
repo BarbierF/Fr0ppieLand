@@ -17,6 +17,9 @@
                 int _pointDeVie;
                 unsigned int _nbMove;
                 Position _position; 
+                bool _sain;
+                bool _mort;
+                bool _malade;
 
                 std::list<FroppieMoveObserver*>* _moveObservers;
 
@@ -32,6 +35,16 @@
 
                 void addMoveObserver(FroppieMoveObserver&);
                 void notifyMoveObservers();
+
+                const bool& isSain() const;
+                const bool& isMort() const;
+                const bool& isMalade() const;
+
+                void setSain();
+                void setMort();
+                void setMalade();
+
+
             };
         }
     }

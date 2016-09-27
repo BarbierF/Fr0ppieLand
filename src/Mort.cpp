@@ -2,8 +2,7 @@
  * Définition de la classe Mort. *
  ***********************************************/
 
-#include "FropEtat.hpp"
-#include "Mort.hpp"
+#include "include/Mort.hpp"
 
 #include <string>
 

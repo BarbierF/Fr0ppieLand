@@ -2,7 +2,7 @@
  * Définition de la classe Malade. *
  ***********************************************/
 
-#include "Malade.hpp"
+#include "include/Malade.hpp"
 
 #include <string>
 
