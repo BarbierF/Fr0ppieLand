@@ -1,18 +1,18 @@
-#ifndef IMMORTEL_HPP
-#define IMMORTEL_HPP 1
+#ifndef NORMAL_HPP
+#define NORMAL_HPP 1
 
-#include "SurfCannotDie.hpp"
+#include "SurfCanDie.hpp"
 
 namespace froppieLand{
     namespace modele{
-        class Immortel: SurfCannotDie{
+        class Normal: public SurfCanDie{
             friend class FactoryStrategyNenuphar;
         public:
             void souffrir(Froppie& victim)const;
         private:
-            Immortel()=default;
+            Normal()=default;
         };
     }
 }
 
-#endif // IMMORTEL_HPP
+#endif // NORMAL_HPP

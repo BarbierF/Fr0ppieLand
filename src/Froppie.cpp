@@ -80,5 +80,17 @@ namespace froppieLand{
         void Froppie::setMort() {
             _mort = true;
         }
+
+        void Froppie::reduceHealth(){
+            _pointDeVie/=2;
+        }
+
+        void Froppie::doubleHealth(){
+            _pointDeVie*=2;
+        }
+
+        void Froppie::increaseHealth(){
+            _pointDeVie+=1;
+        }
     }
 }
