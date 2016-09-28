@@ -9,6 +9,7 @@ namespace froppieLand{
             friend class FactoryStrategyNenuphar;
         public:
             void souffrir(Froppie& victim)const;
+        private:
             Eau()=default;
         };
     }
