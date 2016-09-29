@@ -22,6 +22,7 @@ ADD_EXECUTABLE( SurfEtat
 		src/Petit.cpp
 )
 ADD_EXECUTABLE( StrategyNenuphar
+		src/main.cpp
 		src/FactoryStrategyNenuphar.cpp
 		src/SurfCanDie.cpp
 		src/SurfCannotDie.cpp

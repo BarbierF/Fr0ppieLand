@@ -9,51 +9,58 @@
 
 namespace froppieLand{
     namespace modele{
+        StrategyNenuphar* FactoryStrategyNenuphar::_eau=nullptr;
+        StrategyNenuphar* FactoryStrategyNenuphar::_immortel=nullptr;
+        StrategyNenuphar* FactoryStrategyNenuphar::_veneneux=nullptr;
+        StrategyNenuphar* FactoryStrategyNenuphar::_normal=nullptr;
+        StrategyNenuphar* FactoryStrategyNenuphar::_nutritif=nullptr;
+        StrategyNenuphar* FactoryStrategyNenuphar::_dopant=nullptr;
+        StrategyNenuphar* FactoryStrategyNenuphar::_mortel=nullptr;
         const StrategyNenuphar& FactoryStrategyNenuphar::getEau(){
-            if(!froppieLand::modele::FactoryStrategyNenuphar::_eau){
-                froppieLand::modele::FactoryStrategyNenuphar::_eau = new froppieLand::modele::Eau();
+            if(!FactoryStrategyNenuphar::_eau){
+                FactoryStrategyNenuphar::_eau = new Eau();
             }
-            return *(froppieLand::modele::FactoryStrategyNenuphar::_eau);
+            return *(FactoryStrategyNenuphar::_eau);
 
         }
 
         const StrategyNenuphar& FactoryStrategyNenuphar::getImmortel(){
-            if(!froppieLand::modele::FactoryStrategyNenuphar::_immortel){
-                froppieLand::modele::FactoryStrategyNenuphar::_immortel = new froppieLand::modele::Immortel();
+            if(!_immortel){
+                FactoryStrategyNenuphar::_immortel = new Immortel();
             }
-            return *(froppieLand::modele::FactoryStrategyNenuphar::_immortel);
+            return *(_immortel);
 
         }
 
         const StrategyNenuphar& FactoryStrategyNenuphar::getVeneneux(){
-            if(!froppieLand::modele::FactoryStrategyNenuphar::_veneneux){
-                froppieLand::modele::FactoryStrategyNenuphar::_veneneux = new froppieLand::modele::Veneneux();
+            if(!_veneneux){
+                FactoryStrategyNenuphar::_veneneux = new Veneneux();
             }
-            return *(froppieLand::modele::FactoryStrategyNenuphar::_veneneux);
+            return *(FactoryStrategyNenuphar::_veneneux);
 
         }
 
         const StrategyNenuphar& FactoryStrategyNenuphar::getNormal(){
-            if(!froppieLand::modele::FactoryStrategyNenuphar::_normal){
-                froppieLand::modele::FactoryStrategyNenuphar::_normal = new froppieLand::modele::Normal();
+            if(!FactoryStrategyNenuphar::_normal){
+                FactoryStrategyNenuphar::_normal = new Normal();
             }
-            return *(froppieLand::modele::FactoryStrategyNenuphar::_normal);
+            return *(FactoryStrategyNenuphar::_normal);
 
         }
 
         const StrategyNenuphar& FactoryStrategyNenuphar::getDopant(){
-            if(!froppieLand::modele::FactoryStrategyNenuphar::_dopant){
-                froppieLand::modele::FactoryStrategyNenuphar::_dopant = new froppieLand::modele::Dopant();
+            if(!FactoryStrategyNenuphar::_dopant){
+                FactoryStrategyNenuphar::_dopant = new Dopant();
             }
-            return *(froppieLand::modele::FactoryStrategyNenuphar::_dopant);
+            return *(FactoryStrategyNenuphar::_dopant);
 
         }
 
         const StrategyNenuphar& FactoryStrategyNenuphar::getMortel(){
-            if(!froppieLand::modele::FactoryStrategyNenuphar::_mortel){
-                froppieLand::modele::FactoryStrategyNenuphar::_mortel = new froppieLand::modele::Mortel();
+            if(!FactoryStrategyNenuphar::_mortel){
+                FactoryStrategyNenuphar::_mortel = new Mortel();
             }
-            return *(froppieLand::modele::FactoryStrategyNenuphar::_mortel);
+            return *(FactoryStrategyNenuphar::_mortel);
 
         }
 
