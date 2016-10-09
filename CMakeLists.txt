@@ -13,9 +13,6 @@ SET( CMAKE_CXX_FLAGS "-std=c++11")
 # Création des exécutables.
 ADD_EXECUTABLE( froppieland 
 	src/main.cpp 
-	src/Malade.cpp
-	src/Mort.cpp
-	src/Sain.cpp
 )
 
 ADD_EXECUTABLE( SurfEtat
@@ -25,8 +22,17 @@ ADD_EXECUTABLE( SurfEtat
 		src/Petit.cpp
 )
 ADD_EXECUTABLE( StrategyNenuphar
-		src/Immortel.cpp
+		src/main.cpp
+		src/FactoryStrategyNenuphar.cpp
+		src/SurfCanDie.cpp
+		src/SurfCannotDie.cpp
 		src/Eau.cpp
+		src/Immortel.cpp
+		src/Veneneux.cpp
+		src/Normal.cpp
+		src/Dopant.cpp
+		src/Nutritif.cpp
+		src/Mortel.cpp
 )
 
 

@@ -22,7 +22,8 @@ namespace froppieLand{
         }
 
         void Surface::age() {
-            _surfEtat->age();
+            if(_strategyNenuphar->canDie())
+                _surfEtat->age();
         }
 
         void Surface::generateNenuphar(StrategyNenuphar& strategyNenuphar){

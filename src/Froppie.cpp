@@ -59,5 +59,17 @@ namespace froppieLand{
         void Froppie::setEtat(const FropEtat& nEtat){
             _etat = &nEtat;
         }
+
+        void Froppie::reduceHealth(){
+            _pointDeVie/=2;
+        }
+
+        void Froppie::doubleHealth(){
+            _pointDeVie*=2;
+        }
+
+        void Froppie::increaseHealth(){
+            _pointDeVie+=1;
+        }
     }
 }

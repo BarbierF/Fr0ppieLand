@@ -39,6 +39,10 @@
                 const FropEtat& getCurEtat()const;
                 void setEtat(const FropEtat&);
 
+                void reduceHealth();
+                void doubleHealth();
+                void increaseHealth();
+
 
             };
         }

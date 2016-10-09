@@ -1,18 +1,16 @@
 #ifndef EAU_HPP
 #define EAU_HPP
 
-#include "StrategyNenuphar.hpp"
+#include "SurfCannotDie.hpp"
 
 namespace froppieLand{
     namespace modele{
-        class Eau: public StrategyNenuphar{
+        class Eau: public SurfCannotDie{
             friend class FactoryStrategyNenuphar;
         public:
-            const StrategyNenuphar& get_instance();
-            const bool& canDie()const;
-            //const int& affect_health()const;
-            //const bool& canKill()const =0;
             void souffrir(Froppie& victim)const;
+        public:
+            Eau()=default;
         };
     }
 }
