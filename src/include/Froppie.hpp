@@ -10,16 +10,16 @@
         namespace modele{
 
             class Direction;
+            class FropEtat;
 
             class Froppie: public MoveObservable{
 
             private: 
                 int _pointDeVie;
                 unsigned int _nbMove;
-                Position _position; 
-                bool _sain;
-                bool _mort;
-                bool _malade;
+                Position _position;
+
+                FropEtat* _etat;
 
                 std::list<FroppieMoveObserver*>* _moveObservers;
 
@@ -30,20 +30,14 @@
                 bool deplacer(const Direction&, const unsigned int& tailleEnv);
                 bool subir(const int& degats);
                 bool changeEtat();
-                void souffre(const StrategyNenuphar& nenuphar);
                 const Position& getPosition()const;
                 void setPosition(int, int);
 
                 void addMoveObserver(FroppieMoveObserver&);
                 void notifyMoveObservers();
 
-                const bool& isSain() const;
-                const bool& isMort() const;
-                const bool& isMalade() const;
-
-                void setSain();
-                void setMort();
-                void setMalade();
+                const FropEtat& getCurEtat()const;
+                void setEtat(const FropEtat&);
 
 
             };

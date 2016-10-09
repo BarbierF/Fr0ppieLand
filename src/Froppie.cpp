@@ -1,10 +1,11 @@
 #include "include/Froppie.hpp"
 #include "include/DirectionFactory.hpp"
+#include "include/Sain.hpp"
 
 namespace froppieLand{
     namespace modele{
 
-        Froppie::Froppie(const int& pdv, const unsigned int& depX, const unsigned int& depY): _pointDeVie(pdv), _position({depX, depY}){
+        Froppie::Froppie(const int& pdv, const unsigned int& depX, const unsigned int& depY): _pointDeVie(pdv), _position({depX, depY}), _etat(&Sain::getSain()){
             _moveObservers = new std::list<FroppieMoveObserver*>();
         }
 
@@ -52,33 +53,11 @@ namespace froppieLand{
             _moveObservers->push_back(&abonne);
         }
 
-        const bool& 
-        Froppie::isSain() const {
-            return _sain;
+        const FropEtat& Froppie::getCurEtat()const{
+            return *_etat;
         }
-
-        const bool& 
-        Froppie::isMort() const {
-            return _mort;
-        }
-
-        const bool& 
-        Froppie::isMalade() const {
-            return _malade;
-        }
-
-         void Froppie::setMalade() {
-            if(!_malade) _malade =true;
-            else _mort = true;
-        }
-
-        void Froppie::setSain() {
-            _sain = true;
-            _malade = false;
-        }
-
-        void Froppie::setMort() {
-            _mort = true;
+        void Froppie::setEtat(const FropEtat& nEtat){
+            _etat = &nEtat;
         }
     }
 }

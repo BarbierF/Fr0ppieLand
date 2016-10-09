@@ -3,7 +3,7 @@
 namespace froppieLand{
     namespace modele{
         void Eau::souffrir(Froppie& victim)const {
-            victim.setMort();
+            victim.getCurEtat().setMort(victim);
         }
     }
 }

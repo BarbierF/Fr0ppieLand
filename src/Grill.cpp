@@ -20,7 +20,7 @@ namespace froppieLand{
             }
 
             _froppie = new Froppie(10, _depart);
-            _froppie.addMoveObersver(this);
+            _froppie->addMoveObserver(this);
         }
 
         const Position& Grill::getDepart()const{
@@ -52,7 +52,7 @@ namespace froppieLand{
                     _terrain[fropPosition.X][i]->nouvNenu();
                 }
             }
-            else if(fropPosition.Y == _arrive.Y){
+            else if(fropPosition.Y == _arrivee.Y){
                 for(int i = 0 ; i < math.abs(_arrivee.X - fropPosition.Y) ; i++){
                     _terrain[i][fropPosition.Y]->nouvNenu();
                 }
