@@ -1,12 +1,11 @@
 #include "include/Froppie.hpp"
-#include "include/DirectionFactory.hpp"
 #include "include/Sain.hpp"
 
 namespace froppieLand{
     namespace modele{
 
         Froppie::Froppie(const int& pdv, const unsigned int& depX, const unsigned int& depY): _pointDeVie(pdv), _position({depX, depY}), _etat(&Sain::getSain()){
-            _moveObservers = new std::list<FroppieMoveObserver*>();
+            _moveObservers = new std::list<const FroppieMoveObserver*>();
         }
 
         Froppie::~Froppie(){
@@ -15,12 +14,6 @@ namespace froppieLand{
 
         const Position& Froppie::getPosition()const{
             return _position;
-        }
-        
-        void Froppie::setPosition(int dX, int dY){
-            _position.X += dX;
-            _position.Y += dY;
-            _nbMove++;
         }
 
         bool Froppie::deplacer(const Direction& direction, const unsigned int& tailleEnv){
@@ -43,32 +36,33 @@ namespace froppieLand{
 
         void Froppie::notifyMoveObservers(){
 
-            for(std::list<FroppieMoveObserver*>::iterator iter = _moveObservers->begin() ; iter != _moveObservers->end() ; ++iter){
+                for(std::list<const FroppieMoveObserver*>::iterator iter = _moveObservers->begin() ; iter != _moveObservers->end() ; ++iter){
 
                 (*iter)->notifyMove();
             }
         }
 
-        void Froppie::addMoveObserver(FroppieMoveObserver& abonne){
-            _moveObservers->push_back(&abonne);
+        void Froppie::addMoveObserver(FroppieMoveObserver* abonne){
+            _moveObservers->push_back(abonne);
+        }
+        void Froppie::setSain(){
+            _etat->setSain(*this);
+        }
+        void Froppie::setMalade(){
+            _etat->setMalade(*this);
+        }
+        void Froppie::setMort(){
+            _etat->setMort(*this);
         }
 
-        const FropEtat& Froppie::getCurEtat()const{
-            return *_etat;
-        }
-        void Froppie::setEtat(const FropEtat& nEtat){
-            _etat = &nEtat;
-        }
-
-        void Froppie::reduceHealth(){
+        void Froppie::subir(){
             _pointDeVie/=2;
+            if(_pointDeVie == 0) setMort();
         }
-
-        void Froppie::doubleHealth(){
+        void Froppie::doper(){
             _pointDeVie*=2;
         }
-
-        void Froppie::increaseHealth(){
+        void Froppie::soigner(){
             _pointDeVie+=1;
         }
     }

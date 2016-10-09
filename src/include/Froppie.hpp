@@ -3,6 +3,7 @@
 
 #include <list>
 #include "Position.hpp"
+#include "Direction.hpp"
 #include "FroppieMoveObserver.hpp"
 #include "MoveObservable.hpp"
 
@@ -14,34 +15,39 @@
 
             class Froppie: public MoveObservable{
 
+                friend class Malade;
+                friend class Sain;
+                friend class Mort;
+                
             private: 
                 int _pointDeVie;
                 unsigned int _nbMove;
                 Position _position;
 
-                FropEtat* _etat;
+                const FropEtat* _etat;
 
-                std::list<FroppieMoveObserver*>* _moveObservers;
+                std::list<const FroppieMoveObserver*>* _moveObservers;
+
+                void setEtat(const FropEtat&);
 
             public: 
                 Froppie(const int& pdv, const unsigned int& Xdep, const unsigned int& Ydep);
                 ~Froppie();
 
                 bool deplacer(const Direction&, const unsigned int& tailleEnv);
-                bool subir(const int& degats);
-                bool changeEtat();
                 const Position& getPosition()const;
-                void setPosition(int, int);
 
-                void addMoveObserver(FroppieMoveObserver&);
+                void addMoveObserver(FroppieMoveObserver*);
                 void notifyMoveObservers();
 
                 const FropEtat& getCurEtat()const;
-                void setEtat(const FropEtat&);
+                void setSain();
+                void setMalade();
+                void setMort();
 
-                void reduceHealth();
-                void doubleHealth();
-                void increaseHealth();
+                void subir();
+                void doper();
+                void soigner();
 
 
             };

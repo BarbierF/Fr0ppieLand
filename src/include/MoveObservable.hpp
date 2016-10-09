@@ -6,8 +6,8 @@ namespace froppieLand{
 
         class MoveObservable{
 
-            virtual void addMoveObserver(const FroppieMoveObserver&) = 0;
-            virtual void notifyMoveObserver() = 0;
+            virtual void addMoveObserver(FroppieMoveObserver*) = 0;
+            virtual void notifyMoveObservers()= 0;
         };
     }
 }

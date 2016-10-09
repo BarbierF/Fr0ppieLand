@@ -7,7 +7,7 @@ namespace froppieLand{
         class FroppieMoveObserver{
 
         public:
-            virtual void notifyMove()= 0;
+            virtual void notifyMove()const= 0;
 
         };
     }

@@ -11,6 +11,7 @@ namespace froppieLand{
         class Surface{
         public:
             Surface(SurfEtat& surfEtat, StrategyNenuphar& strategyNenuphar);
+            Surface();
             const SurfEtat& getEtat()const;
             void setStrategy(StrategyNenuphar& strategyNenuphar);
             const StrategyNenuphar& getStrategy()const;
@@ -21,6 +22,7 @@ namespace froppieLand{
         private:
             SurfEtat* _surfEtat;
             StrategyNenuphar* _strategyNenuphar;
+            const Position _sPosition;
         };
     }
 }

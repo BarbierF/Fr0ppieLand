@@ -4,7 +4,7 @@
 #include "Position.hpp"
 #include "FroppieMoveObserver.hpp"
 #include "NonCopyable.hpp"
-//#include "Surface.hpp"
+#include "Surface.hpp"
 #include "Froppie.hpp"
 
 namespace froppieLand{
@@ -31,9 +31,9 @@ namespace froppieLand{
             const Surface& getCase(unsigned int X, unsigned int Y)const;
 
             void consChemin(void) const;
-            void vieilissement() const;
+            void vieilissement();
             
-            void notifyMove();
+            void notifyMove()const;
         };
     }
 }

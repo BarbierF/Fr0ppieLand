@@ -1,25 +1,26 @@
-#include <math.h>
+#include <cmath>
 
 #include "include/Grill.hpp"
 #include "include/FroppieMoveObserver.hpp"
+
 
 namespace froppieLand{
     namespace modele{
         Grill::Grill(unsigned int taille, unsigned int posXD, unsigned int posYD, unsigned int posXA, unsigned int posYA):
             _taille(taille), _depart({posXD, posYD}), _arrivee({posXA, posYA})
         {
-            _terrain = new Surface[taille];
+            **_terrain = new Surface[taille];
             for(int i = 0 ; i < taille ; i++){
-                _terrain[i] = new Surface[taille];
+                *_terrain[i] = new Surface[taille];
             }
 
             for(unsigned int i = 0; i < taille ; i++){
                 for(unsigned int j = 0 ; i < taille ; j++){
-                    _terrain[i][j] = new Surface(i, j);
+                    _terrain[i][j] = new Surface();
                 }
             }
 
-            _froppie = new Froppie(10, _depart);
+            _froppie = new Froppie(10, _depart.X, _depart.Y);
             _froppie->addMoveObserver(this);
         }
 
@@ -30,46 +31,46 @@ namespace froppieLand{
             return _arrivee;
         }
         Froppie& Grill::getFroppie()const{
-            return Froppie;
+            return *_froppie;
         }
-        const Surface& Grill::getCase(unsigned int X, unsigned int Y){
-            return _terrain[X][Y];
+        const Surface& Grill::getCase(unsigned int X, unsigned int Y)const{
+            return *_terrain[X][Y];
         }
 
-        void Grill::vieillissemet() const{
+        void Grill::vieilissement(){
             for(int i = 0 ; i < _taille ; i++){
                 for(int j = 0 ; j < _taille ; j++){
-                    _terrain[i][j]->vieillissement();
+                    _terrain[i][j]->age();
                 }
             }
         }
 
         void Grill::consChemin()const{
 
-            Position& fropPosition = froppie->getPosition();
+            const Position& fropPosition = _froppie->getPosition();
             if(fropPosition.X == _arrivee.X){
-                for(int i = 0 ; i < math.abs(_arrivee.Y - fropPosition.Y) ; i++){
+                for(int i = 0 ; i < std::abs(_arrivee.Y - fropPosition.Y) ; i++){
                     _terrain[fropPosition.X][i]->nouvNenu();
                 }
             }
             else if(fropPosition.Y == _arrivee.Y){
-                for(int i = 0 ; i < math.abs(_arrivee.X - fropPosition.Y) ; i++){
+                for(int i = 0 ; i < std::abs(_arrivee.X - fropPosition.Y) ; i++){
                     _terrain[i][fropPosition.Y]->nouvNenu();
                 }
             }
             else{
-                for(int i = 0 ; i < math.abs(_arrivee.X - fropPosition.X) ; i++){
-                    for(int j = 0 ; j < math.abs(_arrivee.Y - fropPosition.Y) ; j++){
+                for(int i = 0 ; i < std::abs(_arrivee.X - fropPosition.X) ; i++){
+                    for(int j = 0 ; j < std::abs(_arrivee.Y - fropPosition.Y) ; j++){
                         _terrain[i][j]->nouvNenu();
                     }
                 }
             }
         }
 
-        void Grill::notifyMove(){
+        void Grill::notifyMove()const{
 
             Position currPos = _froppie->getPosition();
-            (*_terrain[currPos.X, currPos.Y])->souffrir(&_froppie);
+            _terrain[currPos.X][currPos.Y]->souffrir(*_froppie);
         }
     }
 }

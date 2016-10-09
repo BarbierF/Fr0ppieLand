@@ -4,7 +4,7 @@ namespace froppieLand{
     namespace modele{
         void Dopant::souffrir(Froppie& victim)const{
             victim.setSain();
-            victim.doubleHealth();
+            victim.doper();
         }
     }
 }
