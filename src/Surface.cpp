@@ -1,5 +1,4 @@
 #include "include/Surface.hpp"
-#include "include/FactorySurfEtat.hpp"
 #include "include/Grand.hpp"
 
 namespace froppieLand{

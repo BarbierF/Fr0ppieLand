@@ -1,6 +1,8 @@
 #ifndef GRILL_HPP
 #define GRILL_HPP
 
+#include <vector>
+
 #include "Position.hpp"
 #include "FroppieMoveObserver.hpp"
 #include "NonCopyable.hpp"
@@ -17,7 +19,7 @@ namespace froppieLand{
 
             unsigned int _taille;
 
-            Surface*** _terrain;
+            std::vector< Surface* > _terrain;
             Froppie* _froppie;
         public:
             
