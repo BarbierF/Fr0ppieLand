@@ -1,4 +1,4 @@
-#include "include/Ouest.hpp"
+#include "include/directions/Ouest.hpp"
 
 namespace froppieLand{
 

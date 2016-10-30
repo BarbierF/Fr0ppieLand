@@ -1,10 +1,18 @@
-#include "include/Nutritif.hpp"
+#include "include/nenuphar/strategy/Nutritif.hpp"
 
 namespace froppieLand{
     namespace modele{
-        void Nutritif::souffrir(Froppie& victim)const{
-            victim.setSain();
-            victim.doper();
+        namespace nenuphar{
+
+            void Nutritif::souffrir(Froppie& victim)const{
+                victim.setSain();
+                victim.doper();
+            }
+
+            const string& Nutritif::nomStrategy()const{
+                return "Nutritif";
+            }
         }
+        
     }
 }

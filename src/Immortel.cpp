@@ -1,9 +1,17 @@
-#include "include/Immortel.hpp"
+#include "include/nenuphar/strategy/Immortel.hpp"
 
 namespace froppieLand{
     namespace modele{
-        void Immortel::souffrir(Froppie& victim)const {
+        namespace nenuphar{
+
+            void Immortel::souffrir(Froppie& victim)const {
+            }
+            
+            const string& Immortel::nomStrategy()const{
+                return "Immortel";
+            }
         }
+        
 
     }
 }

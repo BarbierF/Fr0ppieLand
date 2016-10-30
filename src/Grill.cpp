@@ -1,7 +1,8 @@
 #include <cmath>
+#include <random>
 
 #include "include/Grill.hpp"
-#include "include/FroppieMoveObserver.hpp"
+#include "include/nenuphar/strategy/FactoryStrategyNenuphar.hpp"
 
 
 namespace froppieLand{
@@ -38,31 +39,35 @@ namespace froppieLand{
 
         void Grill::consChemin()const{
 
+            std::linear_congruential_engine generateur;
+            std::uniforme_int_distribution<int> distribution(0, 7); //On va générer les nombres de 1 à 7.
+
             const Position& fropPosition = _froppie->getPosition();
             if(fropPosition.X == _arrivee.X){
                 for(int i = 0 ; i < std::abs(_arrivee.Y - fropPosition.Y) ; i++){
-                    _terrain[fropPosition.X * _taille + i]->nouvNenu();
+
+                    StrategyNenuphar* nenuStrat = FactoryStrategyNenuphar::getStrategy(distribution(generator));
+                    _terrain[fropPosition.X * _taille + i]->generateNenuphar(nenuStrat);
                 }
             }
             else if(fropPosition.Y == _arrivee.Y){
                 for(int i = 0 ; i < std::abs(_arrivee.X - fropPosition.Y) ; i++){
-                    _terrain[i * _taille + fropPosition.Y]->nouvNenu();
+
+                    StrategyNenuphar* nenuStrat = FactoryStrategyNenuphar::getStrategy(distribution(generator));
+                    _terrain[i * _taille + fropPosition.Y]->generateNenuphar(nenuStrat);
                 }
             }
             else{
                 for(int i = 0 ; i < std::abs(_arrivee.X - fropPosition.X) ; i++){
                     for(int j = 0 ; j < std::abs(_arrivee.Y - fropPosition.Y) ; j++){
-                        _terrain[i * _taille + j]->nouvNenu();
+                        
+                        StrategyNenuphar* nenuStrat = FactoryStrategyNenuphar::getStrategy(distribution(generator));
+                        _terrain[i * _taille + j]->generateNenuphar(nenuStrat);
                     }
                 }
             }
         }
-
-        void Grill::notifyMove()const{
-
-            Position currPos = _froppie->getPosition();
-            _terrain[currPos.X * _taille + currPos.Y]->souffrir(*_froppie);
-        }
+        
     }
 }
 

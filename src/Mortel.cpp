@@ -1,9 +1,16 @@
-#include "include/Mortel.hpp"
+#include "include/nenuphar/strategy/Mortel.hpp"
 
 namespace froppieLand{
     namespace modele{
-        void Mortel::souffrir(Froppie& victim)const{
-            victim.setMort();
+        namespace nenuphar{
+            void Mortel::souffrir(Froppie& victim)const{
+                victim.setMort();
+            }
+
+            const string& Mortel::nomStrategy()const{
+                return "Mortel";
+            }
         }
+        
     }
 }

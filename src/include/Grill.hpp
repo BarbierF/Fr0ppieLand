@@ -4,10 +4,9 @@
 #include <vector>
 
 #include "Position.hpp"
-#include "FroppieMoveObserver.hpp"
 #include "NonCopyable.hpp"
-#include "Surface.hpp"
-#include "Froppie.hpp"
+#include "nenuphar/Surface.hpp"
+#include "froppie/Froppie.hpp"
 
 namespace froppieLand{
     namespace modele{
@@ -34,8 +33,6 @@ namespace froppieLand{
 
             void consChemin(void) const;
             void vieilissement();
-            
-            void notifyMove()const;
         };
     }
 }

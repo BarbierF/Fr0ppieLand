@@ -1,29 +1,35 @@
-#include "include/Mort.hpp"
-#include "include/Malade.hpp"
-#include "include/Sain.hpp"
+#include "include/froppie/fropEtat/Mort.hpp"
+#include "include/froppie/fropEtat/Malade.hpp"
+#include "include/froppie/fropEtat/Sain.hpp"
 
 namespace froppieLand{
-
     namespace modele{
+        namespace froppie{
+            const Mort Mort::_mort;
 
-        const Mort Mort::_mort;
+            Mort::Mort(){
 
-        Mort::Mort(){
+            }
 
-        }
+            void Mort::setMort(Froppie& cancered)const{
 
-        void Mort::setMort(Froppie& cancered)const{
+            }
 
-        }
-        void Mort::setSain(Froppie& cancered)const{
+            void Mort::setSain(Froppie& cancered)const{
 
-        }
-        void Mort::setMalade(Froppie& cancered)const{
+            }
 
-        }
+            void Mort::setMalade(Froppie& cancered)const{
 
-        const Mort& Mort::getMort(){
-            return _mort;
+            }
+
+            const Mort& Mort::getMort() const{
+                return _mort;
+            }
+
+            const string& Mort::nomEtat()const{
+                return "Mort";
+            }
         }
     }
 }

@@ -1,12 +1,11 @@
-#include "include/Sain.hpp"
-#include "include/Malade.hpp"
-#include "include/Mort.hpp"
+#include "include/froppie/fropEtat/Sain.hpp"
+#include "include/froppie/fropEtat/Malade.hpp"
+#include "include/froppie/fropEtat/Mort.hpp"
 
 namespace froppieLand{
-
     namespace modele{
-
-        const Sain Sain::_sain;
+        namespace froppie{
+            const Sain Sain::_sain;
 
         Sain::Sain(){
 
@@ -22,8 +21,13 @@ namespace froppieLand{
             cancered.setEtat(Malade::getMalade());
         }
 
-        const Sain& Sain::getSain(){
+        const Sain& Sain::getSain() const{
             return _sain;
         }
+
+        const string& Sain::nomEtat()const{
+            return "Sain";
+        }
+    }
     }
 }

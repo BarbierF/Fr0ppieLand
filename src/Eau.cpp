@@ -1,9 +1,16 @@
-#include "include/Eau.hpp"
+#include "include/nenuphar/strategy/Eau.hpp"
 
 namespace froppieLand{
     namespace modele{
-        void Eau::souffrir(Froppie& victim)const {
-            victim.setMort();
+        namespace nenuphar{
+            void Eau::souffrir(Froppie& victim)const {
+                victim.setMort();
+            }
+
+            const string& nomStrategy()const{
+                return "Eau";
+            }
         }
+        
     }
 }

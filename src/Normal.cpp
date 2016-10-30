@@ -1,4 +1,4 @@
-#include "include/Normal.hpp"
+#include "include/nenuphar/strategy/Normal.hpp"
 
 namespace froppieLand{
     namespace modele{

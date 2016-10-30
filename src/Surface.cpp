@@ -1,5 +1,4 @@
-#include "include/Surface.hpp"
-#include "include/Grand.hpp"
+#include "include/nenuphar/Surface.hpp"
 
 namespace froppieLand{
     namespace modele{
@@ -25,24 +24,19 @@ namespace froppieLand{
         }
 
         void Surface::age() {
-            if(_strategyNenuphar->canDie())
-                _surfEtat->age();
+            *_strategy.souffrir(*this);
         }
 
-        void Surface::generateNenuphar(StrategyNenuphar& strategyNenuphar){
+        void Surface::generateNenuphar(StrategyNenuphar* strategyNenuphar){
             _surfEtat = &Grand::getInstance();
-            _strategyNenuphar = &strategyNenuphar;
+            _strategyNenuphar = strategyNenuphar;
         }
-
-        // const FropEtat& Surface::affectFropEtat()const {
-        //     return _strategyNenuphar->affectFropEtat();
-        // }
-
-        // const int& Surface::affectHealth(const int& pv)const {
-        //     return _strategyNenuphar->affectHealth(pv);
-        // }
         void Surface::souffrir(Froppie& victim)const{
             _strategyNenuphar->souffrir(victim);
+        }
+
+        void nextEtat(){
+            _etat.age(*this);
         }
     }
 }
