@@ -2,7 +2,9 @@ CMakeCache.txt
 bin/*
 Makefile
 cmake_install.cmake
-CMakeFiles/*
+CMakeFiles
+CMakeTools
 .emacs*
 .vscode*
-CMakeLists.tkt
+CMakeLists.txt
+buildm
