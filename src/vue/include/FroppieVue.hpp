@@ -61,6 +61,8 @@ namespace froppieLand{
 
             static const Glib::RefPtr< Gdk::PixBuf >& getImage(const Glib::ustring& nom);
 
+            void leTempsPasse();
+
         protected:
 
             void cbPresentation();

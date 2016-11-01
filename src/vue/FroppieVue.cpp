@@ -251,5 +251,9 @@ namespace froppieLand{
 
             apropos.hide();
         }
+
+        void FroppieVue::leTempsPasse(){
+            _ptrGrillGraphic.majVieillissementCases(presentateur);
+        }
     }
 }
