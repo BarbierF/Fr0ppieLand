@@ -11,8 +11,8 @@ namespace froppieLand{
         public:
 
             static const Ouest& getOuest();
-            const int getVectorXDirection()const;
-            const int getVectorYDirection()const;
+            const int getVectorXDirection()const override;
+            const int getVectorYDirection()const override;
 
         private:
             Ouest();

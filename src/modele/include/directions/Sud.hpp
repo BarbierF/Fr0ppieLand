@@ -11,8 +11,8 @@ namespace froppieLand{
 
         public:
             static const Sud& getSud();
-            const int getVectorXDirection()const;
-            const int getVectorYDirection()const;
+            const int getVectorXDirection()const override;
+            const int getVectorYDirection()const override;
         
         private:
             Sud();

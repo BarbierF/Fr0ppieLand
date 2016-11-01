@@ -1,24 +1,21 @@
-#ifndef NORD_HPP
-#define NORD_HPP
-
-#include "Direction.hpp"
+#ifndef SELF_DIR_HPP
+#define SELF_DIR_HPP
 
 namespace froppieLand{
-
     namespace modele{
 
-        class Nord: public Direction{
+        class Self: public Direction{
 
         public:
-            static const Nord& getNord();
+            static const Seld& getSelf();
             const int getVectorXDirection()const override;
             const int getVectorYDirection()const override;
 
         private:
-            Nord();
+            Self();
 
-            static const Nord _nord;
-        };
+            static const Self _self;
+        }
     }
 }
 

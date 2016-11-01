@@ -7,7 +7,9 @@ INCLUDE_DIRECTORIES( 	src/modele/include
 						src/modele/include/froppie
 						src/modele/include/nenuphar/strategy
 						src/modele/include/nenuphar/surfEtat
-						src/modele/include/directions )
+						src/modele/include/directions
+						src/presentateur/include
+						src/vue/include )
 
 # Chemin du répertoire contenant les binaires.
 SET ( EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE} )
