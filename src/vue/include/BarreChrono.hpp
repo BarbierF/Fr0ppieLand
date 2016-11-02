@@ -27,6 +27,8 @@ namespace froppieLand{
 
             void stopChrono();
 
+            void startChrono();
+
             const unsigned int& getTempsChrono()const;
 
             const unsigned int& getTempsVieillissement()const;
@@ -49,9 +51,9 @@ namespace froppieLand{
 
             std::unique_ptr < Glib::Thread* > _chronoThread;
 
-            static unsigned int _tempsChrono;
+            const unsigned int _tempsChrono;
 
-            static unsigned int _tempsVieillisement;
+            const unsigned int _tempsVieillisement;
 
         }
     }

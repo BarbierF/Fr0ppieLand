@@ -35,6 +35,8 @@ namespace froppieLand{
 
             void vieillirCase(Presentateur& );
 
+            void actualiserDeplacement(Presentateur& );
+
         protected:
 
             unsigned int _ligne;

@@ -13,7 +13,7 @@ namespace froppieLand{
         class ResolutionFL: public Gtk::Frame{
         
         public:
-            ResolutionFL(FroppieVue& vue, Glib::ustring titre, const unsigned int resoMin, const unsigned int resoMax);
+            ResolutionFL(FroppieVue& vue, Glib::ustring titre, const unsigned int& resoMin, const unsigned int& resoMax);
 
             ResolutionFL(FroppieVue& vue, Glib::ustring titre);
 
@@ -29,11 +29,11 @@ namespace froppieLand{
 
         protected:
 
+            unsigned int& _resoMax , resoMin;
+        
             FroppieVue* _vue;
 
             Gtk::Menu _menuResolution;
-
-            const unsigned int resoMin, resoMax;
 
         };
     }

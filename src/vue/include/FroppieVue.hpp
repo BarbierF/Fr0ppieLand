@@ -107,7 +107,7 @@ namespace froppieLand{
 
             Gtk::VBox _infManager;
 
-            Presentateur& presentateur;
+            Presentateur& _presentateur;
         };
     }
 }

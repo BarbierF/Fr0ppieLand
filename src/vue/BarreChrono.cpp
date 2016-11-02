@@ -4,19 +4,18 @@
 namespace froppieLand{
     namespace vue{
 
-        const unsigned int BarreChrono::_tempsChrono = 60;
-        const unsigned int BarreChrono::_tempsVieillissement = 1;
-
         BarreChrono::BarreChrono(FroppieVue& vue, Glib::ustring)
             :Gtk::Frame(titre), _vue(&vue), _enCours(false){
             
             const Presentateur& presentateur = _vue->getPresentateur();
 
+            _tempsChrono = presentateur.getTempsPartie();
+            _tempsVieillissement = presentateur.getTempsVieillissement();
 
             _barProgression.set_fraction(0);
 
             Glig::ustring libelle(0 + "secondes");
-            _barProgression.set_text()
+            _barProgression.set_text();
 
         } 
 
@@ -33,7 +32,7 @@ namespace froppieLand{
             _barProgression.set_text(Glib::ustring(pas) + " secondes");
         }
 
-        void BarreChrono::lancerChrono(){
+        void BarreChrono::startChrono(){
 
             if(!_enCours){
                 _barChronoThread(Glib::Thread::create(
@@ -43,7 +42,7 @@ namespace froppieLand{
             }
         }
 
-        void BarreChrono::stopperChrono(){
+        void BarreChrono::stopChrono(){
 
             if(!_enCours) return;
             _barProgression.set_fraction(0);

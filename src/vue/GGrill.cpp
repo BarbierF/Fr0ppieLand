@@ -27,18 +27,23 @@ namespace froppieLand{
             
         }
 
-        const FroppieVue& getVue()const{
+        const FroppieVue& GGrill::getVue()const{
             return _vue;
         }
 
-        FroppieVue& getModifVue()const{
+        FroppieVue& GGrill::getModifVue()const{
             return _vue;
         }
 
-        void GGrill::majVieilissementCases(const Presentateur& presentateur){
-
+        void GGrill::activerDeplacement(){
             for(GCaseMare* case_mare : _mare){
-                case_mare->mettreAJour(presentateur);
+                case_mase->activerDeplacement(_vue.getPresentateur());
+            }
+        }
+
+        void GGrill::actualiserCases(){
+            for(GCaseMare* case_mare : _mare){
+                case_mare->mettreAJour(_vue.getPresentateur());
             }
         }
 

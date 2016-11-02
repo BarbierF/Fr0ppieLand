@@ -29,10 +29,12 @@ namespace froppieLand{
             const FroppieVue& getVue()const;
 
         protected:
-        
-            FroppieVue& getModifVue();
 
-            void majVieillissementCases(const Presentateur&);
+            void activerDeplacement()const;
+
+            void actualiserCase();            
+
+            FroppieVue& getModifVue();
 
         protected:
 

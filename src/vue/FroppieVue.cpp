@@ -105,8 +105,9 @@ namespace froppieLand{
         }
 
         FroppieVue::FroppieVue(Presentateur& presentateur):
-            _presentateur(presentateur), _ptrGrillGraphic(new GGrill(*this)), _pdvFroppie(presentateur.getVue())
-            , _resoTerrain(), _chronometre(){
+            _presentateur(presentateur), _ptrGrillGraphic(new GGrill(*this)), _pdvFroppie(*this, _nomPdvFroppie)
+            , _resoTerrain(*this, _nomResolution, _presentateur.getMinReso(), _presentateur.getMaxReso())
+            , _chronometre(*this, _nomBarreChrono){
 
                 set_title(_nomVue);
 
@@ -175,7 +176,7 @@ namespace froppieLand{
                     "Présenter l'application.'"
                 );
 
-                auto chargeur = sigc::mem_fun(*this, &FroppieVue::cbApropos);
+                auto chargeur = sigc::mem_fun(*this, &FroppieVue::cbPresentation);
                 groupe_actions->add(action, chargeur);
             }
 
@@ -224,14 +225,14 @@ namespace froppieLand{
 
         void FroppieVue::Inferieur(Gtk::Box manager){
 
-            manager.add(_ingManager);
+            manager.add(_infManager);
 
             _infManager.pack_start(_resoTerrain);
 
             _infManager.pack_start(_chronometre);
         }
 
-        void FroppieVue::cbAPropos(){
+        void FroppieVue::cbPresentation(){
 
             Gtk::AboutDialog apropos;
             apropos.set_transient_for(*this);
@@ -252,8 +253,28 @@ namespace froppieLand{
             apropos.hide();
         }
 
+        void FroppieVue::cbQuitter(){
+            hide();
+        }
+
+        void FroppieVue::cbLancement(){
+            _chronometre.startChrono();
+            _ptrGrillGraphic->activerDeplacement();
+        }
+
+        void FroppieVue::cbPreparation(){
+            _presentateur->nouveauJeu(_resoTerrain.getResolution());
+            
+            _centManager.remove(*ptrGrillGraphic);
+            _ptrGrillGraphic.reset(new GGrill($this));
+
+            _centManager.pack_start(*_ptrGrillGraphic);
+
+            show_all_children();
+        }
+
         void FroppieVue::leTempsPasse(){
-            _ptrGrillGraphic.majVieillissementCases(presentateur);
+            _ptrGrillGraphic.actualiserCases(_presentateur);
         }
     }
 }

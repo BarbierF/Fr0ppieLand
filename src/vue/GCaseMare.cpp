@@ -93,13 +93,22 @@ namespace froppieLand{
             else if(presentateur.isPossibleMove(_ligne, _colonne)){
                 auto chargeur = sigc::men_fun(*this, &GCaseMare::cbClickSouris);
                 _directionClick = presentateur.getDirection(_ligne, _colonne);
+                signal_button_press_event().connect(chargeur);
             }
-            
+            else{
+                auto chargeur = sigc::men_fun(*this, on_button_press_event());
+                signal_button_press_event().connect(chargeur);
+            }
 
             rep.show();
         }
 
-        void vieillirCase(Presentateur& presentateur)const{
+        void GCaseMare::actualiserDeplacement(){
+            
+        }
+
+
+        void GCaseMare::vieillirCase(Presentateur& presentateur)const{
 
             presentateur.vieillirCase(_ligne, _colonne);
 
@@ -115,7 +124,7 @@ namespace froppieLand{
 
             pres.deplaceFroppie(_directionClick);
 
-            mettreAJour(pres);
+            _gGrill.actualiserCases();
 
             return true;
         }
