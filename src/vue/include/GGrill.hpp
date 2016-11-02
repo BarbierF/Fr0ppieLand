@@ -34,7 +34,7 @@ namespace froppieLand{
 
             Gtk::Grid _mareManager;
             
-            FroppieVue _vue;
+            FroppieVue& _vue;
         
             std::vector < GCaseMare > _mare;
         };

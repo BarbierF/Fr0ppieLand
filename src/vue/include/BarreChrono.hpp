@@ -37,7 +37,7 @@ namespace froppieLand{
 
         protected:
 
-            FroppieVue& _vue
+            FroppieVue* _vue
 
             Gtk::ProgressBar _barProgression;
 

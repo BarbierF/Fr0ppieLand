@@ -4,17 +4,17 @@
 namespace froppieLand{
     namespace vue{
 
-        FroppHealth::FroppHealth(FroppieVue& vue)
-            :_vue(vue){
+        FroppHealth::FroppHealth(FroppieVue& vue, Glib::ustring titre)
+            :Gtk::Frame(titre), _vue(&vue){
             
-            _coeur =_vue.getImage("coeur");
+            _coeur =_vue->getImage("coeur");
 
             remove();
             add(_coeur);
 
             add(_labelPdv);
 
-            majFropHealth(_vue.getPresentateur());
+            majFropHealth(_vue->getPresentateur());
         }
 
 
@@ -27,7 +27,7 @@ namespace froppieLand{
         }
 
         const FroppieVue& getVue()const{
-            return _vue;
+            return *_vue;
         }
     }
 }

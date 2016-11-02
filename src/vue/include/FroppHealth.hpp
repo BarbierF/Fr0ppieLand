@@ -15,7 +15,7 @@ namespace froppieLand{
 
         public:
 
-            FroppHealth(const FroppieVue& vue);
+            FroppHealth(FroppieVue& vue, Glib::ustring titre);
 
             void majFroppHealth(const Presentateur& presentateur);
 
@@ -25,7 +25,7 @@ namespace froppieLand{
 
         protected:
 
-            const FroppieVue _vue; 
+            FroppieVue* _vue; 
 
             Gtk::Image _coeur;
 
