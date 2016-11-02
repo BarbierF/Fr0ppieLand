@@ -37,7 +37,7 @@ namespace froppieLand{
 
             FroppieVue(const FroppieVue&) = delete;
 
-            Vue& operator=(const Vue&) = delete;
+            FroppieVue& operator=(const FroppieVue&) = delete;
 
             void initialiser();
 

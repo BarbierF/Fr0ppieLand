@@ -21,6 +21,10 @@ namespace froppieLand{
 
             BarreChrono(FroppieVue& vue, Glib::ustring titre);
 
+            BarreChrono(const BarreChrono& ) = delete;
+
+            BarreChrono& operator=(const BarreChrono& ) = delete;
+
             void stopChrono();
 
             const unsigned int& getTempsChrono()const;

@@ -20,6 +20,10 @@ namespace froppieLand{
         public:
             GGrill(FroppieVue& vue);
 
+            GGrill(const GGrill& ) = delete;
+
+            GGrill& operator=(const GGrill& ) = delete;
+
         public:
 
             const FroppieVue& getVue()const;

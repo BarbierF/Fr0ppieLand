@@ -17,6 +17,10 @@ namespace froppieLand{
 
             FroppHealth(FroppieVue& vue, Glib::ustring titre);
 
+            FroppHealth(const FroppHealth&) = delete;
+
+            FroppHealth& operator=(const FroppHealth&) = delete;
+
             void majFroppHealth(const Presentateur& presentateur);
 
         public:
