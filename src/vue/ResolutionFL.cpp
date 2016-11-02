@@ -26,6 +26,14 @@ namespace froppieLand{
             }
 
             _menuResolution.signal_selection_done(sigc::men_fun(*this, &ResolutionFL::nouvelleResolution));
+
+        }
+
+        void ResolutionFL::nouvelleResolution(){
+
+            _vue->nouvellePartie(
+                _menuResoltion.get_active().get_label();
+            );
         }
     }
 }
