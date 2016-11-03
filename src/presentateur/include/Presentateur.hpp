@@ -50,13 +50,25 @@ namespace froppieLand{
             const int& getVieFroppie()const;
 
             const Direction& getDerniereDireFroppieVoisin()const;
+
+            const std::string& getTypeNenu(const unsigned int& ligne, const unsigned int& colonne)const;
+
+            const std::string& getEtatFroppie(const unsigned int& ligne, const unsigned int& colonne)const;
  
+            void OMGFroppieIsGettingEaten();
+
         public:
 
-            bool isPossibleMove(const unsigned int& _ligne, const unsigned int& _colonne);
+            bool isPossibleMove(const unsigned int& ligne, const unsigned int& colonne);
 
-            bool isArrived(const unsigned int& _ligne, const unsigned int& _colonne)const;
+            bool isArrived(const unsigned int& ligne, const unsigned int& colonne)const;
             
+            bool isFroppied(const unsigned int& ligne, const unsigned int& colonne)const;
+
+            bool deplaceFroppie(const Direction& directionDep);
+
+            void vieillirCase(const unsigned int& ligne, const unsigned int& colonne);
+
 
 
         protected:

@@ -48,15 +48,45 @@ namespace froppieLand{
 
         }
 
-        const Direction& getDerniereDireFroppieVoisin()const{
+        const Direction& Presentateur::getDerniereDireFroppieVoisin()const{
             
             Grill::Surface froppieSurf = _modele.getFroppieSurf();
 
             return froppieSurf.getDirectionVoisin();
         }
 
-        const int& getVieFroppie()const{
+        const int& Presentateur::getVieFroppie()const{
             return _modele.getFroppie().getPDV();
+        }
+
+        const std::string& Presentateur::getTypeNenu(
+            const unsigned int& ligne, const unsigned int& colonne
+        )const{
+            return _modele.getCase(ligne, colonne).getType();
+        }
+
+        const std::string& Presentateur::getEtat(
+            const unsigned int& ligne, const unsigned int& colonne
+        )const{
+            return _modele.getCase(ligne, colonne).getNEtat();
+        }
+
+        void Presentateur::OMGFroppieIsGettingEaten(
+            const unsigned int& ligne, const unsigned int& colonne
+        ){
+            const Froppie& froppie = _modele.getFroppie();
+            froppie.getEtat().setMort(froppie);
+        }
+
+        bool Presentateur::deplaceFroppie(const Direction& directionDep){
+
+            return _modele.getFroppie().deplacer(directionDep);
+        }
+
+        void Presentateur::vieillirCase(
+            const unsigned int& ligne, const unsigned int& colonne
+        ){
+            _modele.getCase(ligne, colonne).age();  
         }
     }
 }

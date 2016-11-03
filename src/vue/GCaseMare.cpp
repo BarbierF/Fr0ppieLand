@@ -74,12 +74,12 @@ namespace froppieLand{
 
         void GCaseMare::mettreAJour(const Presentateur& presentateur){
 
-            const std::string type = presentateur.typeNenu(_ligne, _colonne);
-            const std::string etat = presentateur.etatNenu(_ligne, _colonne);
+            const std::string type = presentateur.getTypeNenu(_ligne, _colonne);
+            const std::string etat = presentateur.getEtatNenu(_ligne, _colonne);
             const bool froppiePres = presentateur.isFroppied(_ligne, _colonne);
 
 
-            if(froppiePres && etat == "Inexistant" && type == "eau") presentateur.OMGFroppieIsGettingEaten(_ligne, _colonne);
+            if(froppiePres && etat == "Inexistant" && type == "eau") presentateur.OMGFroppieIsGettingEaten();
 
             Gtk::Image& rep = *_formes[type][etat];
 
