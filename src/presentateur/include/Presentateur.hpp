@@ -39,6 +39,8 @@ namespace froppieLand{
 
         public:
 
+            const Grill& getModele()const;
+
             const unsigned int& getTempsPartie()const;
 
             const unsigned int& getTempsVieillissement()const;
@@ -56,6 +58,8 @@ namespace froppieLand{
             const std::string& getEtatFroppie(const unsigned int& ligne, const unsigned int& colonne)const;
  
             void OMGFroppieIsGettingEaten();
+
+            void FroppieVue::nouveauJeu(unsigned int resolution);
 
         public:
 

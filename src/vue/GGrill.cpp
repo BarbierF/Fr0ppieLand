@@ -11,7 +11,7 @@ namespace froppieLand{
 
             const Presentateur& pres = _vue.getPresentateur();
 
-            const Grill& grill = _vue.getGrill();
+            const Grill& grill = pres.getModele();
 
             const unsigned int& taille = grill.getTaille();
 

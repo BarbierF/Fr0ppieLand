@@ -18,6 +18,10 @@ namespace froppieLand{
 
         }
 
+        const Grill& getModele()const{
+            return _modele;
+        }
+
         const unsigned int& Presentateur::getTempsPartie()const{
             return _tempsPartie;
         }
@@ -87,6 +91,11 @@ namespace froppieLand{
             const unsigned int& ligne, const unsigned int& colonne
         ){
             _modele.getCase(ligne, colonne).age();  
+        }
+
+        void Presentateur::nouveauJeu(unsigned int resolution){
+            _modele.reset();
+            _modele = new Grill(resolution, 10, 0, 0, 10);
         }
     }
 }

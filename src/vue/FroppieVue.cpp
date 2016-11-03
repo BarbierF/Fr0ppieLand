@@ -266,7 +266,7 @@ namespace froppieLand{
             _presentateur->nouveauJeu(_resoTerrain.getResolution());
             
             _centManager.remove(*ptrGrillGraphic);
-            _ptrGrillGraphic.reset(new GGrill($this));
+            _ptrGrillGraphic.reset(new GGrill(*this));
 
             _centManager.pack_start(*_ptrGrillGraphic);
 
