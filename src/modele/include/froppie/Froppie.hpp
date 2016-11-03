@@ -29,17 +29,22 @@
 
                 public:
 
-                    bool deplacer(const Direction&, const unsigned int& tailleEnv);
+                    const int& getPDV()const;
+
+                    const unsigned int getNbMove()const;
 
                     const Position& getPosition()const;
 
                     const FropEtat& getCurEtat()const;
 
-                    void setSain();
+                protected:
 
-                    void setMalade();
+                    void setEtat(FropEtat const*);
 
-                    void setMort();
+
+                public:
+
+                    bool deplacer(const Direction&, const unsigned int& tailleEnv);
 
                     void subir();
 
@@ -53,12 +58,10 @@
                     int _pointDeVie;
 
                     unsigned int _nbMove;
-                    
+
                     Position _position;
 
                     FropEtat const* _etat;
-
-                    void setEtat(FropEtat const*);
 
 
                 };

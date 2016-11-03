@@ -54,5 +54,9 @@ namespace froppieLand{
 
             return froppieSurf.getDirectionVoisin();
         }
+
+        const int& getVieFroppie()const{
+            return _modele.getFroppie().getPDV();
+        }
     }
 }

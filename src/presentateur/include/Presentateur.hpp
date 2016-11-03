@@ -47,6 +47,8 @@ namespace froppieLand{
 
             const unsigned int& getResolutionMax()const;
 
+            const int& getVieFroppie()const;
+
             const Direction& getDerniereDireFroppieVoisin()const;
  
         public:

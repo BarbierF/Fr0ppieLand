@@ -30,14 +30,13 @@ namespace froppieLand{
 
                 
             }
-            void Froppie::setSain(){
-                _etat->setSain(*this);
+
+            const int& Froppie::getPDV()const{
+                return _pointDeVie;
             }
-            void Froppie::setMalade(){
-                _etat->setMalade(*this);
-            }
-            void Froppie::setMort(){
-                _etat->setMort(*this);
+
+            const unsigned int& getNbMove()const{
+                return _nbMove;
             }
 
             void Froppie::setEtat(FropEtat const* nEtat){
