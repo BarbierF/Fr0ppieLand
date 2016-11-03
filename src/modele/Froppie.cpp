@@ -43,9 +43,13 @@ namespace froppieLand{
                 _etat = nEtat;
             }
 
+            const FropEtat& Froppie::getEtat()const{
+                return *_etat;
+            }
+
             void Froppie::subir(){
                 _pointDeVie/=2;
-                if(_pointDeVie == 0) setMort();
+                if(_pointDeVie == 0) _etat->setMort();
             }
             void Froppie::doper(){
                 _pointDeVie*=2;

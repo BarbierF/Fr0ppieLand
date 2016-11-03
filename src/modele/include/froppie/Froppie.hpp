@@ -35,7 +35,7 @@
 
                     const Position& getPosition()const;
 
-                    const FropEtat& getCurEtat()const;
+                    const FropEtat& getEtat()const;
 
                 protected:
 
