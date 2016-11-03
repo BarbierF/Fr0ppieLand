@@ -24,12 +24,18 @@ namespace froppieLand{
             typedef modele::Ouest Ouest;
             typedef modele::Est Est;
             typedef modele::Self Self;
+            
 
 
 
         public:
 
-            Presentateur(FroppieVue& , Grill& );
+            Presentateur(FroppieVue& , Grill&
+            , const unsigned int taille
+            , const unsigned int depX, const unsigned int depY
+            , const unsigned int arrX, const unsigned int arrY
+            , const unsigned int resoMin, const unsigned int resoMax
+            , unsigned int tempsPartie, const unsigned int tempsVieillissement);
 
         public:
 
@@ -40,12 +46,15 @@ namespace froppieLand{
             const unsigned int& getResolutionMin()const;
 
             const unsigned int& getResolutionMax()const;
+
+            const Direction& getDerniereDireFroppieVoisin()const;
  
         public:
 
             bool isPossibleMove(const unsigned int& _ligne, const unsigned int& _colonne);
 
-
+            bool isArrived(const unsigned int& _ligne, const unsigned int& _colonne)const;
+            
 
 
         protected:

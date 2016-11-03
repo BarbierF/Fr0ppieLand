@@ -18,30 +18,48 @@
                     
                     typedef modele::Direction Direction;
 
-                private: 
+                public: 
+                    Froppie(const int& pdv, const unsigned int& Xdep, const unsigned int& Ydep);
+                    
+                    ~Froppie();
+
+                    Froppie(const Froppie& ) = delete;
+
+                    Froppie& operator=(const Froppie& )const = delete; 
+
+                public:
+
+                    bool deplacer(const Direction&, const unsigned int& tailleEnv);
+
+                    const Position& getPosition()const;
+
+                    const FropEtat& getCurEtat()const;
+
+                    void setSain();
+
+                    void setMalade();
+
+                    void setMort();
+
+                    void subir();
+
+                    void doper();
+
+                    void soigner();
+
+
+                protected: 
+
                     int _pointDeVie;
+
                     unsigned int _nbMove;
+                    
                     Position _position;
 
                     FropEtat const* _etat;
 
                     void setEtat(FropEtat const*);
 
-                public: 
-                    Froppie(const int& pdv, const unsigned int& Xdep, const unsigned int& Ydep);
-                    ~Froppie();
-
-                    bool deplacer(const Direction&, const unsigned int& tailleEnv);
-                    const Position& getPosition()const;
-
-                    const FropEtat& getCurEtat()const;
-                    void setSain();
-                    void setMalade();
-                    void setMort();
-
-                    void subir();
-                    void doper();
-                    void soigner();
 
                 };
             }

@@ -47,7 +47,7 @@ namespace froppieLand{
 
             bool _froppiePresente;
 
-            Presentateur::Direction _directionClick;
+            Presentateur::Direction const* _directionClick;
 
             //choix du shared_ptr pour pouvoir mettre mettre deux fois la même image dans les maps, ex dopant et mortel
             std::map < std::string, std::map < std::string, std::shared_ptr< Gtk::image > > > _formes;

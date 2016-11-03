@@ -55,6 +55,8 @@ namespace froppieLand{
             _froppieFormes["Sain"] = std::unique_ptr < Gtk::Image >(vue.getImage("froppie-verte"));
             _froppieFormes["Morte"] = std::unique_ptr < Gtk::Image >(vue.getImage("froppie-morte"));
 
+            _directionClick = Presentateur::Self::getSelf();
+
             mettreAJour(vue.getPresentateur());
         }
 
@@ -86,27 +88,29 @@ namespace froppieLand{
             remove();
             add(rep);
 
+            _directionClick = &Presentateur::Self::getSelf();
+
             if(froppiePres) {
                 const std::string fropEtat = presentateur._etatFroppie();
+
                 add(*_froppieFormes[fropEtat]);
             }
             else if(presentateur.isPossibleMove(_ligne, _colonne)){
+
                 auto chargeur = sigc::men_fun(*this, &GCaseMare::cbClickSouris);
-                _directionClick = presentateur.getDirection(_ligne, _colonne);
+
+                _directionClick = &presentateur.getDerniereDireFroppieVoisin();
+
                 signal_button_press_event().connect(chargeur);
             }
             else{
                 auto chargeur = sigc::men_fun(*this, on_button_press_event());
+
                 signal_button_press_event().connect(chargeur);
             }
 
             rep.show();
         }
-
-        void GCaseMare::actualiserDeplacement(){
-            
-        }
-
 
         void GCaseMare::vieillirCase(Presentateur& presentateur)const{
 

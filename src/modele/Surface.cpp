@@ -4,12 +4,15 @@ namespace froppieLand{
     namespace modele{
         namespace nenuphar{
             Surface::Surface(SurfEtat const* surfEtat, StrategyNenuphar const* strategyNenuphar, unsigned int iS, unsigned int jS)
-            :_etat(surfEtat), _strategy(strategyNenuphar), _sPosition({iS, jS}) {
+            :_etat(surfEtat), _strategy(strategyNenuphar), _sPosition({iS, jS}), _iterVoisin(_sPosition) {
 
             }
 
-            Surface::Surface(unsigned int iS, unsigned int jS):
-            _etat(Inexistant::getInstance()), _strategy(FactoryStrategyNenuphar::getStrategy(TypeNenu::eau)), _sPosition({iS, jS}){
+            Surface::Surface(unsigned int iS, unsigned int jS)
+                : _etat(Inexistant::getInstance())
+                , _strategy(FactoryStrategyNenuphar::getStrategy(TypeNenu::eau))
+                , _sPosition({iS, jS})
+                , _iterVoisin(_sPosition){
 
             }
 
@@ -43,6 +46,20 @@ namespace froppieLand{
 
             void Surface::setEtat(SurfEtat const* nEtat){
                 _etat = nEtat;
+            }
+
+            bool Surface::isCaseVoisine(const Position& positionCase)const{
+                bool result = false;
+
+                while(!_iterVoisin.estFini() && result = false){
+                    result = _iterVoisin.voisinSuivant();
+                }
+
+                return result;
+            }
+
+            const Direction& Surface::getDirectionVoisin()const{
+                return _iterVoisin.getDirectionActuelle();
             }
         }        
     }
