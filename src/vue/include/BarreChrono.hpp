@@ -14,8 +14,7 @@ namespace froppieLand{
 
         class BarreChrono: public Gtk::Frame{
         public:
-            class FroppieVue;
-            class Presentateur;
+            friend class FroppieVue;
 
         public:
 
@@ -35,7 +34,7 @@ namespace froppieLand{
 
         protected:
 
-            void timesUp(Presentateur&);
+            void timesUp(presentateur::Presentateur&);
 
             void traitementChronoThread();
 

@@ -1,4 +1,4 @@
-#include "include/nenuphar/Surface.hpp"
+#include "Surface.hpp"
 
 namespace froppieLand{
     namespace modele{

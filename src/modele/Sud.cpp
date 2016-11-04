@@ -1,4 +1,4 @@
-#include "include/directions/Sud.hpp"
+#include "Sud.hpp"
 
 namespace froppieLand{
 

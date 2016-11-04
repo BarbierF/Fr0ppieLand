@@ -1,5 +1,5 @@
-#include "include/nenuphar/strategy/NenuVieillissant.hpp"
-#include "include/nenuphar/Surface.hpp"
+#include "NenuVieillissant.hpp"
+#include "Surface.hpp"
 
 namespace froppieLand{
     namespace modele{

@@ -1,4 +1,4 @@
-#include "include/nenuphar/strategy/FactoryStrategyNenuphar.hpp"
+#include "FactoryStrategyNenuphar.hpp"
 
 namespace froppieLand{
     namespace modele{

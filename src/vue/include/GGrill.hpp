@@ -11,7 +11,9 @@
 namespace froppieLand{
     namespace vue{
 
-        class GGrill :public AspectFrame{
+        class FroppieVue;
+
+        class GGrill :public Gtk::AspectFrame{
             
         public:
             friend class GCaseMare;
@@ -30,9 +32,9 @@ namespace froppieLand{
 
         protected:
 
-            void activerDeplacement()const;
+            void activerDeplacement();
 
-            void actualiserCase();            
+            void actualiserCases();            
 
             FroppieVue& getModifVue();
 
@@ -42,7 +44,7 @@ namespace froppieLand{
             
             FroppieVue& _vue;
         
-            std::vector < GCaseMare > _mare;
+            std::vector < GCaseMare* > _mare;
         };
     }
 }

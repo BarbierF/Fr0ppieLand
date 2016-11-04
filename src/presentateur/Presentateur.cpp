@@ -1,4 +1,4 @@
-#include "include/Presentateur.hpp"
+#include "Presentateur.hpp"
 
 
 namespace froppieLand{
@@ -66,7 +66,13 @@ namespace froppieLand{
         const std::string& Presentateur::getTypeNenu(
             const unsigned int& ligne, const unsigned int& colonne
         )const{
-            return _modele.getCase(ligne, colonne).getType();
+            return _modele.getCase(ligne, colonne).getType().nomStrategy();
+        }
+
+        const std::string& Presentateur::getEtatNenu(
+            const unsigned int& ligne, const unsigned int& colonne
+        )const{
+            return _modele.getCase(ligne, colonne).getEtat().nomEtat();
         }
 
         const std::string& Presentateur::getEtat(

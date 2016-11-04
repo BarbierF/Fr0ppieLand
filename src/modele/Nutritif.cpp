@@ -1,5 +1,5 @@
-#include "include/nenuphar/strategy/Nutritif.hpp"
-#include "include/froppie/Froppie.hpp"
+#include "Nutritif.hpp"
+#include "Froppie.hpp"
 
 namespace froppieLand{
     namespace modele{

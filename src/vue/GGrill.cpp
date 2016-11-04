@@ -1,5 +1,7 @@
 #include "GGrill.hpp"
-
+#include "Grill.hpp"
+#include "FroppieVue.hpp"
+#include "Presentateur.hpp"
 
 namespace froppieLand{
     namespace vue{
@@ -9,9 +11,9 @@ namespace froppieLand{
 
             add(_mareManager);
 
-            const Presentateur& pres = _vue.getPresentateur();
+            const presentateur::Presentateur& pres = _vue.getPresentateur();
 
-            const Grill& grill = pres.getModele();
+            const modele::Grill& grill = pres.getModele();
 
             const unsigned int& taille = grill.getTaille();
 
@@ -20,7 +22,7 @@ namespace froppieLand{
             for(int i = 0 ; i < taille ; i++){
                 for(int j = 0 ; j < taille ; j++){
                     GCaseMare* case_mare = Gtk::manage(new GCaseMare(*this, i, j));
-                    _gestionnaire.attach(*case_mare, i, j, 1, 1);
+                    _mareManager.attach(*case_mare, i, j, 1, 1);
                     _mare.push_back(case_mare);
                 }
             }
@@ -31,13 +33,13 @@ namespace froppieLand{
             return _vue;
         }
 
-        FroppieVue& GGrill::getModifVue()const{
+        FroppieVue& GGrill::getModifVue(){
             return _vue;
         }
 
         void GGrill::activerDeplacement(){
             for(GCaseMare* case_mare : _mare){
-                case_mase->activerDeplacement(_vue.getPresentateur());
+                case_mare->activerDeplacement(_vue.getPresentateur());
             }
         }
 

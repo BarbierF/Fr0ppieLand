@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "../Position.hpp"
+#include "Position.hpp"
 
 
 namespace froppieLand{

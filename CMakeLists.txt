@@ -14,6 +14,8 @@ PKG_CHECK_MODULES( GTKMM gtkmm-3.0 )
 # Chemin des répertoires contenant les fichiers entêtes.
 INCLUDE_DIRECTORIES( 	src/modele/include
 						src/modele/include/froppie
+						src/modele/include/froppie/fropEtat
+						src/modele/include/nenuphar
 						src/modele/include/nenuphar/strategy
 						src/modele/include/nenuphar/surfEtat
 						src/modele/include/directions

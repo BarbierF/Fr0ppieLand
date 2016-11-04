@@ -3,15 +3,15 @@
 
 #include <memory>
 
-#include "../../modele/include/Grill.hpp"
-#include "../../modele/include/directions/Direction.hpp"
-#include "../../modele/include/directions/Nord.hpp"
-#include "../../modele/include/directions/Sud.hpp"
-#include "../../modele/include/directions/Est.hpp"
-#include "../../modele/include/directions/Ouest.hpp"
-#include "../../modele/include/directions/Self.hpp"
+#include "Grill.hpp"
+#include "Direction.hpp"
+#include "Nord.hpp"
+#include "Sud.hpp"
+#include "Est.hpp"
+#include "Ouest.hpp"
+#include "Self.hpp"
 
-#include "../../vue/include/FroppieVue.hpp"
+#include "FroppieVue.hpp"
 
 namespace froppieLand{
     namespace presentateur{
@@ -27,7 +27,8 @@ namespace froppieLand{
             typedef modele::Est Est;
             typedef modele::Self Self;
             
-
+            typedef modele::Grill Grill,
+            typedef vue::FroppieVue FroppieVue;
 
 
         public:
@@ -52,11 +53,14 @@ namespace froppieLand{
 
             const int& getVieFroppie()const;
 
+
             const Direction& getDerniereDireFroppieVoisin()const;
 
             const std::string& getTypeNenu(const unsigned int& ligne, const unsigned int& colonne)const;
 
-            const std::string& getEtatFroppie(const unsigned int& ligne, const unsigned int& colonne)const;
+            const std::string& getEtatNenu(const unsigned int& ligne, const unsigned int& colonne)const;
+            
+            const std::string& getEtatFroppie()const;
  
             void OMGFroppieIsGettingEaten();
 

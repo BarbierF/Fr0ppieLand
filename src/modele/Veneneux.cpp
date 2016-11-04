@@ -1,5 +1,5 @@
-#include "include/nenuphar/strategy/Veneneux.hpp"
-#include "include/froppie/Froppie.hpp"
+#include "Veneneux.hpp"
+#include "Froppie.hpp"
 
 namespace froppieLand{
     namespace modele{

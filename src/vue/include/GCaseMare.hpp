@@ -8,18 +8,29 @@
 #include <string>
 #include <memory>
 
-#include "../../presentateur/include/Presentateur.hpp"
+#include "Presentateur.hpp"
+
 
 namespace froppieLand{
+
+    namespace presentateur{
+        class Presentateur;
+    }
+
     namespace vue{
 
         class GGrill;
 
-        class GCasesMare: public EventBox{
+        class GCaseMare: public Gtk::EventBox{
+
+        public:
+
+            friend class GGrill;
+        
 
         public:
             
-            GCasesMare(GGrill& ggrill, unsigned int ligne, unsigned int colonne, bool froppiePresente);
+            GCaseMare(GGrill& ggrill, unsigned int& ligne, unsigned int& colonne);
 
             const unsigned int& getLigne()const;
 
@@ -31,28 +42,24 @@ namespace froppieLand{
 
             bool cbClickSouris(GdkEventButton* evt);
 
-            void majSurface(const Presentateur& );
+            void majCase(presentateur::Presentateur& );
 
-            void vieillirCase(Presentateur& );
+            void vieillirCase(presentateur::Presentateur& );
 
-            void actualiserDeplacement(Presentateur& );
+            void actualiserDeplacement(presentateur::Presentateur& );
 
         protected:
 
-            unsigned int _ligne;
-            
-            unsigned int _colonne;
+            unsigned int _ligne, _colonne;
 
-            const GGrill _gGrill;
+            GGrill& _gGrill;
 
-            bool _froppiePresente;
-
-            Presentateur::Direction const* _directionClick;
+            modele::Direction const* _directionClick;
 
             //choix du shared_ptr pour pouvoir mettre mettre deux fois la même image dans les maps, ex dopant et mortel
-            std::map < std::string, std::map < std::string, std::shared_ptr< Gtk::image > > > _formes;
+            std::map < Glib::ustring, std::map < Glib::ustring, std::shared_ptr< Gtk::Image > > > _formes;
 
-            std::map< std::string, std::unique_ptr< Gtk::image > > _froppieForme; 
+            std::map< std::string, std::unique_ptr< Gtk::Image > > _froppieFormes; 
         };
 
     }

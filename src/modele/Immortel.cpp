@@ -1,5 +1,5 @@
-#include "include/nenuphar/strategy/Immortel.hpp"
-#include "include/froppie/Froppie.hpp"
+#include "Immortel.hpp"
+#include "Froppie.hpp"
 
 namespace froppieLand{
     namespace modele{

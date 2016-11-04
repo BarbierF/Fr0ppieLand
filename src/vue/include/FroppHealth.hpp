@@ -2,14 +2,15 @@
 #define FROPP_HEAlTH_HPP
 
 #include <gtkmm/frame.h>
-#include <gtkmm/progressbar.h>
-#include <gtkmm/adjustment.h>
 #include <gtkmm/label.h>
+#include <gtkmm/image.h>
 
-#include "FroppieVue.hpp"
+#include "Presentateur.hpp"
 
 namespace froppieLand{
     namespace vue{
+
+        class FroppieVue;
 
         class FroppHealth: public Gtk::Frame{
 
@@ -21,7 +22,7 @@ namespace froppieLand{
 
             FroppHealth& operator=(const FroppHealth&) = delete;
 
-            void majFroppHealth(const Presentateur& presentateur);
+            void majFroppHealth(const presentateur::Presentateur& presentateur);
 
         public:
 
@@ -31,7 +32,7 @@ namespace froppieLand{
 
             FroppieVue* _vue; 
 
-            Gtk::Image _coeur;
+            const Gtk::Image _coeur;
 
             Gtk::Label _labelPdv;
 

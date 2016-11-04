@@ -4,8 +4,8 @@
 #include <vector>
 
 #include "Position.hpp"
-#include "nenuphar/Surface.hpp"
-#include "froppie/Froppie.hpp"
+#include "Surface.hpp"
+#include "Froppie.hpp"
 
 namespace froppieLand{
     namespace modele{

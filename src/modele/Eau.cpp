@@ -1,5 +1,5 @@
-#include "include/nenuphar/strategy/Eau.hpp"
-#include "include/froppie/Froppie.hpp"
+#include "Eau.hpp"
+#include "Froppie.hpp"
 
 namespace froppieLand{
     namespace modele{

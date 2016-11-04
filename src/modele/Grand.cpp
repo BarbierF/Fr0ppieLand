@@ -1,7 +1,7 @@
-#include "include/nenuphar/surfEtat/Grand.hpp"
-#include "include/nenuphar/surfEtat/Moyen.hpp"
+#include "Grand.hpp"
+#include "Moyen.hpp"
 
-#include "include/nenuphar/Surface.hpp"
+#include "Surface.hpp"
 
 namespace froppieLand{
     namespace modele{

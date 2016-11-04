@@ -1,6 +1,6 @@
-#include "include/froppie/fropEtat/Sain.hpp"
-#include "include/froppie/fropEtat/Malade.hpp"
-#include "include/froppie/fropEtat/Mort.hpp"
+#include "Sain.hpp"
+#include "Malade.hpp"
+#include "Mort.hpp"
 
 namespace froppieLand{
     namespace modele{

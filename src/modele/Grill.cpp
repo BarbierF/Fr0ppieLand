@@ -1,8 +1,8 @@
 #include <cmath>
 #include <random>
 
-#include "include/Grill.hpp"
-#include "include/nenuphar/strategy/FactoryStrategyNenuphar.hpp"
+#include "Grill.hpp"
+#include "FactoryStrategyNenuphar.hpp"
 
 
 namespace froppieLand{

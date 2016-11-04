@@ -1,6 +1,6 @@
-#include "include/nenuphar/surfEtat/Inexistant.hpp"
+#include "Inexistant.hpp"
 
-#include "include/nenuphar/Surface.hpp"
+#include "Surface.hpp"
 
 namespace froppieLand{
     namespace modele{

@@ -1,4 +1,4 @@
-#include "include/nenuphar/strategy/NenuNonVieillissant.hpp"
+#include "NenuNonVieillissant.hpp"
 
 namespace froppieLand{
     namespace modele{

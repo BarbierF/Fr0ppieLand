@@ -2,16 +2,16 @@
 #define SURFACE_HPP
 
 #include "IterVoisin.hpp"
-#include "surfEtat/SurfEtat.hpp"
-#include "strategy/StrategyNenuphar.hpp"
-#include "froppie/fropEtat/FropEtat.hpp"
-#include "surfEtat/Petit.hpp"
-#include "surfEtat/Moyen.hpp"
-#include "surfEtat/Grand.hpp"
-#include "surfEtat/Inexistant.hpp"
-#include "strategy/NenuVieillissant.hpp"
-#include "strategy/NenuNonVieillissant.hpp"
-#include "strategy/FactoryStrategyNenuphar.hpp"
+#include "SurfEtat.hpp"
+#include "StrategyNenuphar.hpp"
+#include "FropEtat.hpp"
+#include "Petit.hpp"
+#include "Moyen.hpp"
+#include "Grand.hpp"
+#include "Inexistant.hpp"
+#include "NenuVieillissant.hpp"
+#include "NenuNonVieillissant.hpp"
+#include "FactoryStrategyNenuphar.hpp"
 
 namespace froppieLand{
     namespace modele{

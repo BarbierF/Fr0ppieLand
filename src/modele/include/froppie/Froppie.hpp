@@ -1,13 +1,13 @@
 #ifndef FROPPIE_HPP
 #define FROPPIE_HPP
 
-#include "../Position.hpp"
-#include "../directions/Direction.hpp"
-#include "../nenuphar/strategy/Eau.hpp"
-#include "../nenuphar/strategy/Dopant.hpp"
-#include "../nenuphar/strategy/Mortel.hpp"
-#include "../nenuphar/strategy/Nutritif.hpp"
-#include "../nenuphar/strategy/Veneneux.hpp"
+#include "Position.hpp"
+#include "Direction.hpp"
+#include "Eau.hpp"
+#include "Dopant.hpp"
+#include "Mortel.hpp"
+#include "Nutritif.hpp"
+#include "Veneneux.hpp"
 
     namespace froppieLand{
         namespace modele{

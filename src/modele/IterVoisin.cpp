@@ -1,9 +1,9 @@
-#include "include/nenuphar/IterVoisin.hpp"
+#include "IterVoisin.hpp"
 
-#include "include/directions/Nord.hpp"
-#include "include/directions/Sud.hpp"
-#include "include/directions/Est.hpp"
-#include "include/directions/Ouest.hpp"
+#include "Nord.hpp"
+#include "Sud.hpp"
+#include "Est.hpp"
+#include "Ouest.hpp"
 
 
 namespace froppieLand{

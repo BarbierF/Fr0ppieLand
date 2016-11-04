@@ -1,5 +1,5 @@
-#include "include/nenuphar/strategy/Dopant.hpp"
-#include "include/froppie/Froppie.hpp"
+#include "Dopant.hpp"
+#include "Froppie.hpp"
 
 namespace froppieLand{
     namespace modele{

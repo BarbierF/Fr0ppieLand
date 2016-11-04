@@ -16,24 +16,29 @@
 #include "FroppHealth.hpp"
 #include "BarreChrono.hpp"
 #include "ResolutionFL.hpp"
+#include "GGrill.hpp"
 
 namespace froppieLand{
-    namespace vue{
 
+    namespace presentateur{
         class Presentateur;
+    }
+
+
+    namespace vue{
 
         class FroppieVue: public Gtk::Window{
         public:
 
-            friend class GCaseMare;
             friend class FroppHealth;
             friend class GGrill;
             friend class ResolutionFL;
             friend class BarreChrono;
+            friend class GCaseMare;
 
         public:
 
-            FroppieVue(Presentateur&);
+            FroppieVue(presentateur::Presentateur&);
 
             FroppieVue(const FroppieVue&) = delete;
 
@@ -43,9 +48,9 @@ namespace froppieLand{
 
         public:
 
-            const Presentateur& getPresentateur()const;
+            const presentateur::Presentateur& getPresentateur()const;
 
-            Presentateur& getModifPresentateur();
+            presentateur::Presentateur& getModifPresentateur();
 
             static const Glib::ustring getNomVue();
 
@@ -55,11 +60,11 @@ namespace froppieLand{
 
             static const Glib::ustring getNomBarreChrono();
 
-            static const Glib::ustring getCheminImage();
+            static const Glib::ustring getCheminImages();
 
         protected:
 
-            static const Glib::RefPtr< Gdk::PixBuf >& getImage(const Glib::ustring& nom);
+            static const Glib::RefPtr< Gdk::Pixbuf >& getImage(const Glib::ustring& nom);
 
             void leTempsPasse();
 
@@ -73,15 +78,15 @@ namespace froppieLand{
 
             void cbPreparation();
 
-            void buildBarreOutils(Gtk::VBox& manager);
+            void buildBarreOutils(Gtk::HBox& manager);
 
-            void buildPartieMillieu(Gtk::VBox& manager);
+            void buildPartieMillieu(Gtk::HBox& manager);
 
-            void buildPartieInferieur(Gtk::VBox& manager);
+            void buildPartieInferieur(Gtk::HBox& manager);
 
         private:
 
-            std:map < Glib::ustring, Glib::GRefPtr < Glib::GPixBuf > > _images;
+            static std::map < Glib::ustring, Glib::RefPtr < Gdk::Pixbuf > > _images;
 
             static const Glib::ustring _nomVue;
 
@@ -107,7 +112,7 @@ namespace froppieLand{
 
             Gtk::VBox _infManager;
 
-            Presentateur& _presentateur;
+            presentateur::Presentateur& _presentateur;
         };
     }
 }
