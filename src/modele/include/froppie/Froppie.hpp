@@ -3,6 +3,11 @@
 
 #include "../Position.hpp"
 #include "../directions/Direction.hpp"
+#include "../nenuphar/strategy/Eau.hpp"
+#include "../nenuphar/strategy/Dopant.hpp"
+#include "../nenuphar/strategy/Mortel.hpp"
+#include "../nenuphar/strategy/Nutritif.hpp"
+#include "../nenuphar/strategy/Veneneux.hpp"
 
     namespace froppieLand{
         namespace modele{
@@ -12,9 +17,17 @@
 
                 class Froppie{
 
+                public: 
+
                     friend class Malade;
                     friend class Sain;
                     friend class Mort;
+
+                    friend class nenuphar::Dopant;
+                    friend class nenuphar::Eau;
+                    friend class nenuphar::Mortel;
+                    friend class nenuphar::Nutritif;
+                    friend class nenuphar::Veneneux;
                     
                     typedef modele::Direction Direction;
 
@@ -31,7 +44,7 @@
 
                     const int& getPDV()const;
 
-                    const unsigned int getNbMove()const;
+                    const unsigned int& getNbMove()const;
 
                     const Position& getPosition()const;
 
@@ -39,12 +52,17 @@
 
                 protected:
 
-                    void setEtat(FropEtat const*);
+                    void setSain();
 
+                    void setMalade();
+
+                    void setMort();
 
                 public:
 
-                    bool deplacer(const Direction&, const unsigned int& tailleEnv);
+                    bool deplacer(const Direction&, const unsigned int& tailleEnv);                    
+
+                protected:
 
                     void subir();
 

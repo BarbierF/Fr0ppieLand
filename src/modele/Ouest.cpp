@@ -1,7 +1,6 @@
 #include "include/directions/Ouest.hpp"
 
 namespace froppieLand{
-
     namespace modele{
 
         const Ouest Ouest::_ouest;

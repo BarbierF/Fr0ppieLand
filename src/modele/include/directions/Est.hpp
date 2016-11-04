@@ -4,7 +4,6 @@
 #include "Direction.hpp"
 
 namespace froppieLand{
-
     namespace modele{
 
         class Est: public Direction{
@@ -13,6 +12,9 @@ namespace froppieLand{
             static const Est& getEst();
             const int getVectorXDirection()const override;
             const int getVectorYDirection()const override;
+
+            Est(const Est& ) = delete;
+            Est& operator=(const Est& ) = delete;
 
         private:
             Est();

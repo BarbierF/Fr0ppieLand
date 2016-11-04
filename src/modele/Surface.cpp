@@ -51,7 +51,7 @@ namespace froppieLand{
             bool Surface::isCaseVoisine(const Position& positionCase)const{
                 bool result = false;
 
-                while(!_iterVoisin.estFini() && result = false){
+                while(!_iterVoisin.isFini() && result == false){
                     result = _iterVoisin.voisinSuivant();
                 }
 

@@ -1,4 +1,5 @@
 #include "include/nenuphar/strategy/Mortel.hpp"
+#include "include/froppie/Froppie.hpp"
 
 namespace froppieLand{
     namespace modele{

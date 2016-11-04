@@ -1,5 +1,5 @@
-#ifndef SUD_HPP
-#define SUD_HPP
+#ifndef OUEST_HPP
+#define OUEST_HPP
 
 #include "Direction.hpp"
 
@@ -13,6 +13,9 @@ namespace froppieLand{
             static const Ouest& getOuest();
             const int getVectorXDirection()const override;
             const int getVectorYDirection()const override;
+
+            Ouest(const Ouest& ) = delete;
+            Ouest& operator=(const Ouest& ) = delete;
 
         private:
             Ouest();

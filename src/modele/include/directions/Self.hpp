@@ -11,6 +11,9 @@ namespace froppieLand{
             const int getVectorXDirection()const override;
             const int getVectorYDirection()const override;
 
+            Self(const Self& ) = delete;
+            Self& operator=(const Self& ) = delete;
+
         private:
             Self();
 

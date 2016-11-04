@@ -1,6 +1,7 @@
 #ifndef SURFACE_HPP
 #define SURFACE_HPP
 
+#include "IterVoisin.hpp"
 #include "surfEtat/SurfEtat.hpp"
 #include "strategy/StrategyNenuphar.hpp"
 #include "froppie/fropEtat/FropEtat.hpp"

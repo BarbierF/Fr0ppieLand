@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "Position.hpp"
-#include "NonCopyable.hpp"
 #include "nenuphar/Surface.hpp"
 #include "froppie/Froppie.hpp"
 

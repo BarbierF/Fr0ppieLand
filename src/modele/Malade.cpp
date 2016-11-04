@@ -13,15 +13,15 @@ namespace froppieLand{
             }
 
             void Malade::setMort(Froppie& cancered)const{
-                cancered.setEtat(Mort::getMort());
+                cancered.setMort();
             }
 
             void Malade::setSain(Froppie& cancered)const{
-                cancered.setEtat(Sain::getSain());
+                cancered.setSain();
             }
 
             void Malade::setMalade(Froppie& cancered)const{
-                setMort(cancered);
+                cancered.setMort();
             }
 
             Malade const* Malade::getMalade(){

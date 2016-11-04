@@ -3,12 +3,18 @@
 
 #include <string>
 
-#include "../../froppie/Froppie.hpp"
 
 namespace froppieLand{
     namespace modele{
+        namespace froppie{
+
+            class Froppie;
+        }
+
         namespace nenuphar{
+
             class Surface;
+
             class StrategyNenuphar{
             public:
                 

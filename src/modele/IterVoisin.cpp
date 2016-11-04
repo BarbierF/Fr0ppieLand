@@ -1,45 +1,45 @@
-#include "include/modele/nenuphar/IterVoisin.hpp"
+#include "include/nenuphar/IterVoisin.hpp"
 
-#include "include/modele/directions/Nord.hpp"
-#include "include/modele/directions/Sud.hpp"
-#include "include/modele/directions/Est.hpp"
-#include "include/modele/directions/Ouest.hpp"
+#include "include/directions/Nord.hpp"
+#include "include/directions/Sud.hpp"
+#include "include/directions/Est.hpp"
+#include "include/directions/Ouest.hpp"
 
 
 namespace froppieLand{
     namespace modele{
         namespace nenuphar{
 
-            const std::vector IterVoisin::_direction{
-                Nord::getNord(),
-                Sud::getSud(),
-                Ouest::getOuest(),
-                Est::getEst()
+            const std::vector< modele::Direction const* > IterVoisin::_directions{
+                &modele::Nord::getNord(),
+                &modele::Sud::getSud(),
+                &modele::Ouest::getOuest(),
+                &modele::Est::getEst()
             };
 
-            IterVoisin::IterVoisin(const Position& positionTest, const Position& voisinPotentiel)
-                :_surfPos(positionTest), _voisinPotentiel(voisinPotentiel){
+            IterVoisin::IterVoisin(const Position& positionTest)
+                :_surfPos(positionTest), _voisinPotentiel(nullptr){
                     _currentIndex = 0;
             }
 
             const Direction& IterVoisin::getDirectionActuelle()const{
-                return _directions[currentIndex];
+                return *_directions[_currentIndex];
             }
 
-            bool IterVoisin::isFini(){
+            bool IterVoisin::isFini()const{
                 return _currentIndex == _directions.size();
             }
 
-            bool IterVoisin::voisinSuivant()const{
+            bool IterVoisin::voisinSuivant(){
                 unsigned int index = _currentIndex++;
 
-                return  _position.X + _direction[index] == _voisinPotentiel.X
+                return  _surfPos.X + _directions[index]->getVectorXDirection() == _voisinPotentiel->X
                         &&
-                        _position.Y + _direction[index] == _voisinPotentiel.Y;
+                        _surfPos.Y + _directions[index]->getVectorYDirection() == _voisinPotentiel->Y;
             }
 
             void IterVoisin::setVoisinPotentiel(const Position& voisinPotentiel){
-                delete _voisinPotentiel;
+                if(_voisinPotentiel != nullptr) delete _voisinPotentiel;
                 _voisinPotentiel = &voisinPotentiel;
             }
 

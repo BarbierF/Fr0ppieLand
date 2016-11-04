@@ -1,17 +1,22 @@
 #ifndef ITER_VOISIN_HPP
 #define ITER_VOISIN_HPP
 
+#include <vector>
+
 #include "../Position.hpp"
+
 
 namespace froppieLand{
     namespace modele{
+        class Direction;
+
         namespace nenuphar{
 
             class IterVoisin{
     
             public:
 
-                IterVoisin(const Position& );
+                IterVoisin(const Position& positionTest);
 
                 const Direction& getDirectionActuelle()const;
 
@@ -21,7 +26,7 @@ namespace froppieLand{
 
                 bool voisinSuivant();
 
-                bool isFini();
+                bool isFini()const;
 
                 void reset();
 
@@ -33,7 +38,7 @@ namespace froppieLand{
 
                 unsigned int _currentIndex;
 
-                static const std::vector < Direction > _directions;
+                static const std::vector < modele::Direction const* > _directions;
             };
         }
     }

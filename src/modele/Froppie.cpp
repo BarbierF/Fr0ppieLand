@@ -1,5 +1,7 @@
 #include "include/froppie/Froppie.hpp"
 #include "include/froppie/fropEtat/Sain.hpp"
+#include "include/froppie/fropEtat/Malade.hpp"
+#include "include/froppie/fropEtat/Mort.hpp"
 
 namespace froppieLand{
     namespace modele{
@@ -39,8 +41,16 @@ namespace froppieLand{
                 return _nbMove;
             }
 
-            void Froppie::setEtat(FropEtat const* nEtat){
-                _etat = nEtat;
+            void Froppie::setSain(){
+                _etat = &Sain::getSain();
+            }
+
+            void Froppie::setMalade(){
+                _etat = &Malade::getMalade();
+            }
+
+            void Froppie::setMort(){
+                _etat = &Mort::getMort();
             }
 
             const FropEtat& Froppie::getEtat()const{
