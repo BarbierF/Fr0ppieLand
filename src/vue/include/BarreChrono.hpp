@@ -10,7 +10,14 @@
 
 //
 namespace froppieLand{
+
+    namespace presentateur{
+        class Presentateur;
+    }
+
     namespace modele{
+
+        class FroppieVue;
 
         class BarreChrono: public Gtk::Frame{
         public:
@@ -42,19 +49,19 @@ namespace froppieLand{
 
         protected:
 
-            FroppieVue* _vue
+            FroppieVue& _vue;
 
             Gtk::ProgressBar _barProgression;
 
             bool _enCours;
 
-            std::unique_ptr < Glib::Thread* > _chronoThread;
+            std::unique_ptr < Glib::Threads::Thread > _chronoThread;
 
             const unsigned int _tempsChrono;
 
             const unsigned int _tempsVieillisement;
 
-        }
+        };
     }
 }
 

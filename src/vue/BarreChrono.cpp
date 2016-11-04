@@ -5,9 +5,9 @@ namespace froppieLand{
     namespace vue{
 
         BarreChrono::BarreChrono(FroppieVue& vue, Glib::ustring)
-            :Gtk::Frame(titre), _vue(&vue), _enCours(false){
+            :Gtk::Frame(titre), _vue(vue), _enCours(false){
             
-            const Presentateur& presentateur = _vue->getPresentateur();
+            const Presentateur& presentateur = _vue.getPresentateur();
 
             _tempsChrono = presentateur.getTempsPartie();
             _tempsVieillissement = presentateur.getTempsVieillissement();
@@ -53,7 +53,7 @@ namespace froppieLand{
 
             for(unsigned int i = 0 ; i <= _tempsChrono ; i += _tempsVieillisement){
                 progression();
-                _vue->leTempsPasse();
+                _vue.leTempsPasse();
                 Glib::sleep(1); //ou Glib::usleep(1000);
                 
             }

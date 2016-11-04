@@ -13,6 +13,29 @@ namespace froppieLand{
 
         const Glib::ustring FroppieVue::_cheminImages("/src/ressources/images/");
 
+        FroppieVue::FroppieVue(presentateur::Presentateur& presentateur)
+            : _presentateur(presentateur)
+            , _ptrGrillGraphic(new GGrill(*this)), _pdvFroppie(*this, _nomPdvFroppie)
+            , _resoTerrain(*this, _nomResolution, presentateur.getResolutionMin(), presentateur.getResolutionMax())
+            , _chronometre(*this, _nomBarreChrono){
+
+                set_title(_nomVue);
+
+                Gtk::HBox* manager = Gtk::manage(new Gtk::VBox());
+
+                add(*manager);
+
+                buildBarreOutils(*manager);
+
+                buildPartieMillieu(*manager);
+
+                buildPartieInferieur(*manager);
+
+                set_resizable(false);
+
+                show_all_children();
+        }
+
         void FroppieVue::initialiser(){
 
             //Création des PixBuf permettant d'avoir accès aux images du jeu
@@ -101,28 +124,6 @@ namespace froppieLand{
 
         presentateur::Presentateur& FroppieVue::getModifPresentateur(){
             return _presentateur;
-        }
-
-        FroppieVue::FroppieVue(Presentateur& presentateur):
-            _presentateur(presentateur), _ptrGrillGraphic(new GGrill(*this)), _pdvFroppie(*this, _nomPdvFroppie)
-            , _resoTerrain(*this, _nomResolution, _presentateur.getMinReso(), _presentateur.getMaxReso())
-            , _chronometre(*this, _nomBarreChrono){
-
-                set_title(_nomVue);
-
-                Gtk::VBox* manager = Gtk::manage(new Gtk::VBox());
-
-                add(*manager);
-
-                buildBarreOutils(*manager);
-
-                buildPartieMillieu(*manager);
-
-                buildPartieInferieur(*manager);
-
-                set_resizable(false);
-
-                show_all_children();
         }
 
         void FroppieVue::buildBarreOutils(Gtk::HBox& manager){
