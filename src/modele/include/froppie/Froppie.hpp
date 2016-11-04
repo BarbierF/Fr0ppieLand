@@ -32,7 +32,7 @@
                     typedef modele::Direction Direction;
 
                 public: 
-                    Froppie(const int& pdv, const unsigned int& Xdep, const unsigned int& Ydep);
+                    Froppie(const int pdv, const unsigned int Xdep, const unsigned int Ydep);
                     
                     ~Froppie();
 

@@ -24,8 +24,8 @@ namespace froppieLand{
                 cancered.setMort();
             }
 
-            Malade const* Malade::getMalade(){
-                return &_malade;
+            const Malade& Malade::getMalade(){
+                return _malade;
             }
 
             const std::string Malade::nomEtat()const{

@@ -15,7 +15,7 @@ namespace froppieLand{
 
                 const std::string nomEtat()const override;
 
-                static Malade const* getMalade();
+                static const Malade& getMalade();
 
             private:
                 Malade();

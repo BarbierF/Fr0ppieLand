@@ -6,7 +6,7 @@
 #include <gtkmm/aspectframe.h>
 #include <gtkmm/grid.h>
 
-#include "include/GCaseMare.hpp"
+#include "GCaseMare.hpp"
 
 namespace froppieLand{
     namespace vue{

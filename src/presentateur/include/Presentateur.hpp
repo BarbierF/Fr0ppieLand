@@ -3,13 +3,15 @@
 
 #include <memory>
 
-#include "../modele/include/Grill.hpp"
-#include "../modele/include/directions/Direction.hpp"
-#include "../modele/include/directions/Nord.hpp"
-#include "../modele/include/directions/Sud.hpp"
-#include "../modele/include/directions/Est.hpp"
-#include "../modele/include/directions/Ouest.hpp"
-#include "../modele/include/directions/Self.hpp"
+#include "../../modele/include/Grill.hpp"
+#include "../../modele/include/directions/Direction.hpp"
+#include "../../modele/include/directions/Nord.hpp"
+#include "../../modele/include/directions/Sud.hpp"
+#include "../../modele/include/directions/Est.hpp"
+#include "../../modele/include/directions/Ouest.hpp"
+#include "../../modele/include/directions/Self.hpp"
+
+#include "../../vue/include/FroppieVue.hpp"
 
 namespace froppieLand{
     namespace presentateur{
@@ -30,8 +32,7 @@ namespace froppieLand{
 
         public:
 
-            Presentateur(FroppieVue& , Grill&
-            , const unsigned int taille
+            Presentateur(const unsigned int taille
             , const unsigned int depX, const unsigned int depY
             , const unsigned int arrX, const unsigned int arrY
             , const unsigned int resoMin, const unsigned int resoMax
@@ -59,7 +60,7 @@ namespace froppieLand{
  
             void OMGFroppieIsGettingEaten();
 
-            void FroppieVue::nouveauJeu(unsigned int resolution);
+            void nouveauJeu(unsigned int resolution);
 
         public:
 

@@ -6,7 +6,10 @@
 namespace froppieLand{
     namespace modele{
         namespace froppie{
-            Froppie::Froppie(const int& pdv, const unsigned int& depX, const unsigned int& depY): _pointDeVie(pdv), _position({depX, depY}), _etat(Sain::getSain()){
+            Froppie::Froppie(const int pdv, const unsigned int depX, const unsigned int depY)
+                : _pointDeVie(pdv), _position({depX, depY}), _etat(&Sain::getSain())
+                {
+                    
             }
 
             Froppie::~Froppie(){
@@ -37,7 +40,7 @@ namespace froppieLand{
                 return _pointDeVie;
             }
 
-            const unsigned int& getNbMove()const{
+            const unsigned int& Froppie::getNbMove()const{
                 return _nbMove;
             }
 
@@ -59,7 +62,7 @@ namespace froppieLand{
 
             void Froppie::subir(){
                 _pointDeVie/=2;
-                if(_pointDeVie == 0) _etat->setMort();
+                if(_pointDeVie == 0) _etat->setMort(*this);
             }
             void Froppie::doper(){
                 _pointDeVie*=2;

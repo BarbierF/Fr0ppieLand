@@ -10,8 +10,9 @@ namespace froppieLand{
 
         
         Grill::Grill(unsigned int taille, unsigned int posXD, unsigned int posYD, unsigned int posXA, unsigned int posYA)
-            : _froppie(1, _posXD, _posYD)
-            , _taille(taille), _depart({posXD, posYD})
+            : _froppie(1, posXD, posYD)
+            , _taille(taille)
+            , _depart({posXD, posYD})
             , _arrivee({posXA, posYA})
         {
             _terrain.reserve(_taille * _taille);
@@ -30,22 +31,26 @@ namespace froppieLand{
             return _arrivee;
         }
 
-        Froppie& Grill::getModifFroppie(){
+        Grill::Froppie& Grill::getModifFroppie(){
             return _froppie;
         }
 
-        const Froppie& Grill::getFroppie()const{
+        const Grill::Froppie& Grill::getFroppie()const{
             return _froppie;
         }
         
-        const Surface& Grill::getCase(const unsigned int& ligne, const unsigned int& colonne)const{
-            return _terrain[X * _taille + Y];
+        const Grill::Surface& Grill::getSurface(const unsigned int& ligne, const unsigned int& colonne)const{
+            return _terrain[ligne * _taille + colonne];
         }
 
-        const Surface& Grill::getFroppieSurf()const{
+        Grill::Surface& Grill::getSurfaceModifiable(const unsigned int& ligne, const unsigned int& colonne){
+            return _terrain[ligne * _taille + colonne];
+        }
+
+        const Grill::Surface& Grill::getFroppieSurf()const{
             Position fropPos = _froppie.getPosition();
 
-            return _terrain[fropPos.X * _ taille + fropPos.Y];
+            return _terrain[fropPos.X * _taille + fropPos.Y];
         }
 
         void Grill::vieilissement(){
@@ -56,12 +61,13 @@ namespace froppieLand{
             }
         }
 
-        void Grill::consChemin()const{
+        void Grill::construireChemin(){
 
             std::default_random_engine generateur;
             std::uniform_int_distribution<int> distribution(0, 7); //On va générer les nombres de 1 à 7.
 
             const Position& fropPosition = _froppie.getPosition();
+            
             if(fropPosition.X == _arrivee.X){
                 for(int i = 0 ; i < std::abs(_arrivee.Y - fropPosition.Y) ; i++){
 

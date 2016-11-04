@@ -39,27 +39,27 @@ namespace froppieLand{
 
             Froppie& getModifFroppie(void);
 
-            const Surface& getCase(const unsigned int& ligne, const unsigned int& colonne)const;
+            const Surface& getSurface(const unsigned int& ligne, const unsigned int& colonne)const;
 
+            Surface& getSurfaceModifiable(const unsigned int& ligne, const unsigned int& colonne);
+            
             const Surface& getFroppieSurf()const;
 
         public:
 
-            void consChemin(void) const;
+            void construireChemin(void);
 
             void vieilissement();
 
         protected:
 
-            const Position _depart;
-
-            const Position _arrivee;
+            const Position _depart, _arrivee;
 
             unsigned int _taille;
 
             std::vector< Surface > _terrain;
 
-            Froppie& _froppie;
+            Froppie _froppie;
         };
     }
 }

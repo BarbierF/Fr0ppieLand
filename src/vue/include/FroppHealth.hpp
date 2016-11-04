@@ -6,7 +6,7 @@
 #include <gtkmm/adjustment.h>
 #include <gtkmm/label.h>
 
-#include "include/FroppieVue.hpp"
+#include "FroppieVue.hpp"
 
 namespace froppieLand{
     namespace vue{

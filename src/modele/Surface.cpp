@@ -48,11 +48,11 @@ namespace froppieLand{
                 _etat = nEtat;
             }
 
-            bool Surface::isCaseVoisine(const Position& positionCase)const{
+            bool Surface::isCaseVoisine(const Position& positionCase){
                 bool result = false;
 
                 while(!_iterVoisin.isFini() && result == false){
-                    result = _iterVoisin.voisinSuivant();
+                    result &= _iterVoisin.voisinSuivant();
                 }
 
                 return result;

@@ -23,8 +23,8 @@ namespace froppieLand{
 
             }
 
-            Mort const* Mort::getMort(){
-                return &_mort;
+            const Mort& Mort::getMort(){
+                return _mort;
             }
 
             const std::string Mort::nomEtat()const{

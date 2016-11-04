@@ -59,7 +59,7 @@ namespace froppieLand{
                 
                 void setEtat(SurfEtat const* nEtat);
 
-                bool isCaseVoisine(const Position& positionCase)const;
+                bool isCaseVoisine(const Position& positionCase);
 
                 const Direction& getDirectionVoisin()const;
 

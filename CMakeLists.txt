@@ -1,7 +1,12 @@
 # Version de cmake demandée.
 CMAKE_MINIMUM_REQUIRED( VERSION 2.8 )
 
-PROJECT ( FroppieLand )
+# Chemin du répertoire contenant les binaires.
+SET ( EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE} )
+
+#Nom du projet
+PROJECT ( Fr0ppieLand )
+
 
 FIND_PACKAGE( PkgConfig REQUIRED )
 PKG_CHECK_MODULES( GTKMM gtkmm-3.0 )
@@ -14,11 +19,10 @@ INCLUDE_DIRECTORIES( 	src/modele/include
 						src/modele/include/directions
 						src/presentateur/include
 						src/vue/include
-						${GTKMM_LIBRARY_DIRS}	
+						${GTKMM_INCLUDE_DIRS}	
 					)
 
-# Chemin du répertoire contenant les binaires.
-SET ( EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE} )
+
 
 # Option du compilateur pour supporter C++ 2011.
 SET( CMAKE_CXX_FLAGS "-std=c++11")

@@ -21,8 +21,8 @@ namespace froppieLand{
             cancered.setMalade();
         }
 
-        Sain const* Sain::getSain() {
-            return &_sain;
+        const Sain& Sain::getSain() {
+            return _sain;
         }
 
         const std::string Sain::nomEtat()const{

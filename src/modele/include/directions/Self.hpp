@@ -7,7 +7,7 @@ namespace froppieLand{
         class Self: public Direction{
 
         public:
-            static const Seld& getSelf();
+            static const Self& getSelf();
             const int getVectorXDirection()const override;
             const int getVectorYDirection()const override;
 
@@ -18,7 +18,7 @@ namespace froppieLand{
             Self();
 
             static const Self _self;
-        }
+        };
     }
 }
 

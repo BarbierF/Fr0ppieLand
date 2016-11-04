@@ -15,7 +15,7 @@ namespace froppieLand{
 
                 const std::string nomEtat()const override; 
 
-                static Mort const* getMort();
+                static const Mort& getMort();
             
             private:
                 Mort();

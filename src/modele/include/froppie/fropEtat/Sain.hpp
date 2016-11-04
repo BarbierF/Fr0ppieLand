@@ -15,7 +15,7 @@ namespace froppieLand{
 
                 const std::string nomEtat()const override;
 
-                static Sain const* getSain();
+                static const Sain& getSain();
 
             private:
                 Sain();
