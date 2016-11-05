@@ -37,6 +37,8 @@ namespace froppieLand{
 
             void stopChrono();
 
+            void resetChrono();
+
             void startChrono();
 
             const unsigned int& getTempsChrono()const;
@@ -56,6 +58,8 @@ namespace froppieLand{
             FroppieVue& _vue;
 
             Gtk::ProgressBar _barProgression;
+
+            unsigned int _threadProgression;
 
             bool _enCours;
 

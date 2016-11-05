@@ -1,3 +1,5 @@
+#include <chrono>
+
 #include "BarreChrono.hpp"
 #include "FroppieVue.hpp"
 
@@ -34,26 +36,32 @@ namespace froppieLand{
 
             if(!_enCours){
 
-                _chronoThread = new (&BarreChrono::traitementChronoThread);
+                _chronoThread.reset(new std::thread(&BarreChrono::traitementChronoThread));
                 _enCours = true;            
             }
+        }
+
+        void BarreChrono::resetChrono(){
+            if(!_enCours) return;
+            _barProgression.set_fraction(0);
+            _threadProgression = 0;
         }
 
         void BarreChrono::stopChrono(){
 
             if(!_enCours) return;
             _barProgression.set_fraction(0);
-            _chronoThread.join();
-            _enCours = false;        //on attend la fin du thread pour pouvoir le terminer comme il se doit
+            _enCours = false;        
         }
         //ne fonctionnera pas
         void BarreChrono::traitementChronoThread(){
 
-            for(unsigned int i = 0 ; i <= _tempsChrono ; i += _tempsVieillissement){
+            while(_threadProgression < _tempsChrono){
                 progression();
                 _vue.leTempsPasse();
-                Glib::Threads::usleep(1000); 
-                
+                std::this_thread::sleep_for(std::chrono::seconds(1));
+
+                _threadProgression++;
             }
 
             timesUp();
