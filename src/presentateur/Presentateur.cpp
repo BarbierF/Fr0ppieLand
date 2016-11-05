@@ -2,17 +2,18 @@
 
 
 namespace froppieLand{
-    namespace vue{
+    namespace presentateur{
 
-        Presentateur::Presentateur(FroppieVue& vue, Grill& modele
-        , const unsigned int taille
-        , const unsigned int depX, const unsigned int depY
-        , const unsigned int arrX, const unsigned int arrY
-        , const unsigned int resoMin, const unsigned int resoMax
-        , unsigned int tempsPartie, const unsigned int tempsVieillissement)
-            : _vue(vue), _modele(taille, depX, depY, arrX, arrY)
+        Presentateur::Presentateur(const unsigned int taille
+            , const unsigned int depX, const unsigned int depY
+            , const unsigned int arrX, const unsigned int arrY
+            , const unsigned int& resoMin, const unsigned int& resoMax
+            , unsigned int& tempsPartie, unsigned int& tempsVieillissement)
+            : _vue(new FroppieVue(*this))
+            , _modele(new Grill(taille, depX, depY, arrX, arrY))
             , _tempsPartie(tempsPartie)
-            , _tempsVieillissement(tempsVieillissement){
+            , _tempsVieillissement(tempsVieillissement)
+            , _resoMin(resoMin), _resoMax(resoMax){
 
             
 
@@ -23,7 +24,7 @@ namespace froppieLand{
         }
 
         const unsigned int& Presentateur::getTempsVieillissement()const{
-            return _tempsVieillissement:
+            return _tempsVieillissement;
         }
 
         const unsigned int& Presentateur::getResolutionMin()const{
@@ -35,73 +36,77 @@ namespace froppieLand{
         }
 
         const unsigned int& Presentateur::getDimension()const{
-            return _modele.getTaille();
+            return _modele->getTaille();
         }
 
         bool Presentateur::isArrived(const unsigned int& _ligne, const unsigned int& _colonne)const{
-            Position arrivee;
+            Position arrivee = _modele->getArrivee();
 
             return _ligne == arrivee.X && _colonne == arrivee.Y;
         }
 
-        bool Presentateur::isPossibleMove(const unsigned int& ligne, const unsigned int& colonne)const{
+        bool Presentateur::isPossibleMove(const unsigned int ligne, const unsigned int colonne){
             
-            Grill::Surface froppieSurf = _modele.getFroppieSurf();
-
-            return froppieSurf.isCaseVoisine(Position(ligne, colonne));
+            Grill::Surface froppieSurf = _modele->getModifFroppieSurf();
+            return froppieSurf.isCaseVoisine(ligne, colonne);
 
         }
 
-        const Direction& Presentateur::getDerniereDireFroppieVoisin()const{
+        bool Presentateur::isFroppied(const unsigned int& ligne, const unsigned int& colonne)const{
+            const Froppie& froppie = _modele->getFroppie();
+            const Position& froPosition = froppie.getPosition();
+
+            return ligne == froPosition.X && ligne == froPosition.Y;
+        }
+
+        const Presentateur::Direction& Presentateur::getDerniereDireFroppieVoisin()const{
             
-            Grill::Surface froppieSurf = _modele.getFroppieSurf();
+            Grill::Surface froppieSurf = _modele->getModifFroppieSurf();
 
             return froppieSurf.getDirectionVoisin();
         }
 
         const int& Presentateur::getVieFroppie()const{
-            return _modele.getFroppie().getPDV();
+            return _modele->getFroppie().getPDV();
         }
 
-        const std::string& Presentateur::getTypeNenu(
+        std::string Presentateur::getTypeNenu(
+            const unsigned int& ligne, const unsigned int& colonne
+        )const{               
+                return _modele->getSurface(ligne, colonne).getStrategy().nomStrategy();
+        }
+
+        std::string Presentateur::getEtatNenu(
             const unsigned int& ligne, const unsigned int& colonne
         )const{
-            return _modele.getCase(ligne, colonne).getType().nomStrategy();
+            return _modele->getSurface(ligne, colonne).getEtat().nomEtat();
         }
 
-        const std::string& Presentateur::getEtatNenu(
-            const unsigned int& ligne, const unsigned int& colonne
-        )const{
-            return _modele.getCase(ligne, colonne).getEtat().nomEtat();
+        std::string Presentateur::getEtatFroppie()const{
+            const Froppie& froppie = _modele->getFroppie();
+
+            return froppie.getEtat().nomEtat();
         }
 
-        const std::string& Presentateur::getEtat(
-            const unsigned int& ligne, const unsigned int& colonne
-        )const{
-            return _modele.getCase(ligne, colonne).getNEtat();
-        }
-
-        void Presentateur::OMGFroppieIsGettingEaten(
-            const unsigned int& ligne, const unsigned int& colonne
-        ){
-            const Froppie& froppie = _modele.getFroppie();
+        void Presentateur::OMGFroppieIsGettingEaten(){
+            Froppie& froppie = _modele->getModifFroppie();
             froppie.getEtat().setMort(froppie);
         }
 
-        bool Presentateur::deplaceFroppie(const Direction& directionDep){
+        void Presentateur::deplaceFroppie(const Direction& directionDep){
 
-            return _modele.getFroppie().deplacer(directionDep);
+            _modele->getModifFroppie().deplacer(directionDep);
         }
 
         void Presentateur::vieillirCase(
             const unsigned int& ligne, const unsigned int& colonne
         ){
-            _modele.getCase(ligne, colonne).age();  
+            _modele->getSurfaceModifiable(ligne, colonne).age();  
         }
 
         void Presentateur::nouveauJeu(unsigned int resolution){
-            _modele.reset();
-            _modele = new Grill(resolution, 10, 0, 0, 10);
+
+            _modele.reset(new Grill(resolution, 10, 0, 0, 10));
         }
     }
 }

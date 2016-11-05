@@ -31,7 +31,7 @@ namespace froppieLand{
                 , const unsigned int& tempsChrono
                 , const unsigned int& tempsVieillissment);
 
-            BarreChrono(const BarreChrono& ) = delete;
+            ~BarreChrono();
 
             BarreChrono& operator=(const BarreChrono& ) = delete;
 

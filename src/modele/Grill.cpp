@@ -23,6 +23,10 @@ namespace froppieLand{
             
         }
 
+        const unsigned int& Grill::getTaille()const{
+            return _taille;
+        }
+
         const Position& Grill::getDepart()const{
             return _depart;
         }
@@ -48,6 +52,12 @@ namespace froppieLand{
         }
 
         const Grill::Surface& Grill::getFroppieSurf()const{
+            Position fropPos = _froppie.getPosition();
+
+            return _terrain[fropPos.X * _taille + fropPos.Y];
+        }
+
+        Grill::Surface& Grill::getModifFroppieSurf(){
             Position fropPos = _froppie.getPosition();
 
             return _terrain[fropPos.X * _taille + fropPos.Y];

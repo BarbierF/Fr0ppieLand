@@ -27,7 +27,7 @@ INCLUDE_DIRECTORIES( 	src/modele/include
 
 
 # Option du compilateur pour supporter C++ 2011.
-SET( CMAKE_CXX_FLAGS "-std=c++11")
+SET( CMAKE_CXX_FLAGS "-std=c++11 -lpthread")
 
 LINK_LIBRARIES( ${GTKMM_LIBRARY_DIRS} )
 
@@ -53,6 +53,7 @@ ADD_EXECUTABLE( froppieland
 	src/modele/Sud.cpp
 	src/modele/Ouest.cpp
 	src/modele/Est.cpp
+	src/modele/Self.cpp
 	src/modele/Sain.cpp
 	src/modele/Malade.cpp
 	src/modele/Mort.cpp
@@ -70,7 +71,7 @@ ADD_EXECUTABLE( froppieland
 
 )
 
-
+TARGET_LINK_LIBRARIES( froppieland ${GTKMM_LIBRARIES} )
 
 set( CMAKE_VERBOSE_MAKEFILE off )
 

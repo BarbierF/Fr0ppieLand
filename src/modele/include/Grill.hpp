@@ -45,6 +45,8 @@ namespace froppieLand{
             
             const Surface& getFroppieSurf()const;
 
+            Surface& getModifFroppieSurf();
+
         public:
 
             void construireChemin(void);

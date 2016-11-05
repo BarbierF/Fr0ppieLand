@@ -9,6 +9,7 @@ namespace froppieLand{
         BarreChrono::BarreChrono(FroppieVue& vue, Glib::ustring titre
             , const unsigned int& tempsChrono, const unsigned int& tempsViellissement)
             :Gtk::Frame(titre), _vue(vue), _enCours(false)
+            , _chronoThread(new std::thread())
             , _tempsChrono(tempsChrono)
             , _tempsVieillissement(tempsViellissement){
             
@@ -18,6 +19,11 @@ namespace froppieLand{
             _barProgression.set_text(libelle);
 
         } 
+
+        BarreChrono::~BarreChrono(){
+            if(_enCours) _enCours = false;
+            _chronoThread->join();
+        }
 
         void BarreChrono::progression(){
 
@@ -36,7 +42,7 @@ namespace froppieLand{
 
             if(!_enCours){
 
-                _chronoThread.reset(new std::thread(&BarreChrono::traitementChronoThread));
+                _chronoThread.reset(new std::thread(&BarreChrono::traitementChronoThread, this));
                 _enCours = true;            
             }
         }
@@ -56,7 +62,7 @@ namespace froppieLand{
         //ne fonctionnera pas
         void BarreChrono::traitementChronoThread(){
 
-            while(_threadProgression < _tempsChrono){
+            while(_threadProgression < _tempsChrono && !_enCours){
                 progression();
                 _vue.leTempsPasse();
                 std::this_thread::sleep_for(std::chrono::seconds(1));

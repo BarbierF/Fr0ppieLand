@@ -16,15 +16,17 @@
 namespace froppieLand{
     namespace modele{
 
+        class Grill;
+
         namespace nenuphar{
 
             class Froppie;
 
             class Surface{
 
-            protected:
+            public:
 
-
+                friend class Grill;
 
             public:
 
@@ -52,16 +54,16 @@ namespace froppieLand{
                 
                 void souffrir(froppie::Froppie& victim)const;
 
+                bool isCaseVoisine(const unsigned int& ligne, const unsigned int& colonne);
+
+                const Direction& getDirectionVoisin()const;
+
 
             protected:
 
                 void vieillirEtat();
                 
                 void setEtat(SurfEtat const* nEtat);
-
-                bool isCaseVoisine(const Position& positionCase);
-
-                const Direction& getDirectionVoisin()const;
 
                 friend void Petit::age(Surface& victim)const;
                 

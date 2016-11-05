@@ -1,6 +1,8 @@
 #ifndef SELF_DIR_HPP
 #define SELF_DIR_HPP
 
+#include "Direction.hpp"
+
 namespace froppieLand{
     namespace modele{
 

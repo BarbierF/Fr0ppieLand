@@ -2,6 +2,7 @@
 #include "GGrill.hpp"
 #include "FroppieVue.hpp"
 #include "Presentateur.hpp"
+#include "Self.hpp"
 
 namespace froppieLand{
     namespace vue{

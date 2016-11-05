@@ -4,6 +4,8 @@
 #include <memory>
 
 #include "Grill.hpp"
+#include "Froppie.hpp"
+#include "Position.hpp"
 #include "Direction.hpp"
 #include "Nord.hpp"
 #include "Sud.hpp"
@@ -20,6 +22,8 @@ namespace froppieLand{
         
         public:
 
+            typedef modele::Position Position;
+
             typedef modele::Direction Direction;
             typedef modele::Nord Nord;
             typedef modele::Sud Sud;
@@ -28,6 +32,8 @@ namespace froppieLand{
             typedef modele::Self Self;
             
             typedef modele::Grill Grill;
+            typedef modele::froppie::Froppie Froppie;
+
             typedef vue::FroppieVue FroppieVue;
 
 
@@ -36,8 +42,8 @@ namespace froppieLand{
             Presentateur(const unsigned int taille
             , const unsigned int depX, const unsigned int depY
             , const unsigned int arrX, const unsigned int arrY
-            , const unsigned int resoMin, const unsigned int resoMax
-            , unsigned int tempsPartie, const unsigned int tempsVieillissement);
+            , const unsigned int& resoMin, const unsigned int& resoMax
+            , unsigned int& tempsPartie, unsigned int& tempsVieillissement);
 
         public:
 
@@ -56,11 +62,11 @@ namespace froppieLand{
 
             const Direction& getDerniereDireFroppieVoisin()const;
 
-            const std::string& getTypeNenu(const unsigned int& ligne, const unsigned int& colonne)const;
+            std::string getTypeNenu(const unsigned int& ligne, const unsigned int& colonne)const;
 
-            const std::string& getEtatNenu(const unsigned int& ligne, const unsigned int& colonne)const;
+            std::string getEtatNenu(const unsigned int& ligne, const unsigned int& colonne)const;
             
-            const std::string& getEtatFroppie()const;
+            std::string getEtatFroppie()const;
  
             void OMGFroppieIsGettingEaten();
 
@@ -68,13 +74,13 @@ namespace froppieLand{
 
         public:
 
-            bool isPossibleMove(const unsigned int& ligne, const unsigned int& colonne);
+            bool isPossibleMove(const unsigned int ligne, const unsigned int colonne);
 
             bool isArrived(const unsigned int& ligne, const unsigned int& colonne)const;
             
             bool isFroppied(const unsigned int& ligne, const unsigned int& colonne)const;
 
-            bool deplaceFroppie(const Direction& directionDep);
+            void deplaceFroppie(const Direction& directionDep);
 
             void vieillirCase(const unsigned int& ligne, const unsigned int& colonne);
 
@@ -84,7 +90,7 @@ namespace froppieLand{
 
             const unsigned int _resoMin, _resoMax;
 
-            const unsigned int _tempsPartie, _tempsVieillissement;
+            unsigned int _tempsPartie, _tempsVieillissement;
                     
             std::unique_ptr < Grill > _modele;
 

@@ -60,7 +60,7 @@
 
                 public:
 
-                    bool deplacer(const Direction&, const unsigned int& tailleEnv);                    
+                    void deplacer(const Direction&);                    
 
                 protected:
 

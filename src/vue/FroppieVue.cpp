@@ -14,6 +14,8 @@ namespace froppieLand{
 
         const Glib::ustring FroppieVue::_cheminImages("/src/ressources/images/");
 
+        std::map < Glib::ustring, Glib::RefPtr < Gdk::Pixbuf > > FroppieVue::_images;
+
         FroppieVue::FroppieVue(presentateur::Presentateur& presentateur)
             : _presentateur(presentateur)
             , _ptrGrillGraphic(new GGrill(*this)), _pdvFroppie(*this, _nomPdvFroppie)
@@ -278,6 +280,10 @@ namespace froppieLand{
 
         void FroppieVue::leTempsPasse(){
             _ptrGrillGraphic->actualiserCases();
+        }
+
+        void FroppieVue::finPartie(){
+
         }
 
         const Glib::RefPtr< Gdk::Pixbuf >& FroppieVue::getImage(const Glib::ustring& nom){

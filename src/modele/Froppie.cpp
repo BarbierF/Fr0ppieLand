@@ -19,21 +19,12 @@ namespace froppieLand{
                 return _position;
             }
 
-            bool Froppie::deplacer(const Direction& direction, const unsigned int& tailleEnv){
-                if(_position.X + direction.getVectorXDirection() > tailleEnv && _position.X + direction.getVectorXDirection() < tailleEnv
-                    && _position.Y + direction.getVectorYDirection() > tailleEnv && _position.Y + direction.getVectorYDirection() < tailleEnv){
-                        _position.X += direction.getVectorXDirection();
-                        _position.Y += direction.getVectorYDirection();
-
-                        _nbMove++;
-
-                        return true;
-                    }
-                    else{
-                        return false;
-                    }
-
+            void Froppie::deplacer(const Direction& direction){
                 
+                _position.X += direction.getVectorXDirection();
+                _position.Y += direction.getVectorYDirection();
+
+                _nbMove++;
             }
 
             const int& Froppie::getPDV()const{

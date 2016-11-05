@@ -48,7 +48,7 @@ namespace froppieLand{
                 _etat = nEtat;
             }
 
-            bool Surface::isCaseVoisine(const Position& positionCase){
+            bool Surface::isCaseVoisine(const unsigned int& ligne, const unsigned int& colonne){
                 bool result = false;
 
                 while(!_iterVoisin.isFini() && result == false){
