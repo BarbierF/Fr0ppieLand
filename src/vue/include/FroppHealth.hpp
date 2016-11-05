@@ -1,13 +1,20 @@
 #ifndef FROPP_HEALTH_HPP
-#define FROPP_HEAlTH_HPP
+#define FROPP_HEALTH_HPP
 
 #include <gtkmm/frame.h>
 #include <gtkmm/label.h>
 #include <gtkmm/image.h>
+#include <gtkmm/box.h>
 
-#include "Presentateur.hpp"
+#include <memory>
+
 
 namespace froppieLand{
+
+    namespace presentateur{
+        class Presentateur;
+    };
+
     namespace vue{
 
         class FroppieVue;
@@ -22,19 +29,24 @@ namespace froppieLand{
 
             FroppHealth& operator=(const FroppHealth&) = delete;
 
-            void majFroppHealth(const presentateur::Presentateur& presentateur);
-
-        public:
-
-            const FroppieVue& getVue()const;
+            const Gtk::Image& getImage()const;
 
         protected:
 
-            FroppieVue* _vue; 
+            void setImage(const presentateur::Presentateur& presentateur, 
+                const Glib::ustring& image);
 
-            const Gtk::Image _coeur;
+            void majFroppHealth(const presentateur::Presentateur& presentateur);
+        
+        protected:
+
+            FroppieVue& _vue; 
+
+            std::unique_ptr < Gtk::Image > _coeur;
 
             Gtk::Label _labelPdv;
+
+            Gtk::HBox _manager;
 
         };
     }

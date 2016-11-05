@@ -68,6 +68,8 @@ namespace froppieLand{
 
             void leTempsPasse();
 
+            void finPartie();
+
         protected:
 
             void cbPresentation();

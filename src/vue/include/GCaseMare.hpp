@@ -8,14 +8,14 @@
 #include <string>
 #include <memory>
 
-#include "Presentateur.hpp"
+#include "Direction.hpp"
 
 
 namespace froppieLand{
 
     namespace presentateur{
         class Presentateur;
-    }
+    };
 
     namespace vue{
 
@@ -45,8 +45,6 @@ namespace froppieLand{
             void majCase(presentateur::Presentateur& );
 
             void vieillirCase(presentateur::Presentateur& );
-
-            void actualiserDeplacement(presentateur::Presentateur& );
 
         protected:
 

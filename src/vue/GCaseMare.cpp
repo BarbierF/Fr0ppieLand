@@ -1,6 +1,7 @@
 #include "GCaseMare.hpp"
 #include "GGrill.hpp"
 #include "FroppieVue.hpp"
+#include "Presentateur.hpp"
 
 namespace froppieLand{
     namespace vue{
@@ -8,7 +9,7 @@ namespace froppieLand{
         GCaseMare::GCaseMare(GGrill& gGrill, unsigned int& ligne, unsigned int& colonne)
             :_gGrill(gGrill), _ligne(ligne), _colonne(colonne){
             
-            const FroppieVue& vue = _gGrill.getVue();
+            FroppieVue& vue = _gGrill.getModifVue();
 
             {
 
@@ -100,7 +101,8 @@ namespace froppieLand{
                 signal_button_press_event().connect(chargeur);
             }
             else{
-                auto chargeur = sigc::mem_fun(*this, on_button_press_event());
+                
+                auto chargeur = sigc::mem_fun(*this, &GCaseMare::on_button_press_event);
 
                 signal_button_press_event().connect(chargeur);
             }
@@ -112,7 +114,7 @@ namespace froppieLand{
 
             presentateur.vieillirCase(_ligne, _colonne);
 
-            mettreAJour(presentateur);
+            majCase(presentateur);
         }
 
 

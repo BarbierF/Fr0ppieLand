@@ -1,4 +1,5 @@
 #include "FroppieVue.hpp"
+#include "Presentateur.hpp"
 
 namespace froppieLand{
     namespace vue{
@@ -17,11 +18,11 @@ namespace froppieLand{
             : _presentateur(presentateur)
             , _ptrGrillGraphic(new GGrill(*this)), _pdvFroppie(*this, _nomPdvFroppie)
             , _resoTerrain(*this, _nomResolution, presentateur.getResolutionMin(), presentateur.getResolutionMax())
-            , _chronometre(*this, _nomBarreChrono){
+            , _chronometre(*this, _nomBarreChrono, presentateur.getTempsPartie(), presentateur.getTempsVieillissement()){
 
                 set_title(_nomVue);
 
-                Gtk::HBox* manager = Gtk::manage(new Gtk::VBox());
+                Gtk::HBox* manager = Gtk::manage(new Gtk::HBox());
 
                 add(*manager);
 
@@ -219,7 +220,7 @@ namespace froppieLand{
 
             _centManager.pack_start(_pdvFroppie, Gtk::PACK_SHRINK);
 
-            _centManager.pack_start(_ptrGrillGraphic);
+            _centManager.pack_start(*_ptrGrillGraphic, Gtk::PACK_SHRINK);
 
         }
 
@@ -227,9 +228,9 @@ namespace froppieLand{
 
             manager.add(_infManager);
 
-            _infManager.pack_start(_resoTerrain);
+            _infManager.pack_start(_resoTerrain, Gtk::PACK_SHRINK);
 
-            _infManager.pack_start(_chronometre);
+            _infManager.pack_start(_chronometre, Gtk::PACK_SHRINK);
         }
 
         void FroppieVue::cbPresentation(){
@@ -241,10 +242,12 @@ namespace froppieLand{
             apropos.set_copyright("Fr0ppieGroup - very_froppie@outlook.fr");
             apropos.set_comments("Devoir continue de Programmation et Parrallèlisme");
             apropos.set_authors(
-                {"Florentin Barbier"},
-                {"Alexandre Outrequin"},
-                {"Hugo Dupuy-Roudel"},
-                {"Florian Chollet"}
+                {
+                    "Florentin Barbier",
+                    "Alexandre Outrequin",
+                    "Hugo Dupuy-Roudel",
+                    "Florian Chollet"
+                }
             );
             apropos.set_logo(_images["very_doge"]);
 
@@ -259,13 +262,13 @@ namespace froppieLand{
 
         void FroppieVue::cbLancement(){
             _chronometre.startChrono();
-            _ptrGrillGraphic->activerDeplacement();
+            _ptrGrillGraphic->actualiserCases();
         }
 
         void FroppieVue::cbPreparation(){
-            _presentateur->nouveauJeu(_resoTerrain.getResolution());
+            _presentateur.nouveauJeu(_resoTerrain.getResolution());
             
-            _centManager.remove(ptrGrillGraphic);
+            _centManager.remove(*_ptrGrillGraphic);
             _ptrGrillGraphic.reset(new GGrill(*this));
 
             _centManager.pack_start(*_ptrGrillGraphic);
@@ -274,7 +277,7 @@ namespace froppieLand{
         }
 
         void FroppieVue::leTempsPasse(){
-            _ptrGrillGraphic.actualiserCases(_presentateur);
+            _ptrGrillGraphic->actualiserCases();
         }
 
         const Glib::RefPtr< Gdk::Pixbuf >& FroppieVue::getImage(const Glib::ustring& nom){

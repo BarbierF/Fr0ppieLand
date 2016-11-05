@@ -2,10 +2,12 @@
 #define BARRE_CHRONO_HPP
 
 #include <memory>
+#include <thread>
 
+#include <gtkmm/frame.h>
 #include <gtkmm/progressbar.h>
 #include <gtkmm/adjustment.h>
-#include <glibmm/threads.h>
+
 
 
 //
@@ -13,9 +15,9 @@ namespace froppieLand{
 
     namespace presentateur{
         class Presentateur;
-    }
+    };
 
-    namespace modele{
+    namespace vue{
 
         class FroppieVue;
 
@@ -25,7 +27,9 @@ namespace froppieLand{
 
         public:
 
-            BarreChrono(FroppieVue& vue, Glib::ustring titre);
+            BarreChrono(FroppieVue& vue, Glib::ustring titre
+                , const unsigned int& tempsChrono
+                , const unsigned int& tempsVieillissment);
 
             BarreChrono(const BarreChrono& ) = delete;
 
@@ -41,7 +45,7 @@ namespace froppieLand{
 
         protected:
 
-            void timesUp(presentateur::Presentateur&);
+            void timesUp();
 
             void traitementChronoThread();
 
@@ -55,11 +59,11 @@ namespace froppieLand{
 
             bool _enCours;
 
-            std::unique_ptr < Glib::Threads::Thread > _chronoThread;
+            std::unique_ptr < std::thread > _chronoThread;
 
             const unsigned int _tempsChrono;
 
-            const unsigned int _tempsVieillisement;
+            const unsigned int _tempsVieillissement;
 
         };
     }

@@ -32,9 +32,9 @@ namespace froppieLand{
 
         protected:
 
-            void activerDeplacement();
-
             void actualiserCases();            
+
+            void vieillirCases();
 
             FroppieVue& getModifVue();
 

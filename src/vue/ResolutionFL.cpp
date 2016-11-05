@@ -1,32 +1,37 @@
 #include "ResolutionFL.hpp"
+#include "Presentateur.hpp"
 
+#include <string>
 
 namespace froppieLand{
     namespace vue{
 
-        ResolutionFL::ResolutionFL(FroppieVue& vue, Glib::ustring titre)
-            : Gtk::Frame(titre), _vue(&vue){
-            
-            const Presentateur& presentateur = _vue.getPresentateur();
+        ResolutionFL::ResolutionFL(FroppieVue& vue, Glib::ustring titre
+            , const unsigned int& resoMin, const unsigned int& resoMax)
+            : Gtk::Frame(titre), _vue(&vue), _resoMin(resoMin), _resoMax(resoMax){
 
-            _minReso = presentateur.getResolutionMin();
-            _maxReso = presentateur.getResolutionMax();
+                _manager.add(_menuResolution);
 
-            for(int i = _resoMin ; i <= _resoMax ; i++){
+                for(int i = _resoMin ; i <= _resoMax ; i++){
 
-                Glib::ustring item(i):
-                _menuResolution.append(Gtk::MenuItem(item));
-            }
+                    Glib::ustring sItem(std::to_string(i));
+                    Gtk::MenuItem mItem(sItem);
+                    _menuResolution.append(mItem);
+                }
 
-            _menuResolution.signal_selection_done(sigc::men_fun(*this, &ResolutionFL::nouvelleResolution));
+                auto chargeur = sigc::mem_fun(*this, &ResolutionFL::cbNouvelleResolution);
+
+                _menuResolution.signal_selection_done().connect(chargeur);
+        
+                _manager.show();
         }
 
-        void ResolutionFL::cdNouvelleResolution(){
-            _vue->nouvellePartie();
+        void ResolutionFL::cbNouvelleResolution(){
+            _vue->cbPreparation();
         }
 
-        const unsigned int& getResolution()const{
-            return _menuResolution().get_active().get_label();
+        const unsigned int ResolutionFL::getResolution()const{
+            return std::stoul(_menuResolution.get_active()->get_label());
         } 
     }
 }

@@ -4,18 +4,16 @@
 namespace froppieLand{
     namespace vue{
 
-        BarreChrono::BarreChrono(FroppieVue& vue, Glib::ustring)
-            :Gtk::Frame(titre), _vue(vue), _enCours(false){
+        BarreChrono::BarreChrono(FroppieVue& vue, Glib::ustring titre
+            , const unsigned int& tempsChrono, const unsigned int& tempsViellissement)
+            :Gtk::Frame(titre), _vue(vue), _enCours(false)
+            , _tempsChrono(tempsChrono)
+            , _tempsVieillissement(tempsViellissement){
             
-            const Presentateur& presentateur = _vue.getPresentateur();
-
-            _tempsChrono = presentateur.getTempsPartie();
-            _tempsVieillissement = presentateur.getTempsVieillissement();
-
             _barProgression.set_fraction(0);
 
-            Glig::ustring libelle(0 + "secondes");
-            _barProgression.set_text();
+            Glib::ustring libelle(0 + "secondes");
+            _barProgression.set_text(libelle);
 
         } 
 
@@ -25,20 +23,19 @@ namespace froppieLand{
             double valSuivante = _barProgression.get_fraction() + pas;
 
             //On veut éviter les erreurs donc si on dépasse on remet à zéro
-            if(valCourante >= 1.0) valCourante = 0; 
+            if(valSuivante >= 1.0) valSuivante = 0; 
 
             _barProgression.set_fraction(pas);
             
-            _barProgression.set_text(Glib::ustring(pas) + " secondes");
+            _barProgression.set_text(Glib::ustring(std::to_string(pas)) + " secondes");
         }
 
         void BarreChrono::startChrono(){
 
             if(!_enCours){
-                _barChronoThread(Glib::Thread::create(
-                    sigc::men_fun($this, &BarreChrono::traitementChronoThread)
-                ));
-                enCours = true;            
+
+                _chronoThread = new (&BarreChrono::traitementChronoThread);
+                _enCours = true;            
             }
         }
 
@@ -46,18 +43,26 @@ namespace froppieLand{
 
             if(!_enCours) return;
             _barProgression.set_fraction(0);
-            _barChronoThread.join();        //on attend la fin du thread pour pouvoir le terminer comme il se doit
+            _chronoThread.join();
+            _enCours = false;        //on attend la fin du thread pour pouvoir le terminer comme il se doit
         }
-
+        //ne fonctionnera pas
         void BarreChrono::traitementChronoThread(){
 
-            for(unsigned int i = 0 ; i <= _tempsChrono ; i += _tempsVieillisement){
+            for(unsigned int i = 0 ; i <= _tempsChrono ; i += _tempsVieillissement){
                 progression();
                 _vue.leTempsPasse();
-                Glib::sleep(1); //ou Glib::usleep(1000);
+                Glib::Threads::usleep(1000); 
                 
             }
 
+            timesUp();
+
+        }
+
+        void BarreChrono::timesUp(){
+            _enCours = false;
+            _vue.finPartie();
         }
 
     }

@@ -13,14 +13,12 @@ namespace froppieLand{
 
             const presentateur::Presentateur& pres = _vue.getPresentateur();
 
-            const modele::Grill& grill = pres.getModele();
-
-            const unsigned int& taille = grill.getTaille();
+            const unsigned int& taille = pres.getDimension();
 
             _mare.resize(taille);
 
-            for(int i = 0 ; i < taille ; i++){
-                for(int j = 0 ; j < taille ; j++){
+            for(unsigned int i = 0 ; i < taille ; i++){
+                for(unsigned int j = 0 ; j < taille ; j++){
                     GCaseMare* case_mare = Gtk::manage(new GCaseMare(*this, i, j));
                     _mareManager.attach(*case_mare, i, j, 1, 1);
                     _mare.push_back(case_mare);
@@ -33,20 +31,27 @@ namespace froppieLand{
             return _vue;
         }
 
+
         FroppieVue& GGrill::getModifVue(){
             return _vue;
         }
 
-        void GGrill::activerDeplacement(){
+        void GGrill::actualiserCases(){
             for(GCaseMare* case_mare : _mare){
-                case_mare->activerDeplacement(_vue.getPresentateur());
+                case_mare->majCase(_vue.getModifPresentateur());
             }
         }
 
-        void GGrill::actualiserCases(){
-            for(GCaseMare* case_mare : _mare){
-                case_mare->mettreAJour(_vue.getPresentateur());
+        void GGrill::vieillirCases(){
+            presentateur::Presentateur& pres = _vue.getModifPresentateur();
+            const unsigned int& dimension = pres.getDimension(); 
+
+            for(unsigned int i = 0 ; i < dimension ; i++){
+                for(unsigned int j = 0 ; j < dimension ; j++)
+                    pres.vieillirCase(i, j);
             }
+
+            actualiserCases();
         }
 
     }

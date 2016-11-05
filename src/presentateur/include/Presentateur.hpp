@@ -27,7 +27,7 @@ namespace froppieLand{
             typedef modele::Est Est;
             typedef modele::Self Self;
             
-            typedef modele::Grill Grill,
+            typedef modele::Grill Grill;
             typedef vue::FroppieVue FroppieVue;
 
 
@@ -41,8 +41,6 @@ namespace froppieLand{
 
         public:
 
-            const Grill& getModele()const;
-
             const unsigned int& getTempsPartie()const;
 
             const unsigned int& getTempsVieillissement()const;
@@ -50,6 +48,8 @@ namespace froppieLand{
             const unsigned int& getResolutionMin()const;
 
             const unsigned int& getResolutionMax()const;
+
+            const unsigned int& getDimension()const;
 
             const int& getVieFroppie()const;
 

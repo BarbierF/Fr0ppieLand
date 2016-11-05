@@ -18,10 +18,6 @@ namespace froppieLand{
 
         }
 
-        const Grill& getModele()const{
-            return _modele;
-        }
-
         const unsigned int& Presentateur::getTempsPartie()const{
             return _tempsPartie;
         }
@@ -36,6 +32,10 @@ namespace froppieLand{
 
         const unsigned int& Presentateur::getResolutionMax()const{
             return _resoMax;
+        }
+
+        const unsigned int& Presentateur::getDimension()const{
+            return _modele.getTaille();
         }
 
         bool Presentateur::isArrived(const unsigned int& _ligne, const unsigned int& _colonne)const{
