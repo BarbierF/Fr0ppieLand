@@ -39,11 +39,11 @@ namespace froppieLand{
 
         public:
 
-            Presentateur(const unsigned int taille
-            , const unsigned int depX, const unsigned int depY
-            , const unsigned int arrX, const unsigned int arrY
-            , const unsigned int& resoMin, const unsigned int& resoMax
-            , unsigned int& tempsPartie, unsigned int& tempsVieillissement);
+            Presentateur(unsigned int taille
+            , unsigned int depX, unsigned int depY
+            , unsigned int arrX, unsigned int arrY
+            , unsigned int resoMin, unsigned int resoMax
+            , unsigned int tempsPartie, unsigned int tempsVieillissement);
 
         public:
 
@@ -71,6 +71,8 @@ namespace froppieLand{
             void OMGFroppieIsGettingEaten();
 
             void nouveauJeu(unsigned int resolution);
+
+            void goFroppie();
 
         public:
 

@@ -4,11 +4,11 @@
 namespace froppieLand{
     namespace presentateur{
 
-        Presentateur::Presentateur(const unsigned int taille
-            , const unsigned int depX, const unsigned int depY
-            , const unsigned int arrX, const unsigned int arrY
-            , const unsigned int& resoMin, const unsigned int& resoMax
-            , unsigned int& tempsPartie, unsigned int& tempsVieillissement)
+        Presentateur::Presentateur(unsigned int taille
+            , unsigned int depX, unsigned int depY
+            , unsigned int arrX, unsigned int arrY
+            , unsigned int resoMin, unsigned int resoMax
+            , unsigned int tempsPartie, unsigned int tempsVieillissement)
             : _vue(new FroppieVue(*this))
             , _modele(new Grill(taille, depX, depY, arrX, arrY))
             , _tempsPartie(tempsPartie)
@@ -107,6 +107,10 @@ namespace froppieLand{
         void Presentateur::nouveauJeu(unsigned int resolution){
 
             _modele.reset(new Grill(resolution, 10, 0, 0, 10));
+        }
+
+        void Presentateur::goFroppie(){
+            Gtk::Main::run(*_vue);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace froppieLand{
 
             FroppieVue& operator=(const FroppieVue&) = delete;
 
-            void initialiser();
+            static void initialiser();
 
         public:
 
