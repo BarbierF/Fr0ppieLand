@@ -19,9 +19,13 @@ namespace froppieLand{
             
         public:
             
-            Grill(unsigned int taille, unsigned int posXD, unsigned int posYD, unsigned int posXA, unsigned int posYA);
-            
-            ~Grill();
+            Grill(
+                unsigned int taille
+                , unsigned int posXD
+                , unsigned int posYD
+                , unsigned int posXA
+                , unsigned int posYA
+            );
 
             Grill(const Grill& ) = delete;
 
@@ -55,13 +59,14 @@ namespace froppieLand{
 
         protected:
 
-            const Position _depart, _arrivee;
+            Froppie _froppie;
 
             unsigned int _taille;
 
+            const Position _depart, _arrivee;
+
             std::vector< Surface > _terrain;
 
-            Froppie _froppie;
         };
     }
 }

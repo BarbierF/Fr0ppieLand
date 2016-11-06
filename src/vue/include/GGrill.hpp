@@ -39,10 +39,10 @@ namespace froppieLand{
             FroppieVue& getModifVue();
 
         protected:
-
-            Gtk::Grid _mareManager;
             
             FroppieVue& _vue;
+
+            Gtk::Grid _mareManager;
         
             std::vector < GCaseMare* > _mare;
         };

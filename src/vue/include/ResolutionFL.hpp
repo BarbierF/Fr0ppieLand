@@ -30,7 +30,7 @@ namespace froppieLand{
 
         protected:
 
-            unsigned int _resoMax , _resoMin;
+            unsigned int _resoMin, _resoMax;
         
             FroppieVue* _vue;
 

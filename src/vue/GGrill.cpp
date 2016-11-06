@@ -2,6 +2,7 @@
 #include "Grill.hpp"
 #include "FroppieVue.hpp"
 #include "Presentateur.hpp"
+#include <iostream>
 
 namespace froppieLand{
     namespace vue{
@@ -9,13 +10,14 @@ namespace froppieLand{
         GGrill::GGrill(FroppieVue& vue)
             :_vue(vue){
 
+            std::cout << "Début cosntruction GGrill" << std::endl;
+
             add(_mareManager);
 
             const presentateur::Presentateur& pres = _vue.getPresentateur();
-
             const unsigned int& taille = pres.getDimension();
 
-            _mare.resize(taille);
+            _mare.reserve(taille * taille);
 
             for(unsigned int i = 0 ; i < taille ; i++){
                 for(unsigned int j = 0 ; j < taille ; j++){
@@ -25,6 +27,8 @@ namespace froppieLand{
                 }
             }
             
+            std::cout << "Fin construction GGrill." << std::endl;
+
         }
 
         const FroppieVue& GGrill::getVue()const{

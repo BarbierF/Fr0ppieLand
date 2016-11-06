@@ -59,6 +59,7 @@ namespace froppieLand{
 
             const int& getVieFroppie()const;
 
+            FroppieVue* getVue();
 
             const Direction& getDerniereDireFroppieVoisin()const;
 
@@ -71,8 +72,6 @@ namespace froppieLand{
             void OMGFroppieIsGettingEaten();
 
             void nouveauJeu(unsigned int resolution);
-
-            void goFroppie();
 
         public:
 
@@ -90,13 +89,17 @@ namespace froppieLand{
 
         protected:
 
+            std::unique_ptr < Grill > _modele;
+
+            std::unique_ptr < FroppieVue > _vue;
+
             const unsigned int _resoMin, _resoMax;
 
             unsigned int _tempsPartie, _tempsVieillissement;
                     
-            std::unique_ptr < Grill > _modele;
+            
 
-            std::unique_ptr < FroppieVue > _vue;
+            
 
         };
     }

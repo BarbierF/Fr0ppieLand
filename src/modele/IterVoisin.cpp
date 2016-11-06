@@ -33,14 +33,13 @@ namespace froppieLand{
             bool IterVoisin::voisinSuivant(){
                 unsigned int index = _currentIndex++;
 
-                return  _surfPos.X + _directions[index]->getVectorXDirection() == _voisinPotentiel->X
+                return  _surfPos.getLigne() + _directions[index]->getVectorXDirection() == _voisinPotentiel->getLigne()
                         &&
-                        _surfPos.Y + _directions[index]->getVectorYDirection() == _voisinPotentiel->Y;
+                        _surfPos.getColonne() + _directions[index]->getVectorYDirection() == _voisinPotentiel->getColonne();
             }
 
-            void IterVoisin::setVoisinPotentiel(const Position& voisinPotentiel){
-                if(_voisinPotentiel != nullptr) delete _voisinPotentiel;
-                _voisinPotentiel = &voisinPotentiel;
+            void IterVoisin::setVoisinPotentiel(unsigned int& ligne, unsigned int& colonne){
+                _voisinPotentiel.reset(new Position(ligne, colonne));
             }
 
             void IterVoisin::reset(){

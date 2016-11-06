@@ -6,4 +6,4 @@ CMakeFiles
 CMakeTools
 .emacs*
 .vscode*
-buildm
+build/*

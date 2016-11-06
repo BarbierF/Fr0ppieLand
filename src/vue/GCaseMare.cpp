@@ -3,6 +3,7 @@
 #include "FroppieVue.hpp"
 #include "Presentateur.hpp"
 #include "Self.hpp"
+#include <iostream>
 
 namespace froppieLand{
     namespace vue{
@@ -13,7 +14,6 @@ namespace froppieLand{
             FroppieVue& vue = _gGrill.getModifVue();
 
             {
-
                 typedef std::shared_ptr < Gtk::Image > PImage;
 
                 PImage gnenurouge = PImage(new Gtk::Image(FroppieVue::getImage("grand-nenu-rouge")));
@@ -53,8 +53,6 @@ namespace froppieLand{
             _froppieFormes["Sain"] = std::unique_ptr < Gtk::Image >(new Gtk::Image(FroppieVue::getImage("froppie-verte")));
             _froppieFormes["Morte"] = std::unique_ptr < Gtk::Image >(new Gtk::Image(FroppieVue::getImage("froppie-morte")));
 
-            _directionClick = &presentateur::Presentateur::Self::getSelf();
-
             majCase(vue.getModifPresentateur());
         }
 
@@ -76,16 +74,14 @@ namespace froppieLand{
             const std::string etat = presentateur.getEtatNenu(_ligne, _colonne);
             const bool froppiePres = presentateur.isFroppied(_ligne, _colonne);
 
-
             if(froppiePres && etat == "Inexistant" && type == "eau") presentateur.OMGFroppieIsGettingEaten();
-
+            
             Gtk::Image& rep = *_formes[type][etat];
 
             if(&rep == get_child()) return;
 
             remove();
             add(rep);
-
             _directionClick = &presentateur::Presentateur::Self::getSelf();
 
             if(froppiePres) {
@@ -94,20 +90,17 @@ namespace froppieLand{
                 add(*_froppieFormes[fropEtat]);
             }
             else if(presentateur.isPossibleMove(_ligne, _colonne)){
-
                 auto chargeur = sigc::mem_fun(*this, &GCaseMare::cbClickSouris);
 
                 _directionClick = &presentateur.getDerniereDireFroppieVoisin();
-
+                
                 signal_button_press_event().connect(chargeur);
             }
             else{
-                
                 auto chargeur = sigc::mem_fun(*this, &GCaseMare::on_button_press_event);
 
                 signal_button_press_event().connect(chargeur);
             }
-
             rep.show();
         }
 

@@ -1,4 +1,5 @@
 #include "Presentateur.hpp"
+#include <iostream>
 
 
 namespace froppieLand{
@@ -9,11 +10,12 @@ namespace froppieLand{
             , unsigned int arrX, unsigned int arrY
             , unsigned int resoMin, unsigned int resoMax
             , unsigned int tempsPartie, unsigned int tempsVieillissement)
-            : _vue(new FroppieVue(*this))
-            , _modele(new Grill(taille, depX, depY, arrX, arrY))
+            : _modele(new Grill(taille, depX, depY, arrX, arrY))
+            , _vue(new FroppieVue(*this))
+            , _resoMin(resoMin), _resoMax(resoMax)
             , _tempsPartie(tempsPartie)
             , _tempsVieillissement(tempsVieillissement)
-            , _resoMin(resoMin), _resoMax(resoMax){
+            {
 
             
 
@@ -42,21 +44,21 @@ namespace froppieLand{
         bool Presentateur::isArrived(const unsigned int& _ligne, const unsigned int& _colonne)const{
             Position arrivee = _modele->getArrivee();
 
-            return _ligne == arrivee.X && _colonne == arrivee.Y;
+            return _ligne == arrivee.getLigne() && _colonne == arrivee.getColonne();
         }
 
         bool Presentateur::isPossibleMove(const unsigned int ligne, const unsigned int colonne){
             
             Grill::Surface froppieSurf = _modele->getModifFroppieSurf();
-            return froppieSurf.isCaseVoisine(ligne, colonne);
 
+            return froppieSurf.isCaseVoisine(ligne, colonne);
         }
 
         bool Presentateur::isFroppied(const unsigned int& ligne, const unsigned int& colonne)const{
             const Froppie& froppie = _modele->getFroppie();
             const Position& froPosition = froppie.getPosition();
 
-            return ligne == froPosition.X && ligne == froPosition.Y;
+            return ligne == froPosition.getLigne() && colonne == froPosition.getColonne();
         }
 
         const Presentateur::Direction& Presentateur::getDerniereDireFroppieVoisin()const{
@@ -88,6 +90,10 @@ namespace froppieLand{
             return froppie.getEtat().nomEtat();
         }
 
+        Presentateur::FroppieVue* Presentateur::getVue(){
+            return _vue.get();
+        }
+
         void Presentateur::OMGFroppieIsGettingEaten(){
             Froppie& froppie = _modele->getModifFroppie();
             froppie.getEtat().setMort(froppie);
@@ -109,8 +115,5 @@ namespace froppieLand{
             _modele.reset(new Grill(resolution, 10, 0, 0, 10));
         }
 
-        void Presentateur::goFroppie(){
-            Gtk::Main::run(*_vue);
-        }
     }
 }

@@ -1,10 +1,11 @@
 #include "Surface.hpp"
+#include <iostream>
 
 namespace froppieLand{
     namespace modele{
         namespace nenuphar{
             Surface::Surface(SurfEtat const* surfEtat, StrategyNenuphar const* strategyNenuphar, unsigned int iS, unsigned int jS)
-            :_etat(surfEtat), _strategy(strategyNenuphar), _sPosition({iS, jS}), _iterVoisin(_sPosition) {
+            :_etat(surfEtat), _strategy(strategyNenuphar), _sPosition(iS, jS), _iterVoisin(_sPosition) {
 
             }
 
@@ -51,7 +52,11 @@ namespace froppieLand{
             bool Surface::isCaseVoisine(const unsigned int& ligne, const unsigned int& colonne){
                 bool result = false;
 
-                while(!_iterVoisin.isFini() && result == false){
+                unsigned int vLigne = ligne, vColonne = colonne; 
+                _iterVoisin.setVoisinPotentiel(vLigne, vColonne);
+
+                while(!_iterVoisin.isFini() && !result){
+                    
                     result &= _iterVoisin.voisinSuivant();
                 }
 

@@ -48,9 +48,9 @@ namespace froppieLand{
 
         protected:
 
-            unsigned int _ligne, _colonne;
-
             GGrill& _gGrill;
+
+            unsigned int _ligne, _colonne;
 
             modele::Direction const* _directionClick;
 

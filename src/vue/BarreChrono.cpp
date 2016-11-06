@@ -3,6 +3,8 @@
 #include "BarreChrono.hpp"
 #include "FroppieVue.hpp"
 
+#include <iostream>
+
 namespace froppieLand{
     namespace vue{
 
@@ -13,10 +15,13 @@ namespace froppieLand{
             , _tempsChrono(tempsChrono)
             , _tempsVieillissement(tempsViellissement){
             
+            std::cout << "DEbut construction barre chrono" << std::endl;
             _barProgression.set_fraction(0);
 
             Glib::ustring libelle(0 + "secondes");
             _barProgression.set_text(libelle);
+
+            std::cout << "Fin construction barre chrono" << std::endl;
 
         } 
 
@@ -58,14 +63,16 @@ namespace froppieLand{
             if(!_enCours) return;
             _barProgression.set_fraction(0);
             _enCours = false;        
+            _chronoThread->join();
         }
         //ne fonctionnera pas
         void BarreChrono::traitementChronoThread(){
 
             while(_threadProgression < _tempsChrono && !_enCours){
+                std::this_thread::sleep_for(std::chrono::seconds(1));
+
                 progression();
                 _vue.leTempsPasse();
-                std::this_thread::sleep_for(std::chrono::seconds(1));
 
                 _threadProgression++;
             }

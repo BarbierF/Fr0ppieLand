@@ -2,6 +2,7 @@
 #define ITER_VOISIN_HPP
 
 #include <vector>
+#include <memory>
 
 #include "Position.hpp"
 
@@ -20,7 +21,7 @@ namespace froppieLand{
 
                 const Direction& getDirectionActuelle()const;
 
-                void setVoisinPotentiel(const Position& );
+                void setVoisinPotentiel(unsigned int& ligne, unsigned int& colonne );
 
             public:
 
@@ -34,7 +35,7 @@ namespace froppieLand{
 
                 const Position _surfPos;
 
-                Position const* _voisinPotentiel;
+                std::shared_ptr < const Position > _voisinPotentiel;
 
                 unsigned int _currentIndex;
 

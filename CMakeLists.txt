@@ -27,12 +27,13 @@ INCLUDE_DIRECTORIES( 	src/modele/include
 
 
 # Option du compilateur pour supporter C++ 2011.
-SET( CMAKE_CXX_FLAGS "-std=c++11 -lpthread")
+SET( CMAKE_CXX_FLAGS "-std=c++11 -Wall")
 
 LINK_LIBRARIES( ${GTKMM_LIBRARY_DIRS} )
 
 # Création des exécutables.
 ADD_EXECUTABLE( froppieland 
+	src/modele/Position.cpp
 	src/modele/NenuVieillissant.cpp
 	src/modele/NenuNonVieillissant.cpp
 	src/modele/Petit.cpp

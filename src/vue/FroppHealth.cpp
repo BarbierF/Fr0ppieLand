@@ -13,27 +13,27 @@ namespace froppieLand{
 
             const presentateur::Presentateur& presentateur = vue.getPresentateur();
 
+            _manager.pack_start(*_coeur, Gtk::PACK_SHRINK);
+            _manager.pack_start(_labelPdv, Gtk::PACK_SHRINK);
+
+            _coeur->show();
+            _labelPdv.show();
+
             majFroppHealth(presentateur);
         }
 
 
         void FroppHealth::majFroppHealth(const presentateur::Presentateur& presentateur){
 
-            _manager.remove(_labelPdv);
-            _manager.remove(*_coeur);
 
             Glib::ustring pdv(std::to_string(presentateur.getVieFroppie()));
 
             _labelPdv.set_text(pdv);
 
-            _manager.pack_start(*_coeur, Gtk::PACK_SHRINK);
-
             _labelPdv.set_text(std::to_string(presentateur.getVieFroppie()));
 
-            _manager.pack_start(_labelPdv, Gtk::PACK_SHRINK);
 
-            _coeur->show();
-            _labelPdv.show();
+
 
         }
 

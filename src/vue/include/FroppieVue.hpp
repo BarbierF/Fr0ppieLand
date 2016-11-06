@@ -102,6 +102,8 @@ namespace froppieLand{
 
         protected:
 
+            presentateur::Presentateur& _presentateur;
+
             std::unique_ptr< GGrill > _ptrGrillGraphic;
 
             FroppHealth _pdvFroppie;
@@ -113,8 +115,6 @@ namespace froppieLand{
             Gtk::VBox _centManager;
 
             Gtk::VBox _infManager;
-
-            presentateur::Presentateur& _presentateur;
         };
     }
 }

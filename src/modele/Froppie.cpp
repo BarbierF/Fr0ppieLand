@@ -7,7 +7,7 @@ namespace froppieLand{
     namespace modele{
         namespace froppie{
             Froppie::Froppie(const int pdv, const unsigned int depX, const unsigned int depY)
-                : _pointDeVie(pdv), _position({depX, depY}), _etat(&Sain::getSain())
+                : _pointDeVie(pdv), _position(depX, depY), _etat(&Sain::getSain())
                 {
                     
             }
@@ -21,9 +21,7 @@ namespace froppieLand{
 
             void Froppie::deplacer(const Direction& direction){
                 
-                _position.X += direction.getVectorXDirection();
-                _position.Y += direction.getVectorYDirection();
-
+                _position.changeValue(direction);
                 _nbMove++;
             }
 

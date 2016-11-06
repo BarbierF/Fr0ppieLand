@@ -1,5 +1,6 @@
 #include "FroppieVue.hpp"
 #include "Presentateur.hpp"
+#include <iostream>
 
 namespace froppieLand{
     namespace vue{
@@ -12,7 +13,7 @@ namespace froppieLand{
 
         const Glib::ustring FroppieVue::_nomBarreChrono("Durée de vie des nénuphars");
 
-        const Glib::ustring FroppieVue::_cheminImages("/src/ressources/images/");
+        const Glib::ustring FroppieVue::_cheminImages("../../../src/ressources/images/");
 
         std::map < Glib::ustring, Glib::RefPtr < Gdk::Pixbuf > > FroppieVue::_images;
 
@@ -21,6 +22,8 @@ namespace froppieLand{
             , _ptrGrillGraphic(new GGrill(*this)), _pdvFroppie(*this, _nomPdvFroppie)
             , _resoTerrain(*this, _nomResolution, presentateur.getResolutionMin(), presentateur.getResolutionMax())
             , _chronometre(*this, _nomBarreChrono, presentateur.getTempsPartie(), presentateur.getTempsVieillissement()){
+
+                std::cout << "Debut construction fenètre" << std::endl;
 
                 set_title(_nomVue);
 
@@ -37,6 +40,8 @@ namespace froppieLand{
                 set_resizable(false);
 
                 show_all_children();
+
+                std::cout << "Fin construction fenetre" << std::endl;
         }
 
         void FroppieVue::initialiser(){
@@ -98,7 +103,6 @@ namespace froppieLand{
 
             _images["very_doge"] =
                 Gdk::Pixbuf::create_from_file(_cheminImages + "doge.png");
-
         }
 
         const Glib::ustring FroppieVue::getNomVue(){
@@ -126,6 +130,7 @@ namespace froppieLand{
         }
 
         presentateur::Presentateur& FroppieVue::getModifPresentateur(){
+            std::cout << "get pres" << std::endl;
             return _presentateur;
         }
 
@@ -190,7 +195,7 @@ namespace froppieLand{
             const Glib::ustring structure_groupe =
             "<ui>"
             "   <menubar name='BarreMenus'>"
-            "       <menu action='CommandesMenu'>"
+            "       <menu action='CommandeMenu'>"
             "           <menuitem action='CommandePreparer'/>"
             "           <menuitem action='CommandeLancer'/>"
             "           <menuitem action='CommandePresenter'/>"
@@ -259,6 +264,7 @@ namespace froppieLand{
         }
 
         void FroppieVue::cbQuitter(){
+            _chronometre.stopChrono();
             hide();
         }
 
@@ -283,7 +289,7 @@ namespace froppieLand{
         }
 
         void FroppieVue::finPartie(){
-
+            _chronometre.stopChrono();
         }
 
         const Glib::RefPtr< Gdk::Pixbuf >& FroppieVue::getImage(const Glib::ustring& nom){

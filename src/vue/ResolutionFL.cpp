@@ -2,6 +2,7 @@
 #include "Presentateur.hpp"
 
 #include <string>
+#include <iostream>
 
 namespace froppieLand{
     namespace vue{
@@ -10,13 +11,16 @@ namespace froppieLand{
             , const unsigned int& resoMin, const unsigned int& resoMax)
             : Gtk::Frame(titre), _vue(&vue), _resoMin(resoMin), _resoMax(resoMax){
 
-                _manager.add(_menuResolution);
+                std::cout << "DEbut construction resolutionFL" << std::endl;
+                _menuResolution.reparent(_manager);
 
-                for(int i = _resoMin ; i <= _resoMax ; i++){
-
+                for(unsigned int i = _resoMin ; i <= _resoMax ; i++){
+                    std::cout << "Debut boucle" << std::endl;
                     Glib::ustring sItem(std::to_string(i));
                     Gtk::MenuItem mItem(sItem);
                     _menuResolution.append(mItem);
+
+                    std::cout << "Fin iteration" << std::endl;
                 }
 
                 auto chargeur = sigc::mem_fun(*this, &ResolutionFL::cbNouvelleResolution);
@@ -24,6 +28,8 @@ namespace froppieLand{
                 _menuResolution.signal_selection_done().connect(chargeur);
         
                 _manager.show();
+
+                std::cout << "Fin construction resolutionFL" << std::endl;
         }
 
         void ResolutionFL::cbNouvelleResolution(){
