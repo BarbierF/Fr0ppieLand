@@ -10,24 +10,19 @@ namespace froppieLand{
 
         BarreChrono::BarreChrono(FroppieVue& vue, Glib::ustring titre
             , const unsigned int& tempsChrono, const unsigned int& tempsViellissement)
-            :Gtk::Frame(titre), _vue(vue), _enCours(false)
-            , _chronoThread(new std::thread())
+            :Gtk::Frame(titre), _vue(vue)
+            , _enCours(false)
+            , _secondeTime(0)
+            , _timer(nullptr)
             , _tempsChrono(tempsChrono)
             , _tempsVieillissement(tempsViellissement){
             
-            std::cout << "DEbut construction barre chrono" << std::endl;
             _barProgression.set_fraction(0);
 
             Glib::ustring libelle(0 + "secondes");
             _barProgression.set_text(libelle);
 
-            std::cout << "Fin construction barre chrono" << std::endl;
 
-        } 
-
-        BarreChrono::~BarreChrono(){
-            if(_enCours) _enCours = false;
-            _chronoThread->join();
         }
 
         void BarreChrono::progression(){
@@ -46,8 +41,16 @@ namespace froppieLand{
         void BarreChrono::startChrono(){
 
             if(!_enCours){
+                _secondeTime = 0;
 
-                _chronoThread.reset(new std::thread(&BarreChrono::traitementChronoThread, this));
+                sigc::slot<bool> slot = sigc::bind(sigc::mem_fun(*this
+                    ,  &BarreChrono::traitementTimer), 0);
+
+                sigc::connection connection = Glib::signal_timeout().connect(
+                    slot
+                    , 1000);
+
+                _timer.reset(&connection);
                 _enCours = true;            
             }
         }
@@ -55,29 +58,26 @@ namespace froppieLand{
         void BarreChrono::resetChrono(){
             if(!_enCours) return;
             _barProgression.set_fraction(0);
-            _threadProgression = 0;
+            _secondeTime = 0;
         }
 
         void BarreChrono::stopChrono(){
 
             if(!_enCours) return;
             _barProgression.set_fraction(0);
-            _enCours = false;        
-            _chronoThread->join();
+            _enCours = false;
+            _timer->disconnect();
         }
         //ne fonctionnera pas
-        void BarreChrono::traitementChronoThread(){
+        bool BarreChrono::traitementTimer(int t_number){
 
-            while(_threadProgression < _tempsChrono && !_enCours){
-                std::this_thread::sleep_for(std::chrono::seconds(1));
+            progression();
+            _vue.leTempsPasse();
 
-                progression();
-                _vue.leTempsPasse();
+            _secondeTime++;
 
-                _threadProgression++;
-            }
-
-            timesUp();
+            if(_secondeTime < _tempsChrono && _enCours) timesUp();
+            return true;
 
         }
 

@@ -64,8 +64,9 @@ int main(int argc, char* argv[]){
         }
     }
 
-    Glib::RefPtr < Gtk::Application > app = Gtk::Application::create(argc, argv, "froppie.land");
- 
+    //Glib::RefPtr < Gtk::Application > app = Gtk::Application::create(argc, argv, "froppie.land");
+    Gtk::Main mainSystem(argc, argv);
+
     std::cout << "Initialisation de la fenètre..." << std::endl;
 
     froppieLand::vue::FroppieVue::initialiser();
@@ -85,10 +86,7 @@ int main(int argc, char* argv[]){
 
     std::cout << "C'est partie !" << std::endl;
 
-
-    app->run(*pres.getVue());
-
-    app->quit();
+    pres.demarer();
 
     return EXIT_SUCCESS;
 }

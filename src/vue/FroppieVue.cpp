@@ -19,15 +19,17 @@ namespace froppieLand{
 
         FroppieVue::FroppieVue(presentateur::Presentateur& presentateur)
             : _presentateur(presentateur)
-            , _ptrGrillGraphic(new GGrill(*this)), _pdvFroppie(*this, _nomPdvFroppie)
+            , _ptrGrillGraphic(new GGrill(*this))
+            , _pdvFroppie(*this, _nomPdvFroppie)
             , _resoTerrain(*this, _nomResolution, presentateur.getResolutionMin(), presentateur.getResolutionMax())
-            , _chronometre(*this, _nomBarreChrono, presentateur.getTempsPartie(), presentateur.getTempsVieillissement()){
-
-                std::cout << "Debut construction fenètre" << std::endl;
+            , _chronometre(*this, _nomBarreChrono, presentateur.getTempsPartie(), presentateur.getTempsVieillissement())
+            , _centManager(Gtk::ORIENTATION_HORIZONTAL)
+            , _infManager(Gtk::ORIENTATION_HORIZONTAL)
+            {
 
                 set_title(_nomVue);
 
-                Gtk::HBox* manager = Gtk::manage(new Gtk::HBox());
+                Gtk::Box* manager = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
 
                 add(*manager);
 
@@ -41,7 +43,6 @@ namespace froppieLand{
 
                 show_all_children();
 
-                std::cout << "Fin construction fenetre" << std::endl;
         }
 
         void FroppieVue::initialiser(){
@@ -134,7 +135,7 @@ namespace froppieLand{
             return _presentateur;
         }
 
-        void FroppieVue::buildBarreOutils(Gtk::HBox& manager){
+        void FroppieVue::buildBarreOutils(Gtk::Box& manager){
             
             Glib::RefPtr< Gtk::ActionGroup > groupe_actions = Gtk::ActionGroup::create();
 
@@ -221,17 +222,17 @@ namespace froppieLand{
                 manager.pack_start(*ptrBarreOutils, Gtk::PACK_SHRINK);
         }
 
-        void FroppieVue::buildPartieMillieu(Gtk::HBox& manager){
+        void FroppieVue::buildPartieMillieu(Gtk::Box& manager){
             
             manager.add(_centManager);
 
-            _centManager.pack_start(_pdvFroppie, Gtk::PACK_SHRINK);
+            _centManager.pack_start(_pdvFroppie, Gtk::PACK_EXPAND_WIDGET);
 
             _centManager.pack_start(*_ptrGrillGraphic, Gtk::PACK_SHRINK);
 
         }
 
-        void FroppieVue::buildPartieInferieur(Gtk::HBox& manager){
+        void FroppieVue::buildPartieInferieur(Gtk::Box& manager){
 
             manager.add(_infManager);
 

@@ -41,6 +41,10 @@ namespace froppieLand{
             return _modele->getTaille();
         }
 
+        void Presentateur::demarer(){
+            Gtk::Main::run(*_vue);
+        }
+
         bool Presentateur::isArrived(const unsigned int& _ligne, const unsigned int& _colonne)const{
             Position arrivee = _modele->getArrivee();
 

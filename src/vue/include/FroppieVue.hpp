@@ -80,11 +80,11 @@ namespace froppieLand{
 
             void cbPreparation();
 
-            void buildBarreOutils(Gtk::HBox& manager);
+            void buildBarreOutils(Gtk::Box& manager);
 
-            void buildPartieMillieu(Gtk::HBox& manager);
+            void buildPartieMillieu(Gtk::Box& manager);
 
-            void buildPartieInferieur(Gtk::HBox& manager);
+            void buildPartieInferieur(Gtk::Box& manager);
 
         private:
 
@@ -112,9 +112,9 @@ namespace froppieLand{
 
             BarreChrono _chronometre;
 
-            Gtk::VBox _centManager;
+            Gtk::Box _centManager;
 
-            Gtk::VBox _infManager;
+            Gtk::Box _infManager;
         };
     }
 }

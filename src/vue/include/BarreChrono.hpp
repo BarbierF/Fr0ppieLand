@@ -31,8 +31,6 @@ namespace froppieLand{
                 , const unsigned int& tempsChrono
                 , const unsigned int& tempsVieillissment);
 
-            ~BarreChrono();
-
             BarreChrono& operator=(const BarreChrono& ) = delete;
 
             void stopChrono();
@@ -49,7 +47,7 @@ namespace froppieLand{
 
             void timesUp();
 
-            void traitementChronoThread();
+            bool traitementTimer(int t_number);
 
             void progression();
 
@@ -57,13 +55,13 @@ namespace froppieLand{
 
             FroppieVue& _vue;
 
-            Gtk::ProgressBar _barProgression;
-
-            unsigned int _threadProgression;
-
             bool _enCours;
 
-            std::unique_ptr < std::thread > _chronoThread;
+            unsigned int _secondeTime;
+
+            Gtk::ProgressBar _barProgression;
+
+            std::unique_ptr < sigc::connection > _timer;
 
             const unsigned int _tempsChrono;
 

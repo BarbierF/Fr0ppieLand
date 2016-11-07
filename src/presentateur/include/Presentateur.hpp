@@ -75,6 +75,8 @@ namespace froppieLand{
 
         public:
 
+            void demarer();
+
             bool isPossibleMove(const unsigned int ligne, const unsigned int colonne);
 
             bool isArrived(const unsigned int& ligne, const unsigned int& colonne)const;
@@ -89,13 +91,13 @@ namespace froppieLand{
 
         protected:
 
-            std::unique_ptr < Grill > _modele;
-
-            std::unique_ptr < FroppieVue > _vue;
-
             const unsigned int _resoMin, _resoMax;
 
             unsigned int _tempsPartie, _tempsVieillissement;
+
+            std::unique_ptr < Grill > _modele;
+
+            std::unique_ptr < FroppieVue > _vue;
                     
             
 

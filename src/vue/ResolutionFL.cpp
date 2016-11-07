@@ -8,8 +8,12 @@ namespace froppieLand{
     namespace vue{
 
         ResolutionFL::ResolutionFL(FroppieVue& vue, Glib::ustring titre
-            , const unsigned int& resoMin, const unsigned int& resoMax)
-            : Gtk::Frame(titre), _vue(&vue), _resoMin(resoMin), _resoMax(resoMax){
+            , const unsigned int& resoMin
+            , const unsigned int& resoMax)
+            : Gtk::Frame(titre)
+            , _resoMin(resoMin)
+            , _resoMax(resoMax)
+            , _vue(&vue){
 
                 std::cout << "DEbut construction resolutionFL" << std::endl;
                 _menuResolution.reparent(_manager);

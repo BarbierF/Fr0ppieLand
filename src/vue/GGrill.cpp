@@ -10,8 +10,6 @@ namespace froppieLand{
         GGrill::GGrill(FroppieVue& vue)
             :_vue(vue){
 
-            std::cout << "Début cosntruction GGrill" << std::endl;
-
             add(_mareManager);
 
             const presentateur::Presentateur& pres = _vue.getPresentateur();
@@ -27,8 +25,6 @@ namespace froppieLand{
                 }
             }
             
-            std::cout << "Fin construction GGrill." << std::endl;
-
         }
 
         const FroppieVue& GGrill::getVue()const{

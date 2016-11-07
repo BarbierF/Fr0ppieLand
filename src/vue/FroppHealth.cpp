@@ -7,7 +7,7 @@ namespace froppieLand{
     namespace vue{
 
         FroppHealth::FroppHealth(FroppieVue& vue, Glib::ustring titre)
-            :Gtk::Frame(titre), _vue(vue), _coeur(new Gtk::Image(vue.getImage("coeur"))){
+            :Gtk::Frame(titre), _vue(vue), _coeur(new Gtk::Image(vue.getImage("coeur96x91"))){
             
             add(_manager);
 

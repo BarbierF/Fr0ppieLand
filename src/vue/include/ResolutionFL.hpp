@@ -5,6 +5,7 @@
 #include <gtkmm/menu.h>
 #include <gtkmm/box.h>
 #include <gtkmm/adjustment.h>
+#include <glibmm/main.h>
 
 namespace froppieLand{
     namespace vue{

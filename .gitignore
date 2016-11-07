@@ -1,11 +1,9 @@
 CMakeCache.txt
-bin
-bin/*
+bin/
 Makefile
 cmake_install.cmake
 CMakeFiles
 CMakeTools
 .emacs*
 .vscode*
-build
-build/*
+build/
