@@ -10,11 +10,11 @@ namespace froppieLand{
             , unsigned int arrX, unsigned int arrY
             , unsigned int resoMin, unsigned int resoMax
             , unsigned int tempsPartie, unsigned int tempsVieillissement)
-            : _modele(new Grill(taille, depX, depY, arrX, arrY))
-            , _vue(new FroppieVue(*this))
-            , _resoMin(resoMin), _resoMax(resoMax)
+            : _resoMin(resoMin), _resoMax(resoMax)
             , _tempsPartie(tempsPartie)
             , _tempsVieillissement(tempsVieillissement)
+            , _modele(new Grill(taille, depX, depY, arrX, arrY))
+            , _vue(new FroppieVue(*this))
             {
 
             
