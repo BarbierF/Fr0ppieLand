@@ -44,8 +44,6 @@ namespace froppieLand{
 
             void majCase(presentateur::Presentateur& );
 
-            void vieillirCase(presentateur::Presentateur& );
-
         protected:
 
             GGrill& _gGrill;

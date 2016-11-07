@@ -7,6 +7,7 @@
 #include <gtkmm/frame.h>
 #include <gtkmm/progressbar.h>
 #include <gtkmm/adjustment.h>
+#include <gtkmm/box.h>
 
 
 
@@ -66,6 +67,8 @@ namespace froppieLand{
             const unsigned int _tempsChrono;
 
             const unsigned int _tempsVieillissement;
+
+            Gtk::Box _manager;
 
         };
     }

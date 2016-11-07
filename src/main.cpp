@@ -74,10 +74,10 @@ int main(int argc, char* argv[]){
     std::cout << "Initialisation du Presentateur..." << std::endl;
     froppieLand::presentateur::Presentateur pres(
         static_cast<unsigned int>(base)
-        , static_cast<unsigned int>(base)
         , 0u
+        , static_cast<unsigned int>(base) - 1
+        , static_cast<unsigned int>(base) - 1
         , 0u
-        , static_cast<unsigned int>(base)
         , static_cast<unsigned int>(minimal)
         , static_cast<unsigned int>(maximal)
         , 60u

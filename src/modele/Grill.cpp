@@ -12,14 +12,14 @@ namespace froppieLand{
         
         Grill::Grill(
             unsigned int taille
-            , unsigned int posXD
-            , unsigned int posYD
-            , unsigned int posXA
-            , unsigned int posYA)
-            : _froppie(1, posXD - 1, posYD - 1)
+            , unsigned int posLigneD
+            , unsigned int posColonneD
+            , unsigned int posLigneA
+            , unsigned int posColonneA)
+            : _froppie(1, posLigneD, posColonneD)
             , _taille(taille)
-            , _depart(posXD - 1, posYD - 1)
-            , _arrivee(posXA - 1, posYA - 1 )
+            , _depart(posLigneD, posColonneD)
+            , _arrivee(posLigneA, posColonneA)
         {
             
             _terrain.reserve(_taille * _taille);
@@ -30,11 +30,11 @@ namespace froppieLand{
             }
 
 
-            _terrain[ (_taille - 1) * (_taille - 1) ].generateNenuphar(
+            _terrain[ posLigneD * _taille + posColonneD ].generateNenuphar(
                 nenuphar::FactoryStrategyNenuphar::getStrategy(Surface::TypeNenu::immortel)
             );
 
-            _terrain[ _taille - 1 ].generateNenuphar(
+            _terrain[ posLigneA * _taille + posColonneA ].generateNenuphar(
                 nenuphar::FactoryStrategyNenuphar::getStrategy(Surface::TypeNenu::immortel)
             );
 
@@ -81,7 +81,7 @@ namespace froppieLand{
             return _terrain[fropPos.getLigne() * _taille + fropPos.getColonne()];
         }
 
-        void Grill::vieilissement(){
+        void Grill::vieillissement(){
             for(unsigned int i = 0 ; i < _taille ; i++){
                 for(unsigned int j = 0 ; j < _taille ; j++){
                     _terrain[i * _taille + j].age();
@@ -98,18 +98,22 @@ namespace froppieLand{
             
             if(fropPosition.getLigne() == _arrivee.getLigne()){
                 for(unsigned int i = 0 ; i < std::abs(_arrivee.getColonne() - fropPosition.getColonne()) ; i++){
-
                     
-                    _terrain[fropPosition.getLigne() * _taille + i].generateNenuphar(
-                        nenuphar::FactoryStrategyNenuphar::getStrategy(static_cast<Surface::TypeNenu>(distribution(generateur)))
-                    );
+                    Surface& surfFrop = _terrain[fropPosition.getLigne() * _taille + i];
+
+                    if(surfFrop.getStrategy().nomStrategy() == "Eau" && surfFrop.getEtat().nomEtat() == "Inexistant")   
+                        surfFrop.generateNenuphar(
+                            nenuphar::FactoryStrategyNenuphar::getStrategy(static_cast<Surface::TypeNenu>(distribution(generateur)))
+                        );
                 }
             }
             else if(fropPosition.getColonne() == _arrivee.getColonne()){
                 for(unsigned int i = 0 ; i < std::abs(_arrivee.getLigne() - fropPosition.getColonne()) ; i++){
 
-                    
-                    _terrain[i * _taille + fropPosition.getColonne()].generateNenuphar(
+                    Surface& surfFrop = _terrain[i * _taille + fropPosition.getColonne()];
+
+                    if(surfFrop.getStrategy().nomStrategy() == "Eau" && surfFrop.getEtat().nomEtat() == "Inexistant")
+                    surfFrop.generateNenuphar(
                         nenuphar::FactoryStrategyNenuphar::getStrategy(static_cast<Surface::TypeNenu>(distribution(generateur)))
                     );
                 }
@@ -118,7 +122,10 @@ namespace froppieLand{
                 for(unsigned int i = 0 ; i < std::abs(_arrivee.getLigne() - fropPosition.getLigne()) ; i++){
                     for(unsigned int j = 0 ; j < std::abs(_arrivee.getColonne() - fropPosition.getColonne()) ; j++){
                         
-                        _terrain[i * _taille + j].generateNenuphar(
+                        Surface& surfFrop = _terrain[i * _taille + j];
+
+                        if(surfFrop.getStrategy().nomStrategy() == "Eau" && surfFrop.getEtat().nomEtat() == "Inexistant")
+                        surfFrop.generateNenuphar(
                             nenuphar::FactoryStrategyNenuphar::getStrategy(static_cast<Surface::TypeNenu>(distribution(generateur)))
                         );
                     }

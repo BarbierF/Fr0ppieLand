@@ -21,10 +21,10 @@ namespace froppieLand{
             
             Grill(
                 unsigned int taille
-                , unsigned int posXD
-                , unsigned int posYD
-                , unsigned int posXA
-                , unsigned int posYA
+                , unsigned int posLigneD
+                , unsigned int posColonneD
+                , unsigned int posLigneA
+                , unsigned int posColonneA
             );
 
             Grill(const Grill& ) = delete;
@@ -55,7 +55,7 @@ namespace froppieLand{
 
             void construireChemin(void);
 
-            void vieilissement();
+            void vieillissement();
 
         protected:
 

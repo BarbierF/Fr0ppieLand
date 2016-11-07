@@ -15,14 +15,19 @@ namespace froppieLand{
             , _secondeTime(0)
             , _timer(nullptr)
             , _tempsChrono(tempsChrono)
-            , _tempsVieillissement(tempsViellissement){
+            , _tempsVieillissement(tempsViellissement)
+            , _manager(Gtk::ORIENTATION_HORIZONTAL){
             
+            add(_manager);
+
             _barProgression.set_fraction(0);
 
             Glib::ustring libelle(0 + "secondes");
             _barProgression.set_text(libelle);
 
+            _manager.pack_start(_barProgression, Gtk::PACK_EXPAND_WIDGET);
 
+            show_all_children();
         }
 
         void BarreChrono::progression(){
@@ -58,7 +63,7 @@ namespace froppieLand{
         void BarreChrono::resetChrono(){
             if(!_enCours) return;
             _barProgression.set_fraction(0);
-            _secondeTime = 0;
+            startChrono();
         }
 
         void BarreChrono::stopChrono(){

@@ -34,8 +34,6 @@ namespace froppieLand{
 
             void actualiserCases();            
 
-            void vieillirCases();
-
             FroppieVue& getModifVue();
 
         protected:

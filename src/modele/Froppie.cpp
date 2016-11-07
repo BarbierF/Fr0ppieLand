@@ -3,13 +3,15 @@
 #include "Malade.hpp"
 #include "Mort.hpp"
 
+#include <iostream>
+
 namespace froppieLand{
     namespace modele{
         namespace froppie{
-            Froppie::Froppie(const int pdv, const unsigned int depX, const unsigned int depY)
-                : _pointDeVie(pdv), _position(depX, depY), _etat(&Sain::getSain())
+            Froppie::Froppie(const int pdv, const unsigned int depLigne, const unsigned int depColonne)
+                : _pointDeVie(pdv), _position(depLigne, depColonne), _etat(&Sain::getSain())
                 {
-                    
+                    std::cout << _position.getLigne() << ";" << _position.getColonne() << std::endl;
             }
 
             Froppie::~Froppie(){

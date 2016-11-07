@@ -76,39 +76,41 @@ namespace froppieLand{
 
             if(froppiePres && etat == "Inexistant" && type == "eau") presentateur.OMGFroppieIsGettingEaten();
             
-            Gtk::Image& rep = *_formes[type][etat];
-
-            if(&rep == get_child()) return;
-
-            remove();
-            add(rep);
             _directionClick = &presentateur::Presentateur::Self::getSelf();
 
             if(froppiePres) {
                 const std::string fropEtat = presentateur.getEtatFroppie();
+                std::cout << "Froppie ici : " << _ligne << ";" << _colonne << std::endl;
+                Gtk::Image& rep = *_froppieFormes[fropEtat];
 
-                add(*_froppieFormes[fropEtat]);
+                if(&rep == get_child()) return;
+
+                remove();
+                add(rep);
             }
-            else if(presentateur.isPossibleMove(_ligne, _colonne)){
+            else{
+                Gtk::Image& rep = *_formes[type][etat];
+
+                if(&rep == get_child()) return;
+
+                remove();
+                add(rep);
+
+                if(presentateur.isPossibleMove(_ligne, _colonne)){
                 auto chargeur = sigc::mem_fun(*this, &GCaseMare::cbClickSouris);
 
                 _directionClick = &presentateur.getDerniereDireFroppieVoisin();
                 
                 signal_button_press_event().connect(chargeur);
+                }
+                else{
+                    auto chargeur = sigc::mem_fun(*this, &GCaseMare::on_button_press_event);
+
+                    signal_button_press_event().connect(chargeur);
+                }
             }
-            else{
-                auto chargeur = sigc::mem_fun(*this, &GCaseMare::on_button_press_event);
-
-                signal_button_press_event().connect(chargeur);
-            }
-            rep.show();
-        }
-
-        void GCaseMare::vieillirCase(presentateur::Presentateur& presentateur){
-
-            presentateur.vieillirCase(_ligne, _colonne);
-
-            majCase(presentateur);
+            
+            show_all_children();
         }
 
 

@@ -14,6 +14,7 @@ namespace froppieLand{
             }
             void Petit::age(Surface& victim)const{
                 victim.setEtat(Inexistant::getInstance());
+                victim.setStrategy(FactoryStrategyNenuphar::getStrategy(Surface::TypeNenu::eau));
             }
 
             const std::string Petit::nomEtat()const{

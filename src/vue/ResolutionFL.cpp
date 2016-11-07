@@ -9,31 +9,41 @@ namespace froppieLand{
 
         ResolutionFL::ResolutionFL(FroppieVue& vue, Glib::ustring titre
             , const unsigned int& resoMin
-            , const unsigned int& resoMax)
+            , const unsigned int& resoMax
+            , const unsigned int& resoCourant)
             : Gtk::Frame(titre)
             , _resoMin(resoMin)
             , _resoMax(resoMax)
-            , _vue(&vue){
+            , _vue(&vue)
+            , _sButtons(
+                Gtk::Adjustment::create
+                (
+                resoCourant
+                , _resoMin
+                , _resoMax
+                , 1.0
+                , 1.0
+                , 0.0))
+            , _manager(Gtk::ORIENTATION_HORIZONTAL){
 
                 std::cout << "DEbut construction resolutionFL" << std::endl;
-                _menuResolution.reparent(_manager);
 
-                for(unsigned int i = _resoMin ; i <= _resoMax ; i++){
-                    std::cout << "Debut boucle" << std::endl;
-                    Glib::ustring sItem(std::to_string(i));
-                    Gtk::MenuItem mItem(sItem);
-                    _menuResolution.append(mItem);
-
-                    std::cout << "Fin iteration" << std::endl;
-                }
+                
+                std::cout << resoCourant << std::endl;
+                
+                //_sButtons.set_adjustment(ajustement);
 
                 auto chargeur = sigc::mem_fun(*this, &ResolutionFL::cbNouvelleResolution);
 
-                _menuResolution.signal_selection_done().connect(chargeur);
-        
-                _manager.show();
+                _sButtons.signal_value_changed().connect(chargeur);
+
+                _manager.pack_start(_sButtons, Gtk::PACK_SHRINK);
+
+                add(_manager);
 
                 std::cout << "Fin construction resolutionFL" << std::endl;
+
+                show_all_children();
         }
 
         void ResolutionFL::cbNouvelleResolution(){
@@ -41,7 +51,7 @@ namespace froppieLand{
         }
 
         const unsigned int ResolutionFL::getResolution()const{
-            return std::stoul(_menuResolution.get_active()->get_label());
+            return static_cast< unsigned int>(_sButtons.get_value());
         } 
     }
 }

@@ -6,14 +6,14 @@ namespace froppieLand{
     namespace presentateur{
 
         Presentateur::Presentateur(unsigned int taille
-            , unsigned int depX, unsigned int depY
-            , unsigned int arrX, unsigned int arrY
+            , unsigned int ligneDep, unsigned int colonneDep
+            , unsigned int ligneArr, unsigned int colonneArr
             , unsigned int resoMin, unsigned int resoMax
             , unsigned int tempsPartie, unsigned int tempsVieillissement)
             : _resoMin(resoMin), _resoMax(resoMax)
             , _tempsPartie(tempsPartie)
             , _tempsVieillissement(tempsVieillissement)
-            , _modele(new Grill(taille, depX, depY, arrX, arrY))
+            , _modele(new Grill(taille, ligneDep, colonneDep, ligneArr, colonneArr))
             , _vue(new FroppieVue(*this))
             {
 
@@ -43,6 +43,10 @@ namespace froppieLand{
 
         void Presentateur::demarer(){
             Gtk::Main::run(*_vue);
+        }
+
+        void Presentateur::genererTerrain(){
+            _modele->construireChemin();
         }
 
         bool Presentateur::isArrived(const unsigned int& _ligne, const unsigned int& _colonne)const{
@@ -108,10 +112,8 @@ namespace froppieLand{
             _modele->getModifFroppie().deplacer(directionDep);
         }
 
-        void Presentateur::vieillirCase(
-            const unsigned int& ligne, const unsigned int& colonne
-        ){
-            _modele->getSurfaceModifiable(ligne, colonne).age();  
+        void Presentateur::vieillirCases(){
+            _modele->vieillissement();
         }
 
         void Presentateur::nouveauJeu(unsigned int resolution){

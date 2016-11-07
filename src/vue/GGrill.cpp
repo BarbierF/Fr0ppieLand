@@ -40,18 +40,7 @@ namespace froppieLand{
             for(GCaseMare* case_mare : _mare){
                 case_mare->majCase(_vue.getModifPresentateur());
             }
-        }
-
-        void GGrill::vieillirCases(){
-            presentateur::Presentateur& pres = _vue.getModifPresentateur();
-            const unsigned int& dimension = pres.getDimension(); 
-
-            for(unsigned int i = 0 ; i < dimension ; i++){
-                for(unsigned int j = 0 ; j < dimension ; j++)
-                    pres.vieillirCase(i, j);
-            }
-
-            actualiserCases();
+            std::cout << "Fin actualisation" << std::endl;
         }
 
     }

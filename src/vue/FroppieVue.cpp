@@ -21,7 +21,7 @@ namespace froppieLand{
             : _presentateur(presentateur)
             , _ptrGrillGraphic(new GGrill(*this))
             , _pdvFroppie(*this, _nomPdvFroppie)
-            , _resoTerrain(*this, _nomResolution, presentateur.getResolutionMin(), presentateur.getResolutionMax())
+            , _resoTerrain(*this, _nomResolution, presentateur.getResolutionMin(), presentateur.getResolutionMax(), presentateur.getDimension())
             , _chronometre(*this, _nomBarreChrono, presentateur.getTempsPartie(), presentateur.getTempsVieillissement())
             , _centManager(Gtk::ORIENTATION_HORIZONTAL)
             , _infManager(Gtk::ORIENTATION_HORIZONTAL)
@@ -131,7 +131,6 @@ namespace froppieLand{
         }
 
         presentateur::Presentateur& FroppieVue::getModifPresentateur(){
-            std::cout << "get pres" << std::endl;
             return _presentateur;
         }
 
@@ -238,7 +237,7 @@ namespace froppieLand{
 
             _infManager.pack_start(_resoTerrain, Gtk::PACK_SHRINK);
 
-            _infManager.pack_start(_chronometre, Gtk::PACK_SHRINK);
+            _infManager.pack_start(_chronometre, Gtk::PACK_EXPAND_WIDGET);
         }
 
         void FroppieVue::cbPresentation(){
@@ -248,7 +247,7 @@ namespace froppieLand{
             apropos.set_program_name("Fr0ppieLand");
             apropos.set_version("0.0.1");
             apropos.set_copyright("Fr0ppieGroup - very_froppie@outlook.fr");
-            apropos.set_comments("Devoir continue de Programmation et Parrallèlisme");
+            apropos.set_comments("Devoir continu de Programmation et Parrallèlisme");
             apropos.set_authors(
                 {
                     "Florentin Barbier",
@@ -270,6 +269,7 @@ namespace froppieLand{
         }
 
         void FroppieVue::cbLancement(){
+            _presentateur.genererTerrain();
             _chronometre.startChrono();
             _ptrGrillGraphic->actualiserCases();
         }
@@ -280,17 +280,21 @@ namespace froppieLand{
             _centManager.remove(*_ptrGrillGraphic);
             _ptrGrillGraphic.reset(new GGrill(*this));
 
-            _centManager.pack_start(*_ptrGrillGraphic);
+            _centManager.pack_end(*_ptrGrillGraphic);
 
             show_all_children();
         }
 
         void FroppieVue::leTempsPasse(){
+            _presentateur.vieillirCases();
+            _presentateur.genererTerrain();
+
             _ptrGrillGraphic->actualiserCases();
         }
 
         void FroppieVue::finPartie(){
             _chronometre.stopChrono();
+            cbQuitter();
         }
 
         const Glib::RefPtr< Gdk::Pixbuf >& FroppieVue::getImage(const Glib::ustring& nom){

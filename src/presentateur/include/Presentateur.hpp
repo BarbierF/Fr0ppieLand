@@ -40,8 +40,8 @@ namespace froppieLand{
         public:
 
             Presentateur(unsigned int taille
-            , unsigned int depX, unsigned int depY
-            , unsigned int arrX, unsigned int arrY
+            , unsigned int ligneDep, unsigned int colonneDep
+            , unsigned int ligneArr, unsigned int colonneArr
             , unsigned int resoMin, unsigned int resoMax
             , unsigned int tempsPartie, unsigned int tempsVieillissement);
 
@@ -77,6 +77,8 @@ namespace froppieLand{
 
             void demarer();
 
+            void genererTerrain();
+
             bool isPossibleMove(const unsigned int ligne, const unsigned int colonne);
 
             bool isArrived(const unsigned int& ligne, const unsigned int& colonne)const;
@@ -85,7 +87,7 @@ namespace froppieLand{
 
             void deplaceFroppie(const Direction& directionDep);
 
-            void vieillirCase(const unsigned int& ligne, const unsigned int& colonne);
+            void vieillirCases();
 
 
 
