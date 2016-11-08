@@ -59,6 +59,10 @@ namespace froppieLand{
 
         protected:
 
+            void adapterSurface(const unsigned int& ligne, const unsigned int& colonne);
+
+        protected:
+
             Froppie _froppie;
 
             unsigned int _taille;

@@ -82,7 +82,8 @@ namespace froppieLand{
 
         std::string Presentateur::getTypeNenu(
             const unsigned int& ligne, const unsigned int& colonne
-        )const{               
+        )const{  
+                const Grill::Surface& surface = _modele->getSurface(ligne, colonne);             
                 return _modele->getSurface(ligne, colonne).getStrategy().nomStrategy();
         }
 

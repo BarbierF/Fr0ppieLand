@@ -13,7 +13,7 @@ namespace froppieLand{
 
         const Glib::ustring FroppieVue::_nomBarreChrono("Durée de vie des nénuphars");
 
-        const Glib::ustring FroppieVue::_cheminImages("../../../src/ressources/images/");
+        const Glib::ustring FroppieVue::_cheminImages("./src/ressources/images/");
 
         std::map < Glib::ustring, Glib::RefPtr < Gdk::Pixbuf > > FroppieVue::_images;
 
@@ -294,7 +294,6 @@ namespace froppieLand{
 
         void FroppieVue::finPartie(){
             _chronometre.stopChrono();
-            cbQuitter();
         }
 
         const Glib::RefPtr< Gdk::Pixbuf >& FroppieVue::getImage(const Glib::ustring& nom){

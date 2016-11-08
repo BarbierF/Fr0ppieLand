@@ -13,7 +13,6 @@ namespace froppieLand{
             :Gtk::Frame(titre), _vue(vue)
             , _enCours(false)
             , _secondeTime(0)
-            , _timer(nullptr)
             , _tempsChrono(tempsChrono)
             , _tempsVieillissement(tempsViellissement)
             , _manager(Gtk::ORIENTATION_HORIZONTAL){
@@ -32,15 +31,17 @@ namespace froppieLand{
 
         void BarreChrono::progression(){
 
-            double pas = _tempsVieillissement / _tempsChrono;
+            double pas = static_cast < double >(_tempsVieillissement) / static_cast < double >(_tempsChrono);
             double valSuivante = _barProgression.get_fraction() + pas;
 
             //On veut éviter les erreurs donc si on dépasse on remet à zéro
-            if(valSuivante >= 1.0) valSuivante = 0; 
+            if(valSuivante > 1.0) valSuivante = 0.0; 
 
-            _barProgression.set_fraction(pas);
+            _barProgression.set_fraction(valSuivante);
             
             _barProgression.set_text(Glib::ustring(std::to_string(pas)) + " secondes");
+
+            double val = _barProgression.get_fraction();
         }
 
         void BarreChrono::startChrono(){
@@ -75,15 +76,15 @@ namespace froppieLand{
         }
         //ne fonctionnera pas
         bool BarreChrono::traitementTimer(int t_number){
+            if(_enCours){
+                progression();
+                _vue.leTempsPasse();
 
-            progression();
-            _vue.leTempsPasse();
+                _secondeTime++;
 
-            _secondeTime++;
-
-            if(_secondeTime < _tempsChrono && _enCours) timesUp();
+                if(_secondeTime > _tempsChrono) timesUp();
+            }
             return true;
-
         }
 
         void BarreChrono::timesUp(){

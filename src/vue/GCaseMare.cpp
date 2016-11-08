@@ -97,11 +97,11 @@ namespace froppieLand{
                 add(rep);
 
                 if(presentateur.isPossibleMove(_ligne, _colonne)){
-                auto chargeur = sigc::mem_fun(*this, &GCaseMare::cbClickSouris);
+                    auto chargeur = sigc::mem_fun(*this, &GCaseMare::cbClickSouris);
 
-                _directionClick = &presentateur.getDerniereDireFroppieVoisin();
-                
-                signal_button_press_event().connect(chargeur);
+                    _directionClick = &presentateur.getDerniereDireFroppieVoisin();
+                    
+                    signal_button_press_event().connect(chargeur);
                 }
                 else{
                     auto chargeur = sigc::mem_fun(*this, &GCaseMare::on_button_press_event);

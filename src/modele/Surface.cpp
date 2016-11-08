@@ -29,6 +29,14 @@ namespace froppieLand{
                 return *_strategy;
             }
 
+            const unsigned int& Surface::getLigne()const{
+                return _sPosition.getLigne();
+            }
+
+            const unsigned int& Surface::getColonne()const{
+                return _sPosition.getColonne();
+            }
+
             void Surface::age() {
                 _strategy->vieillir(*this);
             }

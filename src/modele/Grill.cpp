@@ -1,5 +1,6 @@
 #include <cmath>
-#include <random>
+#include <cstdlib>
+#include <ctime>
 
 #include "Grill.hpp"
 #include "FactoryStrategyNenuphar.hpp"
@@ -25,6 +26,7 @@ namespace froppieLand{
             _terrain.reserve(_taille * _taille);
             for(unsigned int i = 0 ; i < _taille ; i++){
                 for(unsigned int j = 0 ; j < _taille ; j++){
+                    
                     _terrain.push_back(Surface(i, j));
                 }
             }
@@ -37,6 +39,10 @@ namespace froppieLand{
             _terrain[ posLigneA * _taille + posColonneA ].generateNenuphar(
                 nenuphar::FactoryStrategyNenuphar::getStrategy(Surface::TypeNenu::immortel)
             );
+
+            for(std::vector<Surface>::iterator it = _terrain.begin() ; it != _terrain.end() ; ++it){
+                std::cout << "Ligne : " << it->getLigne() << " Colonne : " << it->getColonne() << std::endl;
+            }
 
         }
 
@@ -91,46 +97,149 @@ namespace froppieLand{
 
         void Grill::construireChemin(){
 
-            std::default_random_engine generateur;
-            std::uniform_int_distribution<int> distribution(0, 7); //On va générer les nombres de 1 à 7.
+            srand(time(NULL));
 
             const Position& fropPosition = _froppie.getPosition();
+            std::cout << "FropPosition : Ligne = " <<  fropPosition.getLigne() << " Colonne = " << fropPosition.getColonne() << std::endl;
             
             if(fropPosition.getLigne() == _arrivee.getLigne()){
-                for(unsigned int i = 0 ; i < std::abs(_arrivee.getColonne() - fropPosition.getColonne()) ; i++){
-                    
-                    Surface& surfFrop = _terrain[fropPosition.getLigne() * _taille + i];
 
-                    if(surfFrop.getStrategy().nomStrategy() == "Eau" && surfFrop.getEtat().nomEtat() == "Inexistant")   
-                        surfFrop.generateNenuphar(
-                            nenuphar::FactoryStrategyNenuphar::getStrategy(static_cast<Surface::TypeNenu>(distribution(generateur)))
-                        );
-                }
+                if(fropPosition.getColonne() < _arrivee.getColonne())
+                    for(unsigned int i = fropPosition.getColonne() + 1
+                    ; i < _arrivee.getColonne()
+                    ; i++){
+                            adapterSurface(fropPosition.getLigne(), i);
+
+                    }
+
+                if(fropPosition.getColonne() > _arrivee.getColonne())
+                    for(unsigned int i = fropPosition.getColonne() - 1
+                    ; i > _arrivee.getColonne()
+                    ; i--){
+                            adapterSurface(fropPosition.getLigne(), i);
+
+                    }
             }
             else if(fropPosition.getColonne() == _arrivee.getColonne()){
-                for(unsigned int i = 0 ; i < std::abs(_arrivee.getLigne() - fropPosition.getColonne()) ; i++){
+                
+                if(fropPosition.getLigne() < _arrivee.getLigne())
+                    for(unsigned int i = fropPosition.getLigne() + 1
+                    ; i < _arrivee.getLigne()
+                    ; i++){
+                            adapterSurface(i, fropPosition.getColonne());
 
-                    Surface& surfFrop = _terrain[i * _taille + fropPosition.getColonne()];
+                    }
+                if(fropPosition.getLigne() > _arrivee.getColonne())
+                    for(unsigned int i = fropPosition.getLigne() - 1
+                    ; i > _arrivee.getLigne()
+                    ; i--){
+                            adapterSurface(i, fropPosition.getColonne());
 
-                    if(surfFrop.getStrategy().nomStrategy() == "Eau" && surfFrop.getEtat().nomEtat() == "Inexistant")
-                    surfFrop.generateNenuphar(
-                        nenuphar::FactoryStrategyNenuphar::getStrategy(static_cast<Surface::TypeNenu>(distribution(generateur)))
-                    );
-                }
+                    }
+
             }
             else{
-                for(unsigned int i = 0 ; i < std::abs(_arrivee.getLigne() - fropPosition.getLigne()) ; i++){
-                    for(unsigned int j = 0 ; j < std::abs(_arrivee.getColonne() - fropPosition.getColonne()) ; j++){
-                        
-                        Surface& surfFrop = _terrain[i * _taille + j];
 
-                        if(surfFrop.getStrategy().nomStrategy() == "Eau" && surfFrop.getEtat().nomEtat() == "Inexistant")
-                        surfFrop.generateNenuphar(
-                            nenuphar::FactoryStrategyNenuphar::getStrategy(static_cast<Surface::TypeNenu>(distribution(generateur)))
-                        );
+                adapterSurface(fropPosition.getLigne(), _arrivee.getColonne());
+
+                adapterSurface(_arrivee.getLigne(), fropPosition.getColonne());
+
+                if(fropPosition.getLigne() < _arrivee.getLigne()  
+                    && fropPosition.getColonne() < _arrivee.getColonne()){
+                    for(unsigned int i = fropPosition.getLigne() + 1
+                    ; i < _arrivee.getLigne()
+                    ; i++){
+                            adapterSurface(i, _arrivee.getColonne());
+
+                            adapterSurface(i, fropPosition.getColonne());
+
+                    }
+                    for(unsigned int j = fropPosition.getColonne() + 1
+                    ; j < _arrivee.getColonne()
+                    ; j++){
+                            adapterSurface(_arrivee.getLigne(), j);
+
+                            adapterSurface(fropPosition.getLigne(), j);
+                        
                     }
                 }
+                if(fropPosition.getLigne() < _arrivee.getLigne()
+                    && fropPosition.getColonne() > _arrivee.getColonne()){
+                    for(unsigned int i = fropPosition.getLigne() + 1
+                    ; i < _arrivee.getLigne()
+                    ; i++){
+                            adapterSurface(i, _arrivee.getColonne());
+
+                            adapterSurface(i, fropPosition.getColonne());
+
+                    }
+                    for(unsigned int j = fropPosition.getColonne() - 1
+                    ; j > _arrivee.getColonne()
+                    ; j--){
+                            adapterSurface(_arrivee.getLigne(), j);
+
+                            adapterSurface(fropPosition.getLigne(), j);
+                        
+                    }
+                }
+
+                if(fropPosition.getLigne() > _arrivee.getLigne()
+                    && fropPosition.getColonne() < _arrivee.getColonne()){
+                    for(unsigned int i = fropPosition.getLigne() - 1
+                    ; i > _arrivee.getLigne()
+                    ; i--){
+                            adapterSurface(i, _arrivee.getColonne());
+
+                            adapterSurface(i, fropPosition.getColonne());
+
+                    }
+                    for(unsigned int j = fropPosition.getColonne() + 1
+                    ; j < _arrivee.getColonne()
+                    ; j++){
+                        
+                            adapterSurface(_arrivee.getLigne(), j);
+
+                            adapterSurface(fropPosition.getLigne(), j);
+
+                    }
+                }
+                if(fropPosition.getLigne() > _arrivee.getLigne()
+                    && fropPosition.getColonne() > _arrivee.getColonne()){
+                    for(unsigned int i = fropPosition.getLigne() - 1
+                    ; i > _arrivee.getLigne()
+                    ; i--){
+                            adapterSurface(i, _arrivee.getColonne());
+
+                            adapterSurface(i,fropPosition.getColonne());
+
+                    }
+                    for(unsigned int j = fropPosition.getColonne() - 1
+                    ; j > _arrivee.getColonne()
+                    ; j--){                            
+                            adapterSurface(_arrivee.getLigne(), j);
+
+                            adapterSurface(fropPosition.getLigne(), j);
+
+                    }
+
+                }
             }
+        }
+
+        void Grill::adapterSurface(const unsigned int& ligne, const unsigned int& colonne){
+            Surface& surfFrop = _terrain[ligne * _taille + colonne];
+
+            long random = rand() % 5 + 2;
+
+            if(surfFrop.getStrategy().nomStrategy() == "Eau" 
+                && surfFrop.getEtat().nomEtat() == "Inexistant"
+                && surfFrop.getStrategy().nomStrategy() != "Immortel")
+                
+            surfFrop.generateNenuphar(
+                nenuphar::FactoryStrategyNenuphar::getStrategy(
+                    static_cast<Surface::TypeNenu>(random)
+                )
+            );
         }
         
     }
