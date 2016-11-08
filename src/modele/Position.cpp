@@ -14,8 +14,8 @@ namespace froppieLand{
             }
 
         void Position::changeValue(const Direction& direction){
-            _ligne += direction.getVectorXDirection();
-            _colonne += direction.getVectorYDirection();
+            _ligne += direction.getVectorYDirection();
+            _colonne += direction.getVectorXDirection();
         }
 
         const unsigned int& Position::getLigne()const{

@@ -62,7 +62,7 @@ namespace froppieLand{
 
             Gtk::ProgressBar _barProgression;
 
-            std::unique_ptr < sigc::connection > _timer;
+            sigc::connection _timer;
 
             const unsigned int _tempsChrono;
 

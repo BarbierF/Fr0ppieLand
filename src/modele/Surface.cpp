@@ -62,10 +62,10 @@ namespace froppieLand{
 
                 unsigned int vLigne = ligne, vColonne = colonne; 
                 _iterVoisin.setVoisinPotentiel(vLigne, vColonne);
-
+                
                 while(!_iterVoisin.isFini() && !result){
                     
-                    result &= _iterVoisin.voisinSuivant();
+                    result = _iterVoisin.voisinSuivant();
                 }
 
                 return result;

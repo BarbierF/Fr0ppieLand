@@ -73,6 +73,7 @@ namespace froppieLand{
             const std::string type = presentateur.getTypeNenu(_ligne, _colonne);
             const std::string etat = presentateur.getEtatNenu(_ligne, _colonne);
             const bool froppiePres = presentateur.isFroppied(_ligne, _colonne);
+            const bool isMovable = presentateur.isPossibleMove(_ligne, _colonne);
 
             if(froppiePres && etat == "Inexistant" && type == "eau") presentateur.OMGFroppieIsGettingEaten();
             
@@ -96,7 +97,8 @@ namespace froppieLand{
                 remove();
                 add(rep);
 
-                if(presentateur.isPossibleMove(_ligne, _colonne)){
+                if(isMovable){
+                    std::cout << "Click Souris" << std::endl;
                     auto chargeur = sigc::mem_fun(*this, &GCaseMare::cbClickSouris);
 
                     _directionClick = &presentateur.getDerniereDireFroppieVoisin();

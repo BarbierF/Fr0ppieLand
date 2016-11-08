@@ -58,7 +58,6 @@ namespace froppieLand{
         bool Presentateur::isPossibleMove(const unsigned int ligne, const unsigned int colonne){
             
             Grill::Surface froppieSurf = _modele->getModifFroppieSurf();
-
             return froppieSurf.isCaseVoisine(ligne, colonne);
         }
 
@@ -82,8 +81,7 @@ namespace froppieLand{
 
         std::string Presentateur::getTypeNenu(
             const unsigned int& ligne, const unsigned int& colonne
-        )const{  
-                const Grill::Surface& surface = _modele->getSurface(ligne, colonne);             
+        )const{          
                 return _modele->getSurface(ligne, colonne).getStrategy().nomStrategy();
         }
 

@@ -40,8 +40,6 @@ namespace froppieLand{
             _barProgression.set_fraction(valSuivante);
             
             _barProgression.set_text(Glib::ustring(std::to_string(pas)) + " secondes");
-
-            double val = _barProgression.get_fraction();
         }
 
         void BarreChrono::startChrono(){
@@ -56,7 +54,7 @@ namespace froppieLand{
                     slot
                     , 1000);
 
-                _timer.reset(&connection);
+                _timer = connection;
                 _enCours = true;            
             }
         }
@@ -72,7 +70,7 @@ namespace froppieLand{
             if(!_enCours) return;
             _barProgression.set_fraction(0);
             _enCours = false;
-            _timer->disconnect();
+            _timer.disconnect();
         }
         //ne fonctionnera pas
         bool BarreChrono::traitementTimer(int t_number){

@@ -29,8 +29,6 @@ namespace froppieLand{
 
                 bool isFini()const;
 
-                void reset();
-
             protected:
 
                 const Position _surfPos;
@@ -40,6 +38,8 @@ namespace froppieLand{
                 unsigned int _currentIndex;
 
                 static const std::vector < modele::Direction const* > _directions;
+
+                modele::Direction const*  _directionActuelle;
             };
         }
     }

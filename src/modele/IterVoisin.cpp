@@ -4,6 +4,7 @@
 #include "Sud.hpp"
 #include "Est.hpp"
 #include "Ouest.hpp"
+#include "Self.hpp"
 
 
 namespace froppieLand{
@@ -18,12 +19,11 @@ namespace froppieLand{
             };
 
             IterVoisin::IterVoisin(const Position& positionTest)
-                :_surfPos(positionTest), _voisinPotentiel(nullptr){
-                    _currentIndex = 0;
+                :_surfPos(positionTest), _voisinPotentiel(nullptr), _currentIndex(0), _directionActuelle(&modele::Self::getSelf()){
             }
 
             const Direction& IterVoisin::getDirectionActuelle()const{
-                return *_directions[_currentIndex];
+                return *_directionActuelle;
             }
 
             bool IterVoisin::isFini()const{
@@ -32,19 +32,23 @@ namespace froppieLand{
 
             bool IterVoisin::voisinSuivant(){
                 unsigned int index = _currentIndex++;
-
-                return  _surfPos.getLigne() + _directions[index]->getVectorXDirection() == _voisinPotentiel->getLigne()
+                bool isVoisin = _surfPos.getLigne() + _directions[index]->getVectorYDirection() == _voisinPotentiel->getLigne()
                         &&
-                        _surfPos.getColonne() + _directions[index]->getVectorYDirection() == _voisinPotentiel->getColonne();
+                        _surfPos.getColonne() + _directions[index]->getVectorXDirection() == _voisinPotentiel->getColonne();
+            
+                if(isVoisin)
+                {
+                    _directionActuelle = _directions[index];
+                }
+
+                return isVoisin;
             }
 
             void IterVoisin::setVoisinPotentiel(unsigned int& ligne, unsigned int& colonne){
                 _voisinPotentiel.reset(new Position(ligne, colonne));
-            }
-
-            void IterVoisin::reset(){
                 _currentIndex = 0;
             }
+
         }
     }
 }
