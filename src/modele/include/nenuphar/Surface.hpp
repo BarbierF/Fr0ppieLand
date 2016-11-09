@@ -37,6 +37,8 @@ namespace froppieLand{
                 , unsigned int jS
                 , const unsigned int& dimension);
 
+                ~Surface();
+
             public:
                 
                 const SurfEtat& getEtat()const;

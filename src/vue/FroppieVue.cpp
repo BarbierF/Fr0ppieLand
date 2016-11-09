@@ -275,6 +275,7 @@ namespace froppieLand{
         }
 
         void FroppieVue::cbPreparation(){
+            _chronometre.stopChrono();
             _presentateur.nouveauJeu(_resoTerrain.getResolution());
             
             _centManager.remove(*_ptrGrillGraphic);

@@ -20,6 +20,11 @@ namespace froppieLand{
                     
             }
 
+            Surface::~Surface(){
+                _etat = nullptr;
+                _strategy = nullptr;
+            }
+
             const SurfEtat& Surface::getEtat()const {
                 return *_etat;
             }

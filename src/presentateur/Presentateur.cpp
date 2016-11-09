@@ -123,7 +123,7 @@ namespace froppieLand{
 
         void Presentateur::nouveauJeu(unsigned int resolution){
 
-            _modele.reset(new Grill(resolution, 10, 0, 0, 10));
+            _modele.reset(new Grill(resolution, 0, resolution - 1, resolution - 1, 0));
         }
 
     }
