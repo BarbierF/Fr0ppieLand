@@ -1,6 +1,8 @@
 #ifndef SURFACE_HPP
 #define SURFACE_HPP
 
+#include <map>
+
 #include "IterVoisin.hpp"
 #include "SurfEtat.hpp"
 #include "StrategyNenuphar.hpp"
@@ -32,7 +34,11 @@ namespace froppieLand{
 
                 typedef FactoryStrategyNenuphar::TypeNenu TypeNenu;
 
-                Surface(SurfEtat const* surfEtat, StrategyNenuphar const* strategyNenuphar, unsigned int iS, unsigned int jS);
+                Surface(SurfEtat const* surfEtat
+                , StrategyNenuphar const* strategyNenuphar
+                , unsigned int iS
+                , unsigned int jS
+                , const unsigned int& dimension);
                 
                 Surface(unsigned int iS, unsigned int jS);
                 
@@ -62,6 +68,8 @@ namespace froppieLand{
             protected:
 
                 void vieillirEtat();
+
+                std::map < Position, Direction const* > genererMapVoisins(const unsigned int& dimension)const;
                 
                 void setEtat(SurfEtat const* nEtat);
 
@@ -86,6 +94,9 @@ namespace froppieLand{
                 const Position _sPosition;
 
                 IterVoisin _iterVoisin;
+
+                std::map < Position, Direction const* > _voisins;
+
             };
         }
     }

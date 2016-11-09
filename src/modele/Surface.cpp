@@ -1,11 +1,25 @@
 #include "Surface.hpp"
+
+#include "Nord.hpp"
+#include "Sud.hpp"
+#include "Ouest.hpp"
+#include "Est.hpp"
+
 #include <iostream>
 
 namespace froppieLand{
     namespace modele{
         namespace nenuphar{
-            Surface::Surface(SurfEtat const* surfEtat, StrategyNenuphar const* strategyNenuphar, unsigned int iS, unsigned int jS)
-            :_etat(surfEtat), _strategy(strategyNenuphar), _sPosition(iS, jS), _iterVoisin(_sPosition) {
+            Surface::Surface(SurfEtat const* surfEtat
+            , StrategyNenuphar const* strategyNenuphar
+            , unsigned int iS
+            , unsigned int jS
+            , const unsigned int& dimension)
+                :_etat(surfEtat)
+                , _strategy(strategyNenuphar)
+                , _sPosition(iS, jS)
+                , _iterVoisin(_sPosition)
+                , _voisins(genererMapVoisins(dimension)) {
 
             }
 
@@ -53,12 +67,58 @@ namespace froppieLand{
                 _etat->age(*this);
             }
 
+            std::map < Position, Direction const* > Surface::genererMapVoisins(
+                const unsigned int& dimension
+            )const{
+                
+                std::map < Position, Direction const* > result;
+                
+                Nord const* nord = Nord::getNord();
+                Position nordCase(
+                    _sPosition.getLigne() + nord.getVectorYDirection()
+                    , _sPosition.getColonne() + nord.getVectorXDirection());
+                
+                if(nordCase.getLigne() < _taille && nordCase.getColonne < _taille){
+                    result[nordCase] = nord;
+                }
+
+                Sud const* sud = Sud::getSud();
+                Position sudCase(
+                    _sPosition.getLigne() + sud.getVectorYDirection()
+                    , _sPosition.getColonne() + sud.getVectorXDirection());
+
+                if(sudCase.getLigne() < _taille && sudCase.getColonne() < _taille){
+                    result[sudCase] = sud;
+                }
+
+                Ouest const* ouest = Ouest::getOuest();
+                Position ouestCase(
+                    _sPosition.getLigne() + ouest.getVectorYDirection()
+                    , _sPosition.getColonne() + ouest.getVectorXDirection());
+
+                if(ouestCase.getLigne() < _taille && ouestCase.getColonne() < _taille){
+                    result[ouestCase] = ouest;
+                }
+
+                Est const* est = Est::getEst();
+                Position ouestCase(
+                    _sPosition.getLigne() + est.getVectorYDirection()
+                    , _sPosition.getColonne() + est.getVectorXDirection());
+
+                if(estCase.getLigne() < _taille && estCase.getColonne() < _taille){
+                    result[estCase] = est;
+                }
+                
+                //utiliser des pair de unsigend int 
+                return result;
+            }
+
             void Surface::setEtat(SurfEtat const* nEtat){
                 _etat = nEtat;
             }
 
             bool Surface::isCaseVoisine(const unsigned int& ligne, const unsigned int& colonne){
-                bool result = false;
+                /*bool result = false;
 
                 unsigned int vLigne = ligne, vColonne = colonne; 
                 _iterVoisin.setVoisinPotentiel(vLigne, vColonne);
@@ -68,7 +128,7 @@ namespace froppieLand{
                     result = _iterVoisin.voisinSuivant();
                 }
 
-                return result;
+                return result;*/
             }
 
             Direction const* Surface::getDirectionVoisin()const{
