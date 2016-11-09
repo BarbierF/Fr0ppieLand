@@ -22,12 +22,12 @@ namespace froppieLand{
                 :_surfPos(positionTest), _voisinPotentiel(nullptr), _currentIndex(0), _directionActuelle(&modele::Self::getSelf()){
             }
 
-            const Direction& IterVoisin::getDirectionActuelle()const{
-                return *_directionActuelle;
+            Direction const* IterVoisin::getDirectionActuelle()const{
+                return _directionActuelle;
             }
 
             bool IterVoisin::isFini()const{
-                return _currentIndex == _directions.size();
+                return _currentIndex == _directions.size() - 1;
             }
 
             bool IterVoisin::voisinSuivant(){

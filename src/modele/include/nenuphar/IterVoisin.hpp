@@ -19,7 +19,7 @@ namespace froppieLand{
 
                 IterVoisin(const Position& positionTest);
 
-                const Direction& getDirectionActuelle()const;
+                Direction const* getDirectionActuelle()const;
 
                 void setVoisinPotentiel(unsigned int& ligne, unsigned int& colonne );
 

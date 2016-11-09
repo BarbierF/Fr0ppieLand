@@ -71,7 +71,7 @@ namespace froppieLand{
                 return result;
             }
 
-            const Direction& Surface::getDirectionVoisin()const{
+            Direction const* Surface::getDirectionVoisin()const{
                 return _iterVoisin.getDirectionActuelle();
             }
         }        

@@ -56,7 +56,7 @@ namespace froppieLand{
 
                 bool isCaseVoisine(const unsigned int& ligne, const unsigned int& colonne);
 
-                const Direction& getDirectionVoisin()const;
+                Direction const* getDirectionVoisin()const;
 
 
             protected:

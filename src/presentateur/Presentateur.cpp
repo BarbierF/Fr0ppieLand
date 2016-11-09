@@ -58,7 +58,10 @@ namespace froppieLand{
         bool Presentateur::isPossibleMove(const unsigned int ligne, const unsigned int colonne){
             
             Grill::Surface froppieSurf = _modele->getModifFroppieSurf();
-            return froppieSurf.isCaseVoisine(ligne, colonne);
+            bool va = froppieSurf.isCaseVoisine(ligne, colonne);
+            Direction const* dir;
+            if (va) dir =getDerniereDireFroppieVoisin();
+            return va;
         }
 
         bool Presentateur::isFroppied(const unsigned int& ligne, const unsigned int& colonne)const{
@@ -68,9 +71,9 @@ namespace froppieLand{
             return ligne == froPosition.getLigne() && colonne == froPosition.getColonne();
         }
 
-        const Presentateur::Direction& Presentateur::getDerniereDireFroppieVoisin()const{
+        Presentateur::Direction const* Presentateur::getDerniereDireFroppieVoisin()const{
             
-            Grill::Surface froppieSurf = _modele->getModifFroppieSurf();
+            Grill::Surface froppieSurf = _modele->getFroppieSurf();
 
             return froppieSurf.getDirectionVoisin();
         }
