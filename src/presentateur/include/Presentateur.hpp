@@ -61,7 +61,7 @@ namespace froppieLand{
 
             FroppieVue* getVue();
 
-            Direction const* getDerniereDireFroppieVoisin()const;
+            Direction const* getDirectionFroppieVoisin(const unsigned int& ligne, const unsigned int& colonne);
 
             std::string getTypeNenu(const unsigned int& ligne, const unsigned int& colonne)const;
 

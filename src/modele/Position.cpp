@@ -26,6 +26,14 @@ namespace froppieLand{
             return _colonne;
         }
 
+        bool Position::operator<(const Position& o)const{
+
+            if(_ligne == o.getLigne()){
+                return _colonne <o.getColonne();
+            }
+
+            return _ligne < o.getLigne();
+        }
 
     }
 }

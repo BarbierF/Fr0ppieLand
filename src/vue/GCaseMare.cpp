@@ -101,7 +101,7 @@ namespace froppieLand{
                     std::cout << "Click Souris" << std::endl;
                     auto chargeur = sigc::mem_fun(*this, &GCaseMare::cbClickSouris);
 
-                    _directionClick = presentateur.getDerniereDireFroppieVoisin();
+                    _directionClick = presentateur.getDirectionFroppieVoisin(_ligne, _colonne);
                     
                     signal_button_press_event().connect(chargeur);
                 }

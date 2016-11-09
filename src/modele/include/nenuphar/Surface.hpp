@@ -3,7 +3,6 @@
 
 #include <map>
 
-#include "IterVoisin.hpp"
 #include "SurfEtat.hpp"
 #include "StrategyNenuphar.hpp"
 #include "FropEtat.hpp"
@@ -34,13 +33,11 @@ namespace froppieLand{
 
                 typedef FactoryStrategyNenuphar::TypeNenu TypeNenu;
 
-                Surface(SurfEtat const* surfEtat
-                , StrategyNenuphar const* strategyNenuphar
-                , unsigned int iS
+                Surface(unsigned int iS
                 , unsigned int jS
                 , const unsigned int& dimension);
-                
-                Surface(unsigned int iS, unsigned int jS);
+
+            public:
                 
                 const SurfEtat& getEtat()const;
                 
@@ -60,9 +57,9 @@ namespace froppieLand{
                 
                 void souffrir(froppie::Froppie& victim)const;
 
-                bool isCaseVoisine(const unsigned int& ligne, const unsigned int& colonne);
+                bool isCaseVoisine(const unsigned int& ligne, const unsigned int& colonne)const;
 
-                Direction const* getDirectionVoisin()const;
+                Direction const* getDirectionVoisin(const unsigned int& ligne, const unsigned int& colonne);
 
 
             protected:
@@ -87,13 +84,11 @@ namespace froppieLand{
                 
             protected:
 
+                const Position _sPosition;
+
                 SurfEtat const* _etat;
 
                 StrategyNenuphar const* _strategy;
-
-                const Position _sPosition;
-
-                IterVoisin _iterVoisin;
 
                 std::map < Position, Direction const* > _voisins;
 

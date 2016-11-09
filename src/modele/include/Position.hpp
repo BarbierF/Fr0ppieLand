@@ -16,6 +16,8 @@ namespace froppieLand{
                 const unsigned int& getLigne()const;
                 const unsigned int& getColonne()const;
 
+                bool operator<(const Position& )const;
+
             public:
 
                 void changeValue(const Direction& );

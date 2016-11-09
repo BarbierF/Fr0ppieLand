@@ -27,7 +27,7 @@ namespace froppieLand{
             for(unsigned int i = 0 ; i < _taille ; i++){
                 for(unsigned int j = 0 ; j < _taille ; j++){
                     
-                    _terrain.push_back(Surface(i, j));
+                    _terrain.push_back(Surface(i, j, _taille));
                 }
             }
 
