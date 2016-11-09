@@ -48,7 +48,6 @@ ADD_EXECUTABLE( froppieland
 	src/modele/Nutritif.cpp
 	src/modele/Veneneux.cpp
 	src/modele/FactoryStrategyNenuphar.cpp
-	src/modele/IterVoisin.cpp
 	src/modele/Surface.cpp
 	src/modele/Nord.cpp
 	src/modele/Sud.cpp

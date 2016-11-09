@@ -285,6 +285,11 @@ namespace froppieLand{
             show_all_children();
         }
 
+        void FroppieVue::afficherPdvFroppie(){
+
+            _pdvFroppie.majFroppHealth(_presentateur);
+        }
+
         void FroppieVue::leTempsPasse(){
             _presentateur.vieillirCases();
             _presentateur.genererTerrain();
@@ -293,6 +298,8 @@ namespace froppieLand{
         }
 
         void FroppieVue::finPartie(){
+            _pdvFroppie.majFroppHealth(_presentateur);
+            _ptrGrillGraphic->actualiserCases();
             _chronometre.stopChrono();
         }
 

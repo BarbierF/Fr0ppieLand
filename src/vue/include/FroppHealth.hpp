@@ -23,6 +23,10 @@ namespace froppieLand{
 
         public:
 
+            friend class FroppieVue;
+
+        public:
+
             FroppHealth(FroppieVue& vue, Glib::ustring titre);
 
             FroppHealth(const FroppHealth&) = delete;

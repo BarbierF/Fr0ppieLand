@@ -30,11 +30,6 @@ namespace froppieLand{
 
             _labelPdv.set_text(pdv);
 
-            _labelPdv.set_text(std::to_string(presentateur.getVieFroppie()));
-
-
-
-
         }
 
         void FroppHealth::setImage(const presentateur::Presentateur& presentateur,

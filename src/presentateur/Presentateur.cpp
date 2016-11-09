@@ -106,11 +106,15 @@ namespace froppieLand{
         void Presentateur::OMGFroppieIsGettingEaten(){
             Froppie& froppie = _modele->getModifFroppie();
             froppie.getEtat().setMort(froppie);
+            _vue->afficherPdvFroppie();
+            _vue->finPartie();
         }
 
         void Presentateur::deplaceFroppie(const Direction& directionDep){
 
-            _modele->getModifFroppie().deplacer(directionDep);
+            _modele->deplacerFroppie(directionDep);
+
+            if(_modele->getFroppie().getEtat().nomEtat() == "Mort") _vue->finPartie();
         }
 
         void Presentateur::vieillirCases(){

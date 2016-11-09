@@ -48,6 +48,12 @@ namespace froppieLand{
 
         public:
 
+            void afficherPdvFroppie();
+
+            void finPartie();
+
+        public:
+
             const presentateur::Presentateur& getPresentateur()const;
 
             presentateur::Presentateur& getModifPresentateur();
@@ -67,8 +73,6 @@ namespace froppieLand{
             static const Glib::RefPtr< Gdk::Pixbuf >& getImage(const Glib::ustring& nom);
 
             void leTempsPasse();
-
-            void finPartie();
 
         protected:
 

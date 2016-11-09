@@ -57,6 +57,8 @@ namespace froppieLand{
 
             void vieillissement();
 
+            void deplacerFroppie(const Direction& );
+
         protected:
 
             void adapterSurface(const unsigned int& ligne, const unsigned int& colonne);

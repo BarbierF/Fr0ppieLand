@@ -95,6 +95,16 @@ namespace froppieLand{
             }
         }
 
+        void Grill::deplacerFroppie(const Direction& direction){
+
+            Position newFroPosition = _froppie.deplacer(direction);
+            Surface fropSurface 
+                = _terrain[newFroPosition.getLigne() * _taille + newFroPosition.getColonne()];
+            
+            fropSurface.souffrir(_froppie);
+
+        }
+
         void Grill::construireChemin(){
 
             srand(time(NULL));

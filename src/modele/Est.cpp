@@ -15,7 +15,7 @@ namespace froppieLand{
         }
 
         const int Est::getVectorXDirection()const{
-            return -1;
+            return 1;
         }
         const int Est::getVectorYDirection()const{
             return 0;

@@ -18,7 +18,7 @@ namespace froppieLand{
             return 0;
         }
         const int Sud::getVectorYDirection()const{
-            return 1;
+            return -1;
         }
     }
 }

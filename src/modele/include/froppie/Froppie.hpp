@@ -63,7 +63,7 @@
 
                 public:
 
-                    void deplacer(const Direction&);                    
+                    const Position& deplacer(const Direction& );                    
 
                 protected:
 

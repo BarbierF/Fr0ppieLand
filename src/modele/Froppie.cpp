@@ -21,10 +21,11 @@ namespace froppieLand{
                 return _position;
             }
 
-            void Froppie::deplacer(const Direction& direction){
+            const Position& Froppie::deplacer(const Direction& direction){
                 
                 _position.changeValue(direction);
                 _nbMove++;
+                return _position;
             }
 
             const int& Froppie::getPDV()const{
@@ -44,6 +45,7 @@ namespace froppieLand{
             }
 
             void Froppie::setMort(){
+                _pointDeVie = 0;
                 _etat = &Mort::getMort();
             }
 

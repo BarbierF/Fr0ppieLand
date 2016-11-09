@@ -51,7 +51,7 @@ namespace froppieLand{
 
             _froppieFormes["Malade"] = std::unique_ptr < Gtk::Image >(new Gtk::Image(FroppieVue::getImage("froppie-malade")));
             _froppieFormes["Sain"] = std::unique_ptr < Gtk::Image >(new Gtk::Image(FroppieVue::getImage("froppie-verte")));
-            _froppieFormes["Morte"] = std::unique_ptr < Gtk::Image >(new Gtk::Image(FroppieVue::getImage("froppie-morte")));
+            _froppieFormes["Mort"] = std::unique_ptr < Gtk::Image >(new Gtk::Image(FroppieVue::getImage("froppie-morte")));
 
             majCase(vue.getModifPresentateur());
         }
@@ -75,8 +75,11 @@ namespace froppieLand{
             const bool froppiePres = presentateur.isFroppied(_ligne, _colonne);
             const bool isMovable = presentateur.isPossibleMove(_ligne, _colonne);
 
-            if(froppiePres && etat == "Inexistant" && type == "eau") presentateur.OMGFroppieIsGettingEaten();
-            
+            if(froppiePres && etat == "Inexistant" && type == "eau"){
+                presentateur.OMGFroppieIsGettingEaten();
+                return;
+            }            
+
             _directionClick = &presentateur::Presentateur::Self::getSelf();
 
             if(froppiePres) {
