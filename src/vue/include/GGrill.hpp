@@ -36,6 +36,10 @@ namespace froppieLand{
 
             FroppieVue& getModifVue();
 
+            void disableMove();
+
+            void setCaseMouvable(const unsigned int& ligne, const unsigned int& colonne, GCaseMare::Direction const*);
+
         protected:
             
             FroppieVue& _vue;

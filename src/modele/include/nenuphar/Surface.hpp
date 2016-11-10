@@ -46,6 +46,8 @@ namespace froppieLand{
                 const unsigned int& getLigne()const;
                 
                 const unsigned int& getColonne()const;
+
+                const std::map < Position, Direction const* >& getVoisinnage()const;
                 
                 void setStrategy(StrategyNenuphar const* strategyNenuphar);
 

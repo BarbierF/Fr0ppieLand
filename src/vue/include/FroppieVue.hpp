@@ -24,6 +24,9 @@ namespace froppieLand{
         class Presentateur;
     }
 
+    namespace modele{
+        class Direction;
+    }
 
     namespace vue{
 
@@ -51,6 +54,10 @@ namespace froppieLand{
             void afficherPdvFroppie();
 
             void finPartie();
+
+            void casesParDefaut();
+
+            void setCaseMouvable(const unsigned int& ligne, const unsigned int& colonne, GCaseMare::Direction const*);
 
         public:
 

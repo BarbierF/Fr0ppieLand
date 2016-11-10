@@ -41,6 +41,8 @@ namespace froppieLand{
 
                 set_resizable(false);
 
+                _ptrGrillGraphic->disableMove();
+
                 show_all_children();
 
         }
@@ -269,9 +271,12 @@ namespace froppieLand{
         }
 
         void FroppieVue::cbLancement(){
-            _presentateur.genererTerrain();
+            if(_presentateur.isFroppieVivante())
+            {_presentateur.genererTerrain();
             _chronometre.startChrono();
             _ptrGrillGraphic->actualiserCases();
+            _presentateur.setCaseMouvementPoss();
+            }
         }
 
         void FroppieVue::cbPreparation(){
@@ -283,6 +288,7 @@ namespace froppieLand{
 
             _centManager.pack_end(*_ptrGrillGraphic);
 
+            afficherPdvFroppie();
             show_all_children();
         }
 
@@ -299,9 +305,20 @@ namespace froppieLand{
         }
 
         void FroppieVue::finPartie(){
+            _ptrGrillGraphic->disableMove();
             _pdvFroppie.majFroppHealth(_presentateur);
             _ptrGrillGraphic->actualiserCases();
             _chronometre.stopChrono();
+        }
+
+        void FroppieVue::casesParDefaut(){
+
+            _ptrGrillGraphic->disableMove();
+        }
+        
+        void FroppieVue::setCaseMouvable(const unsigned int& ligne, const unsigned int& colonne, GCaseMare::Direction const* direction){
+
+            _ptrGrillGraphic->setCaseMouvable(ligne, colonne, direction);
         }
 
         const Glib::RefPtr< Gdk::Pixbuf >& FroppieVue::getImage(const Glib::ustring& nom){

@@ -54,7 +54,9 @@ namespace froppieLand{
             }
 
             void Froppie::subir(){
-                _pointDeVie/=2;
+                if(_pointDeVie != 0)_pointDeVie/=2;
+                else _pointDeVie = 0;
+
                 if(_pointDeVie == 0) _etat->setMort(*this);
             }
             void Froppie::doper(){

@@ -61,8 +61,6 @@ namespace froppieLand{
 
             FroppieVue* getVue();
 
-            Direction const* getDirectionFroppieVoisin(const unsigned int& ligne, const unsigned int& colonne);
-
             std::string getTypeNenu(const unsigned int& ligne, const unsigned int& colonne)const;
 
             std::string getEtatNenu(const unsigned int& ligne, const unsigned int& colonne)const;
@@ -79,17 +77,18 @@ namespace froppieLand{
 
             void genererTerrain();
 
-            bool isPossibleMove(const unsigned int ligne, const unsigned int colonne);
-
             bool isArrived(const unsigned int& ligne, const unsigned int& colonne)const;
             
             bool isFroppied(const unsigned int& ligne, const unsigned int& colonne)const;
 
+            bool isFroppieVivante()const;
+            
             void deplaceFroppie(const Direction& directionDep);
 
             void vieillirCases();
 
-
+            void setCaseMouvementPoss();
+            
 
         protected:
 

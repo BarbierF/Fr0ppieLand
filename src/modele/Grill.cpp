@@ -40,10 +40,6 @@ namespace froppieLand{
                 nenuphar::FactoryStrategyNenuphar::getStrategy(Surface::TypeNenu::immortel)
             );
 
-            for(std::vector<Surface>::iterator it = _terrain.begin() ; it != _terrain.end() ; ++it){
-                std::cout << "Ligne : " << it->getLigne() << " Colonne : " << it->getColonne() << std::endl;
-            }
-
         }
 
         const unsigned int& Grill::getTaille()const{

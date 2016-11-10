@@ -29,7 +29,7 @@ namespace froppieLand{
         bool Position::operator<(const Position& o)const{
 
             if(_ligne == o.getLigne()){
-                return _colonne <o.getColonne();
+                return _colonne < o.getColonne();
             }
 
             return _ligne < o.getLigne();

@@ -45,6 +45,10 @@ namespace froppieLand{
                 return _sPosition.getColonne();
             }
 
+            const std::map < Position, Direction const*>& Surface::getVoisinnage()const{
+                return _voisins;
+            }
+
             void Surface::age() {
                 _strategy->vieillir(*this);
             }
@@ -69,8 +73,8 @@ namespace froppieLand{
                 
                 Nord const* nord = &Nord::getNord();
                 Position nordCase(
-                    _sPosition.getLigne() + nord->getVectorYDirection()
-                    , _sPosition.getColonne() + nord->getVectorXDirection());
+                    static_cast < unsigned int > (static_cast < int > (_sPosition.getLigne()) + nord->getVectorYDirection())
+                    , static_cast < unsigned int > (static_cast < int > (_sPosition.getColonne()) + nord->getVectorXDirection()));
                 
                 if(nordCase.getLigne() < dimension && nordCase.getColonne() < dimension){
                     result[nordCase] = nord;
@@ -78,8 +82,8 @@ namespace froppieLand{
 
                 Sud const* sud = &Sud::getSud();
                 Position sudCase(
-                    _sPosition.getLigne() + sud->getVectorYDirection()
-                    , _sPosition.getColonne() + sud->getVectorXDirection());
+                    static_cast < unsigned int > (static_cast < int > (_sPosition.getLigne()) + sud->getVectorYDirection())
+                    , static_cast < unsigned int > (static_cast < int > (_sPosition.getColonne()) + sud->getVectorXDirection()));
 
                 if(sudCase.getLigne() < dimension && sudCase.getColonne() < dimension){
                     result[sudCase] = sud;
@@ -87,8 +91,8 @@ namespace froppieLand{
 
                 Ouest const* ouest = &Ouest::getOuest();
                 Position ouestCase(
-                    _sPosition.getLigne() + ouest->getVectorYDirection()
-                    , _sPosition.getColonne() + ouest->getVectorXDirection());
+                    static_cast < unsigned int > (static_cast < int > (_sPosition.getLigne()) + ouest->getVectorYDirection())
+                    , static_cast < unsigned int > (static_cast < int > (_sPosition.getColonne()) + ouest->getVectorXDirection()));
 
                 if(ouestCase.getLigne() < dimension && ouestCase.getColonne() < dimension){
                     result[ouestCase] = ouest;
@@ -96,14 +100,23 @@ namespace froppieLand{
 
                 Est const* est = &Est::getEst();
                 Position estCase(
-                    _sPosition.getLigne() + est->getVectorYDirection()
-                    , _sPosition.getColonne() + est->getVectorXDirection());
+                    static_cast < unsigned int > (static_cast < int > (_sPosition.getLigne()) + est->getVectorYDirection())
+                    , static_cast < unsigned int > (static_cast < int > (_sPosition.getColonne()) + est->getVectorXDirection()));
 
                 if(estCase.getLigne() < dimension && estCase.getColonne() < dimension){
                     result[estCase] = est;
                 }
+
                 
-                //utiliser des pair de unsigend int 
+                std::cout << "Position :  " << _sPosition.getLigne() << ";" << _sPosition.getColonne() << std::endl;
+                
+                for(auto it = _voisins.begin() ; it != _voisins.end() ; ++it){
+                    Position pos = it->first;
+                    const Direction* dire = it->second;
+                    std::cout << pos.getLigne() << ";" << pos.getColonne() << std::endl;
+                    std::cout << dire->getVectorXDirection() << ";" << dire->getVectorYDirection() << std::endl;
+                }
+
                 return result;
             }
 
@@ -112,11 +125,21 @@ namespace froppieLand{
             }
 
             bool Surface::isCaseVoisine(const unsigned int& ligne, const unsigned int& colonne)const{
-
-                return _voisins.count(Position(ligne, colonne)) != 0;
+                
+                return _voisins.find(Position(ligne, colonne)) != _voisins.end();
             }
 
             Direction const* Surface::getDirectionVoisin(const unsigned int& ligne, const unsigned int& colonne){
+                Direction const* surf = _voisins[Position(ligne, colonne)];
+                std::cout << "Position :  " << _sPosition.getLigne() << ";" << _sPosition.getColonne() << std::endl;
+                
+                for(auto it = _voisins.begin() ; it != _voisins.end() ; ++it){
+                    Position pos = it->first;
+                    const Direction* dire = it->second;
+                    std::cout << pos.getLigne() << ";" << pos.getColonne() << std::endl;
+                    std::cout << dire->getVectorXDirection() << ";" << dire->getVectorYDirection() << std::endl;
+                }
+
                 return _voisins[Position(ligne, colonne)];
             }
         }        

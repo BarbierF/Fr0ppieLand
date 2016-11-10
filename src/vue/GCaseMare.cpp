@@ -9,9 +9,17 @@ namespace froppieLand{
     namespace vue{
 
         GCaseMare::GCaseMare(GGrill& gGrill, unsigned int& ligne, unsigned int& colonne)
-            :_gGrill(gGrill), _ligne(ligne), _colonne(colonne){
+            :_gGrill(gGrill)
+            , _ligne(ligne)
+            , _colonne(colonne){
             
-            FroppieVue& vue = _gGrill.getModifVue();
+                FroppieVue& vue = _gGrill.getModifVue();
+
+                auto chargeur = sigc::mem_fun(*this, &GCaseMare::on_button_press_event);
+
+                auto conn = signal_button_press_event().connect(chargeur);
+
+                _connexion = conn;
 
             {
                 typedef std::shared_ptr < Gtk::Image > PImage;
@@ -73,18 +81,15 @@ namespace froppieLand{
             const std::string type = presentateur.getTypeNenu(_ligne, _colonne);
             const std::string etat = presentateur.getEtatNenu(_ligne, _colonne);
             const bool froppiePres = presentateur.isFroppied(_ligne, _colonne);
-            const bool isMovable = presentateur.isPossibleMove(_ligne, _colonne);
 
             if(froppiePres && etat == "Inexistant" && type == "eau"){
                 presentateur.OMGFroppieIsGettingEaten();
                 return;
             }            
 
-            _directionClick = &presentateur::Presentateur::Self::getSelf();
-
             if(froppiePres) {
                 const std::string fropEtat = presentateur.getEtatFroppie();
-                std::cout << "Froppie ici : " << _ligne << ";" << _colonne << std::endl;
+
                 Gtk::Image& rep = *_froppieFormes[fropEtat];
 
                 if(&rep == get_child()) return;
@@ -99,23 +104,22 @@ namespace froppieLand{
 
                 remove();
                 add(rep);
-
-                if(isMovable){
-                    std::cout << "Click Souris" << std::endl;
-                    auto chargeur = sigc::mem_fun(*this, &GCaseMare::cbClickSouris);
-
-                    _directionClick = presentateur.getDirectionFroppieVoisin(_ligne, _colonne);
-                    
-                    signal_button_press_event().connect(chargeur);
-                }
-                else{
-                    auto chargeur = sigc::mem_fun(*this, &GCaseMare::on_button_press_event);
-
-                    signal_button_press_event().connect(chargeur);
-                }
             }
             
             show_all_children();
+        }
+ 
+        void GCaseMare::defaultClickHandler(){
+
+            _connexion.disconnect();
+
+            _directionClick = &presentateur::Presentateur::Self::getSelf();
+
+            auto chargeur = sigc::mem_fun(*this, &GCaseMare::on_button_press_event);
+
+            auto conn = signal_button_press_event().connect(chargeur);
+
+            _connexion = conn;
         }
 
 
@@ -127,10 +131,23 @@ namespace froppieLand{
 
             pres.deplaceFroppie(*_directionClick);
 
+            pres.setCaseMouvementPoss();
+
             _gGrill.actualiserCases();
 
             return true;
         }
 
+        void GCaseMare::setMouvement(modele::Direction const* direction){
+
+            _directionClick = direction;
+                    
+            auto chargeur = sigc::mem_fun(*this, &GCaseMare::cbClickSouris);
+
+            auto conn = signal_button_press_event().connect(chargeur);
+
+            _connexion = conn;
+        }
+        
     }
 }

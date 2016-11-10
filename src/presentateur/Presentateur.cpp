@@ -55,12 +55,6 @@ namespace froppieLand{
             return _ligne == arrivee.getLigne() && _colonne == arrivee.getColonne();
         }
 
-        bool Presentateur::isPossibleMove(const unsigned int ligne, const unsigned int colonne){
-            
-            Grill::Surface froppieSurf = _modele->getModifFroppieSurf();
-            return froppieSurf.isCaseVoisine(ligne, colonne);
-        }
-
         bool Presentateur::isFroppied(const unsigned int& ligne, const unsigned int& colonne)const{
             const Froppie& froppie = _modele->getFroppie();
             const Position& froPosition = froppie.getPosition();
@@ -68,13 +62,8 @@ namespace froppieLand{
             return ligne == froPosition.getLigne() && colonne == froPosition.getColonne();
         }
 
-        Presentateur::Direction const* Presentateur::getDirectionFroppieVoisin(
-            const unsigned int& ligne
-            , const unsigned int& colonne){
-            
-            Grill::Surface froppieSurf = _modele->getFroppieSurf();
-
-            return froppieSurf.getDirectionVoisin(ligne, colonne);
+        bool Presentateur::isFroppieVivante()const{
+            return _modele->getFroppie().getEtat().nomEtat() != "Mort";
         }
 
         const int& Presentateur::getVieFroppie()const{
@@ -114,16 +103,43 @@ namespace froppieLand{
 
             _modele->deplacerFroppie(directionDep);
 
-            if(_modele->getFroppie().getEtat().nomEtat() == "Mort") _vue->finPartie();
+            const Froppie& froppie = _modele->getFroppie();
+
+            _vue->afficherPdvFroppie();
+
+            if(froppie.getEtat().nomEtat() == "Mort"){
+                _vue->finPartie();
+            } 
+            if(
+                froppie.getPosition().getLigne() == _modele->getArrivee().getLigne()
+                &&
+                froppie.getPosition().getColonne() == _modele->getArrivee().getColonne()
+            )   
+                _vue->finPartie();
         }
 
         void Presentateur::vieillirCases(){
             _modele->vieillissement();
         }
 
+        void Presentateur::setCaseMouvementPoss(){
+
+            _vue->casesParDefaut();
+
+            Grill::Surface fropSurf = _modele->getModifFroppieSurf();
+            const std::map < modele::Position, const Direction* >& voisin = fropSurf.getVoisinnage();
+
+            for(auto it = voisin.begin() ; it != voisin.end() ; ++it){
+
+                _vue->setCaseMouvable(it->first.getLigne(), it->first.getColonne(), it->second);
+            }
+
+
+        }
+
         void Presentateur::nouveauJeu(unsigned int resolution){
 
-            _modele.reset(new Grill(resolution, 0, resolution - 1, resolution - 1, 0));
+            _modele.reset(new Grill(resolution, resolution - 1, 0, 0, resolution - 1));
         }
 
     }

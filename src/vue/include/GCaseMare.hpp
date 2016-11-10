@@ -26,7 +26,7 @@ namespace froppieLand{
         public:
 
             friend class GGrill;
-        
+            typedef modele::Direction Direction;
 
         public:
             
@@ -44,18 +44,26 @@ namespace froppieLand{
 
             void majCase(presentateur::Presentateur& );
 
+            void defaultClickHandler();
+
+            void setMouvement(Direction const*);
+
         protected:
 
             GGrill& _gGrill;
 
             unsigned int _ligne, _colonne;
 
-            modele::Direction const* _directionClick;
+            Direction const* _directionClick;
+
+            sigc::connection _connexion;
 
             //choix du shared_ptr pour pouvoir mettre mettre deux fois la même image dans les maps, ex dopant et mortel
             std::map < Glib::ustring, std::map < Glib::ustring, std::shared_ptr< Gtk::Image > > > _formes;
 
             std::map< std::string, std::unique_ptr< Gtk::Image > > _froppieFormes; 
+
+
         };
 
     }
