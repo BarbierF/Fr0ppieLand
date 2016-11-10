@@ -100,13 +100,16 @@ namespace froppieLand{
 
             _vue->afficherPdvFroppie();
 
-            if(froppie.getEtat().nomEtat() == "Mort" 
-                ||
-                (froppie.getPosition().getLigne() == _modele->getArrivee().getLigne()
+            if(froppie.getEtat().nomEtat() == "Mort" )
+            {
+                _vue->finPartie(false);
+            }    
+            
+            if(froppie.getPosition().getLigne() == _modele->getArrivee().getLigne()
                 &&
                 froppie.getPosition().getColonne() == _modele->getArrivee().getColonne())
-            ){
-                _vue->finPartie();
+            {
+                _vue->finPartie(true);
                 return false;
             }
 

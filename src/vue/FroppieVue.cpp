@@ -1,6 +1,6 @@
 #include "FroppieVue.hpp"
 #include "Presentateur.hpp"
-#include <iostream>
+#include <gtkmm/messagedialog.h>
 
 namespace froppieLand{
     namespace vue{
@@ -304,11 +304,25 @@ namespace froppieLand{
             _ptrGrillGraphic->actualiserCases();
         }
 
-        void FroppieVue::finPartie(){
+        void FroppieVue::finPartie(bool resultat){
             _ptrGrillGraphic->disableMove();
             _pdvFroppie.majFroppHealth(_presentateur);
             _ptrGrillGraphic->actualiserCases();
             _chronometre.stopChrono();
+
+            if(resultat){
+                Gtk::MessageDialog dialogue(*this, "Victoire");
+                dialogue.set_secondary_text(
+                        "Bravo ! Froppie a grâce à vous bravée tous les dangers et a atteint l'arrivée.");
+
+                dialogue.run();
+            }else{
+                Gtk::MessageDialog dialogue(*this, "Défaites");
+                dialogue.set_secondary_text(
+                        "Dommage... Froppie avait beau être brave le joueur ne l'était pas assez.");
+
+                dialogue.run();
+            }
         }
 
         void FroppieVue::casesParDefaut(){

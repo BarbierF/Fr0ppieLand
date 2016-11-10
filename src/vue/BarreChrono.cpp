@@ -87,7 +87,7 @@ namespace froppieLand{
 
         void BarreChrono::timesUp(){
             _enCours = false;
-            _vue.finPartie();
+            _vue.finPartie(false);
         }
 
     }

@@ -53,7 +53,7 @@ namespace froppieLand{
 
             void afficherPdvFroppie();
 
-            void finPartie();
+            void finPartie(bool resultat);
 
             void casesParDefaut();
 
