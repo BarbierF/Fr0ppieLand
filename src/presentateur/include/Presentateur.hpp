@@ -67,8 +67,6 @@ namespace froppieLand{
             
             std::string getEtatFroppie()const;
  
-            void OMGFroppieIsGettingEaten();
-
             void nouveauJeu(unsigned int resolution);
 
         public:
@@ -83,7 +81,7 @@ namespace froppieLand{
 
             bool isFroppieVivante()const;
             
-            void deplaceFroppie(const Direction& directionDep);
+            bool deplaceFroppie(const Direction& directionDep);
 
             void vieillirCases();
 

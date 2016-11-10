@@ -32,6 +32,8 @@ namespace froppieLand{
             
             GCaseMare(GGrill& ggrill, unsigned int& ligne, unsigned int& colonne);
 
+            ~GCaseMare();
+
             const unsigned int& getLigne()const;
 
             const unsigned int& getColonne()const;
@@ -56,7 +58,7 @@ namespace froppieLand{
 
             Direction const* _directionClick;
 
-            sigc::connection _connexion;
+            sigc::connection* _connexion;
 
             //choix du shared_ptr pour pouvoir mettre mettre deux fois la même image dans les maps, ex dopant et mortel
             std::map < Glib::ustring, std::map < Glib::ustring, std::shared_ptr< Gtk::Image > > > _formes;

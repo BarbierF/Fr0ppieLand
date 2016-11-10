@@ -11,15 +11,10 @@ namespace froppieLand{
         GCaseMare::GCaseMare(GGrill& gGrill, unsigned int& ligne, unsigned int& colonne)
             :_gGrill(gGrill)
             , _ligne(ligne)
-            , _colonne(colonne){
+            , _colonne(colonne)
+            , _connexion(nullptr){
             
                 FroppieVue& vue = _gGrill.getModifVue();
-
-                auto chargeur = sigc::mem_fun(*this, &GCaseMare::on_button_press_event);
-
-                auto conn = signal_button_press_event().connect(chargeur);
-
-                _connexion = conn;
 
             {
                 typedef std::shared_ptr < Gtk::Image > PImage;
@@ -64,6 +59,10 @@ namespace froppieLand{
             majCase(vue.getModifPresentateur());
         }
 
+        GCaseMare::~GCaseMare(){
+            _connexion = nullptr;
+        }
+
         const unsigned int& GCaseMare::getLigne()const{
             return _ligne;
         }
@@ -78,14 +77,7 @@ namespace froppieLand{
 
         void GCaseMare::majCase(presentateur::Presentateur& presentateur){
 
-            const std::string type = presentateur.getTypeNenu(_ligne, _colonne);
-            const std::string etat = presentateur.getEtatNenu(_ligne, _colonne);
-            const bool froppiePres = presentateur.isFroppied(_ligne, _colonne);
-
-            if(froppiePres && etat == "Inexistant" && type == "eau"){
-                presentateur.OMGFroppieIsGettingEaten();
-                return;
-            }            
+            const bool froppiePres = presentateur.isFroppied(_ligne, _colonne);        
 
             if(froppiePres) {
                 const std::string fropEtat = presentateur.getEtatFroppie();
@@ -98,6 +90,10 @@ namespace froppieLand{
                 add(rep);
             }
             else{
+
+                const std::string type = presentateur.getTypeNenu(_ligne, _colonne);
+                const std::string etat = presentateur.getEtatNenu(_ligne, _colonne);
+
                 Gtk::Image& rep = *_formes[type][etat];
 
                 if(&rep == get_child()) return;
@@ -111,15 +107,10 @@ namespace froppieLand{
  
         void GCaseMare::defaultClickHandler(){
 
-            _connexion.disconnect();
+            if(_connexion != nullptr)_connexion->disconnect();
 
             _directionClick = &presentateur::Presentateur::Self::getSelf();
 
-            auto chargeur = sigc::mem_fun(*this, &GCaseMare::on_button_press_event);
-
-            auto conn = signal_button_press_event().connect(chargeur);
-
-            _connexion = conn;
         }
 
 
@@ -129,7 +120,9 @@ namespace froppieLand{
 
             presentateur::Presentateur& pres = vue.getModifPresentateur();
 
-            pres.deplaceFroppie(*_directionClick);
+            if(!pres.deplaceFroppie(*_directionClick)) return true;
+
+            _gGrill.disableMove();
 
             pres.setCaseMouvementPoss();
 
@@ -140,13 +133,14 @@ namespace froppieLand{
 
         void GCaseMare::setMouvement(modele::Direction const* direction){
 
+            if(_connexion != nullptr)_connexion->disconnect();
+
             _directionClick = direction;
                     
             auto chargeur = sigc::mem_fun(*this, &GCaseMare::cbClickSouris);
 
-            auto conn = signal_button_press_event().connect(chargeur);
+            _connexion = new sigc::connection(sigc::connection(signal_button_press_event().connect(chargeur)));
 
-            _connexion = conn;
         }
         
     }

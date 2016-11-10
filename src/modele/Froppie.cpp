@@ -11,7 +11,7 @@ namespace froppieLand{
             Froppie::Froppie(const int pdv, const unsigned int depLigne, const unsigned int depColonne)
                 : _pointDeVie(pdv), _position(depLigne, depColonne), _etat(&Sain::getSain())
                 {
-                    std::cout << _position.getLigne() << ";" << _position.getColonne() << std::endl;
+
             }
 
             Froppie::~Froppie(){

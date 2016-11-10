@@ -92,14 +92,7 @@ namespace froppieLand{
             return _vue.get();
         }
 
-        void Presentateur::OMGFroppieIsGettingEaten(){
-            Froppie& froppie = _modele->getModifFroppie();
-            froppie.getEtat().setMort(froppie);
-            _vue->afficherPdvFroppie();
-            _vue->finPartie();
-        }
-
-        void Presentateur::deplaceFroppie(const Direction& directionDep){
+        bool Presentateur::deplaceFroppie(const Direction& directionDep){
 
             _modele->deplacerFroppie(directionDep);
 
@@ -107,15 +100,17 @@ namespace froppieLand{
 
             _vue->afficherPdvFroppie();
 
-            if(froppie.getEtat().nomEtat() == "Mort"){
-                _vue->finPartie();
-            } 
-            if(
-                froppie.getPosition().getLigne() == _modele->getArrivee().getLigne()
+            if(froppie.getEtat().nomEtat() == "Mort" 
+                ||
+                (froppie.getPosition().getLigne() == _modele->getArrivee().getLigne()
                 &&
-                froppie.getPosition().getColonne() == _modele->getArrivee().getColonne()
-            )   
+                froppie.getPosition().getColonne() == _modele->getArrivee().getColonne())
+            ){
                 _vue->finPartie();
+                return false;
+            }
+
+            return true;
         }
 
         void Presentateur::vieillirCases(){

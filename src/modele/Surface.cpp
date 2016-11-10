@@ -5,8 +5,6 @@
 #include "Ouest.hpp"
 #include "Est.hpp"
 
-#include <iostream>
-
 namespace froppieLand{
     namespace modele{
         namespace nenuphar{
@@ -107,16 +105,6 @@ namespace froppieLand{
                     result[estCase] = est;
                 }
 
-                
-                std::cout << "Position :  " << _sPosition.getLigne() << ";" << _sPosition.getColonne() << std::endl;
-                
-                for(auto it = _voisins.begin() ; it != _voisins.end() ; ++it){
-                    Position pos = it->first;
-                    const Direction* dire = it->second;
-                    std::cout << pos.getLigne() << ";" << pos.getColonne() << std::endl;
-                    std::cout << dire->getVectorXDirection() << ";" << dire->getVectorYDirection() << std::endl;
-                }
-
                 return result;
             }
 
@@ -130,15 +118,6 @@ namespace froppieLand{
             }
 
             Direction const* Surface::getDirectionVoisin(const unsigned int& ligne, const unsigned int& colonne){
-                Direction const* surf = _voisins[Position(ligne, colonne)];
-                std::cout << "Position :  " << _sPosition.getLigne() << ";" << _sPosition.getColonne() << std::endl;
-                
-                for(auto it = _voisins.begin() ; it != _voisins.end() ; ++it){
-                    Position pos = it->first;
-                    const Direction* dire = it->second;
-                    std::cout << pos.getLigne() << ";" << pos.getColonne() << std::endl;
-                    std::cout << dire->getVectorXDirection() << ";" << dire->getVectorYDirection() << std::endl;
-                }
 
                 return _voisins[Position(ligne, colonne)];
             }
