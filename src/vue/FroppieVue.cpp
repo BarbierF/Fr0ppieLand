@@ -317,7 +317,7 @@ namespace froppieLand{
 
                 dialogue.run();
             }else{
-                Gtk::MessageDialog dialogue(*this, "Défaites");
+                Gtk::MessageDialog dialogue(*this, "Défaite");
                 dialogue.set_secondary_text(
                         "Dommage... Froppie avait beau être brave le joueur ne l'était pas assez.");
 
