@@ -5,6 +5,10 @@
 namespace froppieLand{
     namespace modele{
         namespace nenuphar{
+            /**
+             * Taille de nénuphar petite
+             * Implémentée en Singleton
+             */
             class Petit:public SurfEtat{
             public:
                 static SurfEtat const* getInstance();
@@ -12,9 +16,15 @@ namespace froppieLand{
 
                 const std::string nomEtat()const;
             private:
+                /**
+                 * Définition du constructeur par défaut privé
+                 */
                 Petit()=default;
             public:
             private:
+                /**
+                 * Composante statique du singleton
+                 */
                 static const Petit _petit;
             };
         }

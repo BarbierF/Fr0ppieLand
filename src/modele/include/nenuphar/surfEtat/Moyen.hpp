@@ -6,6 +6,10 @@
 namespace froppieLand{
     namespace modele{
         namespace nenuphar{
+            /**
+             * Taille de nénuphar moyenne
+             * Implémentée en Singleton
+             */
             class Moyen:public SurfEtat{
             public:
                 static SurfEtat const* getInstance();
@@ -13,9 +17,15 @@ namespace froppieLand{
 
                 const std::string nomEtat()const override;
             private:
+                /**
+                 * Définition du constructeur par défaut privé
+                 */
                 Moyen()=default;
             public:
             private:
+                /**
+                 * Composante statique du singleton
+                 */
                 static const Moyen _moyen;
             };
         }

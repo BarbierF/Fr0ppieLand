@@ -6,6 +6,10 @@
 namespace froppieLand{
     namespace modele{
         namespace nenuphar{
+            /**
+             * Taille de nénuphar Inexistant (mort)
+             * Implémentée en Singleton
+             */
             class Inexistant:public SurfEtat{
             public:
                 void age(Surface& victim)const override;
@@ -13,8 +17,14 @@ namespace froppieLand{
 
                 static SurfEtat const* getInstance();
             private:
+                /**
+                 * Définition du constructeur par défaut privé
+                 */
                 Inexistant()=default;
             private:
+                /**
+                 * Composante statique du singleton
+                 */
                 static const Inexistant _inexistant;
             };
         }
