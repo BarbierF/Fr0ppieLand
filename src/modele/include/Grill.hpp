@@ -9,7 +9,10 @@
 
 namespace froppieLand{
     namespace modele{
-
+        /**
+         * Classe Grill, contenant tout le jeu
+         * Contient la grille de jeu, les nénuphars et Froppie
+         */
         class Grill{
 
         public: 

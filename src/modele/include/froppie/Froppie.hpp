@@ -107,6 +107,7 @@
                     
                     /**
                      * Déplacement de Froppie dans la direction donnée
+                     * @param direction Vecteur de déplacement
                      * @return La position finale de Froppie
                      */
                     const Position& deplacer(const Direction& );                    

@@ -13,10 +13,14 @@ namespace froppieLand{
             public:
                 /**
                  * Constructeur par coordonnées
+                 * @param ligne position X
+                 * @param colonne position Y
                  */
                 Position(unsigned int& ligne, unsigned int& colonne);
                 /**
                  * Constructeur par coordonnées constantes
+                 * @param ligne position X
+                 * @param colonne position Y
                  */
                 Position(const unsigned int& ligne, const unsigned int& colonne);
 
@@ -31,12 +35,14 @@ namespace froppieLand{
 
                 /**
                  * Fonction de comparaison de positions
+                 * @param position à comparer
                  */
                 bool operator<(const Position& )const;
 
             public:
                 /**
                  * Translation de position selon un vecteur Direction
+                 * @param direction Vecteur de translation
                  */
                 void changeValue(const Direction& );
 

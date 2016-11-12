@@ -17,16 +17,20 @@ namespace froppieLand{
                 
                 /**
                  * Action de mort sur Froppie
+                 * @param cancered Froppie cible
                  */
                 virtual void setMort(Froppie& cancered)const = 0;
                 
                 /**
                  * Action de soin sur Froppie
+                 * @param cancered Froppie cible
+                 * 
                  */
                 virtual void setSain(Froppie& cancered)const = 0;
                 
                 /**
                  * Action de contamination de Froppie
+                 * @param cancered Froppie cible
                  */
                 virtual void setMalade(Froppie& cancered)const= 0;
 
