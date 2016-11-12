@@ -10,11 +10,17 @@ namespace froppieLand{
              *  Classe décrivant un nénuphar immortel
              */
             class Immortel: NenuNonVieillissant{
+                /**
+                 * Classe amie pour construction dans la factory
+                 */
                 friend class FactoryStrategyNenuphar;
             public:
                 void souffrir(froppie::Froppie& victim)const override;
                 const std::string nomStrategy()const override;
             private:
+                /**
+                 * Masquage du constructeur par défaut pour l'instanciation uniquement dans la factory
+                 */
                 Immortel()=default;
             };
         }
