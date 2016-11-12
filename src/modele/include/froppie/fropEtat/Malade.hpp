@@ -6,6 +6,10 @@
 namespace froppieLand{
     namespace modele{
         namespace froppie{
+            /**
+             * Etat Malade de Froppie,
+             * Implémenté en Singleton
+             */
             class Malade: public FropEtat{
 
             public: 
@@ -15,11 +19,22 @@ namespace froppieLand{
 
                 const std::string nomEtat()const override;
 
+                
+                /**
+                * Fonction de récupération/instanciation de l'instance de Malade
+                * @return L'instance de Malade
+                */
                 static const Malade& getMalade();
 
             private:
+                /**
+                 * Constructeur privé du singleton
+                 */
                 Malade();
-
+                
+                /**
+                 * Composante statique du singleton
+                 */
                 static const Malade _malade; 
             };
         }
