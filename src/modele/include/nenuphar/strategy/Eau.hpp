@@ -6,6 +6,9 @@
 namespace froppieLand{
     namespace modele{
         namespace nenuphar{
+            /**
+             *  Classe décrivant la ssurface d'eau'
+             */
             class Eau: public NenuNonVieillissant{
                 friend class FactoryStrategyNenuphar;
             public:

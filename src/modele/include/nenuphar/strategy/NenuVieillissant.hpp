@@ -6,6 +6,9 @@
 namespace froppieLand{
     namespace modele{
         namespace nenuphar{
+            /**
+             * Classe définissant un nénuphar ou surface pouvant vieillir
+             */
             class NenuVieillissant: public StrategyNenuphar{
             public:
                 virtual void souffrir(froppie::Froppie& victim)const = 0;

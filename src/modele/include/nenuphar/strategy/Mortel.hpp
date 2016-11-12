@@ -6,6 +6,9 @@
 namespace froppieLand{
     namespace modele{
         namespace nenuphar{
+            /**
+             *  Classe décrivant un nénuphar mortel
+             */
             class Mortel: public NenuVieillissant{
                 friend class FactoryStrategyNenuphar;
             public:

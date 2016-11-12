@@ -6,6 +6,9 @@
 namespace froppieLand{
     namespace modele{
         namespace nenuphar{
+            /**
+             *  Classe décrivant le caractère Vénéneux d'un nénuphar
+             */
             class Veneneux: public NenuVieillissant{                
                 friend class FactoryStrategyNenuphar;
             public:

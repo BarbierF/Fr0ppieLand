@@ -6,6 +6,9 @@
 namespace froppieLand{
     namespace modele{
         namespace nenuphar{
+            /**
+             *  Classe décrivant le type Dopant d'un nénuphar
+             */
             class Dopant: public NenuVieillissant{
                 friend class FactoryStrategyNenuphar;
             public:
