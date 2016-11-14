@@ -20,7 +20,9 @@ namespace froppieLand{
 
             _barProgression.set_fraction(0);
 
-            Glib::ustring libelle(0 + "secondes");
+            _barProgression.set_show_text(true);
+
+            Glib::ustring libelle("0 seconde");
             _barProgression.set_text(libelle);
 
             _manager.pack_start(_barProgression, Gtk::PACK_EXPAND_WIDGET);
@@ -38,7 +40,7 @@ namespace froppieLand{
 
             _barProgression.set_fraction(valSuivante);
             
-            _barProgression.set_text(Glib::ustring(std::to_string(pas)) + " secondes");
+            _barProgression.set_text(Glib::ustring(std::to_string(_secondeTime + 1)) + " secondes");
         }
 
         void BarreChrono::startChrono(){
@@ -61,6 +63,7 @@ namespace froppieLand{
         void BarreChrono::resetChrono(){
             if(!_enCours) return;
             _barProgression.set_fraction(0);
+            Glib::ustring libelle("0 seconde");
             startChrono();
         }
 
@@ -68,10 +71,12 @@ namespace froppieLand{
 
             if(!_enCours) return;
             _barProgression.set_fraction(0);
+            Glib::ustring libelle("0 seconde");
             _enCours = false;
             _timer.disconnect();
         }
-        //ne fonctionnera pas
+        
+
         bool BarreChrono::traitementTimer(int t_number){
             if(_enCours){
                 progression();
