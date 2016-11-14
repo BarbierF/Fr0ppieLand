@@ -3,7 +3,6 @@
 #include "FroppieVue.hpp"
 #include "Presentateur.hpp"
 #include "Self.hpp"
-#include <iostream>
 
 namespace froppieLand{
     namespace vue{

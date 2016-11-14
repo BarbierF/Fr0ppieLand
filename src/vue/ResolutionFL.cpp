@@ -2,7 +2,6 @@
 #include "Presentateur.hpp"
 
 #include <string>
-#include <iostream>
 
 namespace froppieLand{
     namespace vue{
@@ -25,11 +24,6 @@ namespace froppieLand{
                 , 1.0
                 , 0.0))
             , _manager(Gtk::ORIENTATION_HORIZONTAL){
-
-                std::cout << "DEbut construction resolutionFL" << std::endl;
-
-                
-                std::cout << resoCourant << std::endl;
                 
                 //_sButtons.set_adjustment(ajustement);
 
@@ -40,8 +34,6 @@ namespace froppieLand{
                 _manager.pack_start(_sButtons, Gtk::PACK_SHRINK);
 
                 add(_manager);
-
-                std::cout << "Fin construction resolutionFL" << std::endl;
 
                 show_all_children();
         }
