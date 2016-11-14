@@ -35,6 +35,9 @@
                     friend class nenuphar::Nutritif;
                     friend class nenuphar::Veneneux;
                     
+                    /**
+                     *  Typedef de modele::Direction vers Direction
+                     */
                     typedef modele::Direction Direction;
 
                 // ----- Gestion des composantes de Froppie -----

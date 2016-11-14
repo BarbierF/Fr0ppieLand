@@ -15,9 +15,15 @@ namespace froppieLand{
          */
         class Grill{
 
-        public: 
+        public:
+            /**
+             * Typedef de froppie::Froppie vers Froppie
+             */
             typedef froppie::Froppie Froppie;
 
+            /**
+             * Typedef de nenuphar::Surface vers Surface
+             */
             typedef nenuphar::Surface Surface;
             
         public:
@@ -91,22 +97,20 @@ namespace froppieLand{
             
             /**
              * Getter de la surface à la position de Froppie
-             * @param ligne Composante X de la position
-             * @param colonne Composante Y de la position
              * @return la surface correspondante (const)
              */
             const Surface& getFroppieSurf()const;
             
             /**
              * Getter de la surface à la position de Froppie en mode non constant
-             * @param ligne Composante X de la position
-             * @param colonne Composante Y de la position
              * @return la surface correspondante
              */
             Surface& getModifFroppieSurf();
 
         public:
-            
+            /**
+             * Méthode de construction des chemins
+             */
             void construireChemin(void);
             /**
              * Action de vieillissement sur toutes les cases (donc nénuphars) de la grille
@@ -114,12 +118,17 @@ namespace froppieLand{
             void vieillissement();
             /**
              * Action de déplacement dans un vecteur donné
-             * @param le vecteur de translation
+             * @param direction le vecteur de translation
              */
-            void deplacerFroppie(const Direction& );
+            void deplacerFroppie(const Direction& direction);
 
         protected:
 
+            /**
+             * Méthode intermédiaire, pose un nénuphar sur une surface
+             * @param ligne Composante X de la position de la surface cible
+             * @param colonne Composante Y de la position de la surface cible
+             */
             void adapterSurface(const unsigned int& ligne, const unsigned int& colonne);
 
         protected:
@@ -133,9 +142,13 @@ namespace froppieLand{
              */
             unsigned int _taille;
             /**
-             *  Positions de départ et d'arrivée
+             *  Position de départ
              */
-            const Position _depart, _arrivee;
+            const Position _depart; 
+            /**
+             *  Position d'arrivée
+             */
+            const Position _arrivee;
 
             /**
              * Ensemble des surfaces décrivant le terrain de jeu

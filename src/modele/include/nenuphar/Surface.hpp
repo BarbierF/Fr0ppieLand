@@ -35,7 +35,9 @@ namespace froppieLand{
                 friend class Grill;
 
             public:
-                //Une Stratégie correspond au type de surface (Eau ou Nénuphar avec type)
+                /**
+                 * Une Stratégie correspond au type de surface (Eau ou Nénuphar avec type)
+                 */
                 typedef FactoryStrategyNenuphar::TypeNenu TypeNenu;
 
                 /**
