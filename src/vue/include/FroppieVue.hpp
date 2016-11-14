@@ -195,14 +195,29 @@ namespace froppieLand{
 
         protected:
 
+            /**
+             * le presentateur faisant le lien avec le modele
+             */
             presentateur::Presentateur& _presentateur;
 
+            /**
+             * la grille graphique
+             */
             std::unique_ptr< GGrill > _ptrGrillGraphic;
 
+            /**
+             * la representation graphique de la sante de froppie
+             */
             FroppHealth _pdvFroppie;
 
+            /**
+             * la gestion de la taille du terrain
+             */
             ResolutionFL _resoTerrain;
 
+            /**
+             * la barre de chronometre
+             */
             BarreChrono _chronometre;
 
             Gtk::Box _centManager;

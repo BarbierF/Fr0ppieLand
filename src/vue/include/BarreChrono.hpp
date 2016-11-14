@@ -78,20 +78,42 @@ namespace froppieLand{
 
         protected:
 
+            /**
+             * la vue liant BarreChrono au autres elements de la vue
+             */
             FroppieVue& _vue;
 
+            /**
+             * True si le chronometre doit continuer,
+             * False si le temps limite a ete depasse
+             */
             bool _enCours;
 
             unsigned int _secondeTime;
 
+            /**
+             * la barre de progression graphique
+             */
             Gtk::ProgressBar _barProgression;
 
+            /**
+             * le timer utilise pour compter
+             */
             sigc::connection _timer;
 
+            /**
+             * le temps maximal du chronometre
+             */
             const unsigned int _tempsChrono;
 
+            /**
+             * le temps entre deux etapes de vieillissement
+             */
             const unsigned int _tempsVieillissement;
 
+            /**
+             * la fenetre englobant la barre de progression
+             */
             Gtk::Box _manager;
 
         };
