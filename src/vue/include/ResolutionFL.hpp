@@ -12,10 +12,21 @@ namespace froppieLand{
 
         class FroppieVue;
 
+        /**
+         * la classe gerant la resolution de la grille, le nombre de cases que celle-ci peut contenir
+         */
         class ResolutionFL: public Gtk::Frame{
         
         public:
         
+
+            /**
+             *constructeur de ResolutionFL
+             * @param titre le titre de cette partie de la fenetre
+             * @param resoMin la taille minimale de la grille
+             * @param resoMax la taille maximale de la grille
+             * @param resoCourant la taille actuelle de la grille
+             */
             ResolutionFL(FroppieVue& vue, Glib::ustring titre
                 , const unsigned int& resoMin
                 , const unsigned int& resoMax
@@ -25,10 +36,17 @@ namespace froppieLand{
 
             ResolutionFL& operator=(const ResolutionFL&) = delete;
 
+            /**
+            * Getter sur la resolution courante
+            * @return la resolution courante
+            */
             const unsigned int getResolution()const;
 
         protected:
 
+            /**
+             * prepare la grille pour la nouvelle resolution
+             */
             void cbNouvelleResolution();   //méthode sur le signal_selection_done
 
         protected:
