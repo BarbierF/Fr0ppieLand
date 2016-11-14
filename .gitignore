@@ -7,3 +7,4 @@ CMakeTools
 .emacs*
 .vscode*
 build/
+doc/

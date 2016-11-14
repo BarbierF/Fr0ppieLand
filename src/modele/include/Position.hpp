@@ -35,9 +35,9 @@ namespace froppieLand{
 
                 /**
                  * Fonction de comparaison de positions
-                 * @param position à comparer
+                 * @param o position à comparer
                  */
-                bool operator<(const Position& )const;
+                bool operator<(const Position& o)const;
 
             public:
                 /**

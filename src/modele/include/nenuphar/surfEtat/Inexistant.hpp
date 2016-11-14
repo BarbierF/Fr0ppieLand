@@ -14,7 +14,11 @@ namespace froppieLand{
             public:
                 void age(Surface& victim)const override;
                 const std::string nomEtat()const override;
-
+                
+                /**
+                 * Méthode de récupération/instanciation de l'instance du Singleton
+                 * @return l'instance du singleton
+                 */
                 static SurfEtat const* getInstance();
             private:
                 /**

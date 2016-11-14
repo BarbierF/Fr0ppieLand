@@ -11,6 +11,10 @@ namespace froppieLand{
              */
             class Petit:public SurfEtat{
             public:
+                /**
+                 * Méthode de récupération/instanciation de l'instance du Singleton
+                 * @return l'instance du singleton
+                 */
                 static SurfEtat const* getInstance();
                 void age(Surface& victim)const override;
 
