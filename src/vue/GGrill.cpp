@@ -2,7 +2,6 @@
 #include "Grill.hpp"
 #include "FroppieVue.hpp"
 #include "Presentateur.hpp"
-#include <iostream>
 
 namespace froppieLand{
     namespace vue{
@@ -53,7 +52,6 @@ namespace froppieLand{
             for(GCaseMare* case_mare : _mare){
                 case_mare->majCase(_vue.getModifPresentateur());
             }
-            std::cout << "Fin actualisation" << std::endl;
         }
 
     }

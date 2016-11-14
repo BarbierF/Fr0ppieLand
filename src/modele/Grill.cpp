@@ -4,8 +4,6 @@
 
 #include "Grill.hpp"
 #include "FactoryStrategyNenuphar.hpp"
-#include <iostream>
-
 
 namespace froppieLand{
     namespace modele{
@@ -106,7 +104,6 @@ namespace froppieLand{
             srand(time(NULL));
 
             const Position& fropPosition = _froppie.getPosition();
-            std::cout << "FropPosition : Ligne = " <<  fropPosition.getLigne() << " Colonne = " << fropPosition.getColonne() << std::endl;
             
             if(fropPosition.getLigne() == _arrivee.getLigne()){
 

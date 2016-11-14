@@ -3,7 +3,6 @@
 #include "BarreChrono.hpp"
 #include "FroppieVue.hpp"
 
-#include <iostream>
 
 namespace froppieLand{
     namespace vue{

@@ -3,8 +3,6 @@
 #include "Malade.hpp"
 #include "Mort.hpp"
 
-#include <iostream>
-
 namespace froppieLand{
     namespace modele{
         namespace froppie{
