@@ -88,7 +88,10 @@ namespace froppieLand{
              * False si le temps limite a ete depasse
              */
             bool _enCours;
-
+            
+            /**
+             * Nombre de secondes écoulées
+             */
             unsigned int _secondeTime;
 
             /**

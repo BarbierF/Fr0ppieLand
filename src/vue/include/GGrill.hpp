@@ -69,10 +69,12 @@ namespace froppieLand{
             
             /**
              * la vue liant GGrill au reste des elements de la vue
-
              */
             FroppieVue& _vue;
 
+            /**
+             * Manager de la partie d'affichage de la mare
+             */
             Gtk::Grid _mareManager;
         
             /**

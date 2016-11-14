@@ -180,14 +180,22 @@ namespace froppieLand{
         protected:
 
             /**
-             * les resolutions minimales et maximales possibles pour la grille
+             * les resolutions minimales possibles pour la grille
              */
-            const unsigned int _resoMin, _resoMax;
+            const unsigned int _resoMin;
+            /**
+             * les resolutions maximales possibles pour la grille
+             */
+            const unsigned int _resoMax;
 
             /**
-             * le temps maximal de la partie, et le temps necessaire pour que les nenuphars viellissent d'un cran
+             * le temps maximal de la partie
              */
-            unsigned int _tempsPartie, _tempsVieillissement;
+            unsigned int _tempsPartie;
+            /**
+             * le temps necessaire pour que les nenuphars viellissent d'un cran
+             */
+            unsigned int _tempsVieillissement;
 
             /**
              * la grille contenant tout le modele de l'application

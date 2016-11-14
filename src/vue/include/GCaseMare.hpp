@@ -29,6 +29,9 @@ namespace froppieLand{
         public:
 
             friend class GGrill;
+            /**
+             * Typedef de modele::Direction vers Direction
+             */
             typedef modele::Direction Direction;
 
         public:
@@ -96,9 +99,13 @@ namespace froppieLand{
             GGrill& _gGrill;
 
             /**
-             * les numeros de ligne et de colonne de la case
+             * le numero de ligne de la case
              */
-            unsigned int _ligne, _colonne;
+            unsigned int _ligne;
+            /**
+             * le numero de colonne de la case
+             */
+            unsigned int _colonne;
 
             /**
              * la direction vers laquelle froppie se deplace lors du clique sur cette case

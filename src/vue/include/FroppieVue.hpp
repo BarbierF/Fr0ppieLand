@@ -133,7 +133,7 @@ namespace froppieLand{
 
             /**
              * renvoit l'image correspondant au nom donne
-             * @param le nom de l'image a recuperer
+             * @param nom le nom de l'image a recuperer
              */
             static const Glib::RefPtr< Gdk::Pixbuf >& getImage(const Glib::ustring& nom);
 
@@ -220,8 +220,14 @@ namespace froppieLand{
              */
             BarreChrono _chronometre;
 
+            /**
+             * Gestionnaire de la partie centrale de la fenêtre (Vie & Terrain)
+             */
             Gtk::Box _centManager;
 
+            /**
+             * Gestionnaire de la partie inférieure (Contrôle de résolution de la mare & Barre de chronomètre)
+             */
             Gtk::Box _infManager;
         };
     }

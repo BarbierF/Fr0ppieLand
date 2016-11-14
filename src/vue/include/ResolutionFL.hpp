@@ -21,7 +21,8 @@ namespace froppieLand{
         
 
             /**
-             *constructeur de ResolutionFL
+             * Constructeur de ResolutionFL
+             * @param vue Le conteneur parent (FroppieVue)
              * @param titre le titre de cette partie de la fenetre
              * @param resoMin la taille minimale de la grille
              * @param resoMax la taille maximale de la grille
@@ -52,9 +53,13 @@ namespace froppieLand{
         protected:
 
             /**
-             * les resolution minimale et maximale que peut prendre la grille
+             * les resolution minimale que peut prendre la grille
              */
-            unsigned int _resoMin, _resoMax;
+            unsigned int _resoMin;
+            /**
+             * les resolution maximale que peut prendre la grille
+             */
+            unsigned int _resoMax;
         
             /**
              * la vue liant ResolutionFL au reste des elements de la vue
