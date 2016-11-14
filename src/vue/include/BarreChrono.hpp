@@ -59,16 +59,6 @@ namespace froppieLand{
              */
             void startChrono();
 
-            /**
-             * Getter sur le temps actuel du chronometre
-             */
-            const unsigned int& getTempsChrono()const;
-
-            /**
-             * Getter sur le temps entre deux tic de viellissement
-             */
-            const unsigned int& getTempsVieillissement()const;
-
         protected:
 
             /**
