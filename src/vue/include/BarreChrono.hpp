@@ -81,6 +81,9 @@ namespace froppieLand{
              */
             bool traitementTimer(int t_number);
 
+            /**
+             * fait avancer d'une case la barre du chronometre
+             */
             void progression();
 
         protected:

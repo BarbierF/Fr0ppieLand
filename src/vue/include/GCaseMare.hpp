@@ -68,7 +68,7 @@ namespace froppieLand{
 
             /**
              * deplace froppie sur la case si possible
-             * @return True si froppie a pu etre deplace, False sinon
+             * @return True
              */
             bool cbClickSouris(GdkEventButton* evt);
 
@@ -84,7 +84,7 @@ namespace froppieLand{
             void defaultClickHandler();
 
             /**
-             *
+             * permet une case graphique de faire bouger froppie au clique
              */
             void setMouvement(Direction const*);
 

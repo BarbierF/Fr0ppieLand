@@ -81,7 +81,7 @@ namespace froppieLand{
              * active les cases sur lequel froppie peut se deplacer
              * @param ligne la ligne de la case autour duquel froppie peut se deplacer (la case sur lequel se trouve froppie)
              * @param colonne la ligne de la case autour duquel froppie peut se deplacer (la case sur lequel se trouve froppie)
-             * @param direction 
+             * @param direction la direction vers laquelle froppie se deplace lors du clique sur la case
              */
             void setCaseMouvable(const unsigned int& ligne, const unsigned int& colonne, GCaseMare::Direction const*);
 
