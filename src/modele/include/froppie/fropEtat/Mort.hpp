@@ -13,6 +13,12 @@ namespace froppieLand{
             class Mort: public FropEtat{
 
             public:
+
+                Mort(const Mort& ) = delete;
+
+                Mort& operator=(const Mort& )const = delete;
+
+            public:
                 void setMort(Froppie& cancered)const;
                 void setSain(Froppie& cancered)const;
                 void setMalade(Froppie& cancered)const;
