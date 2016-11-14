@@ -3,7 +3,6 @@
 #include "FroppieVue.hpp"
 #include "Presentateur.hpp"
 #include "Self.hpp"
-#include <iostream>
 
 namespace froppieLand{
     namespace vue{
@@ -139,7 +138,7 @@ namespace froppieLand{
                     
             auto chargeur = sigc::mem_fun(*this, &GCaseMare::cbClickSouris);
 
-            _connexion = new sigc::connection(sigc::connection(signal_button_press_event().connect(chargeur)));
+            _connexion = new sigc::connection(signal_button_press_event().connect(chargeur));
 
         }
         

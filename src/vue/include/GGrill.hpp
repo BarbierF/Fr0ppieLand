@@ -67,10 +67,17 @@ namespace froppieLand{
 
         protected:
             
+            /**
+             * la vue liant GGrill au reste des elements de la vue
+
+             */
             FroppieVue& _vue;
 
             Gtk::Grid _mareManager;
         
+            /**
+             * l'ensemble de cases grahiques representant chaque case de la grille
+             */
             std::vector < GCaseMare* > _mare;
         };
     }

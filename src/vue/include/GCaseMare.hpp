@@ -68,7 +68,7 @@ namespace froppieLand{
 
             /**
              * deplace froppie sur la case si possible
-             * @return True si froppie a pu etre deplace, False sinon
+             * @return True
              */
             bool cbClickSouris(GdkEventButton* evt);
 
@@ -84,23 +84,41 @@ namespace froppieLand{
             void defaultClickHandler();
 
             /**
-             *
+             * permet une case graphique de faire bouger froppie au clique
              */
             void setMouvement(Direction const*);
 
         protected:
 
+            /**
+             * la grille de jeu graphique
+             */
             GGrill& _gGrill;
 
+            /**
+             * les numeros de ligne et de colonne de la case
+             */
             unsigned int _ligne, _colonne;
 
+            /**
+             * la direction vers laquelle froppie se deplace lors du clique sur cette case
+             */
             Direction const* _directionClick;
 
+            /**
+               la connection necessaire pour gerer l'evenement du clique
+            */
             sigc::connection* _connexion;
 
             //choix du shared_ptr pour pouvoir mettre mettre deux fois la même image dans les maps, ex dopant et mortel
+            /**
+             * une map des images representant les nenuphars
+             */
             std::map < Glib::ustring, std::map < Glib::ustring, std::shared_ptr< Gtk::Image > > > _formes;
 
+            /**
+             * une map des images representant froppie
+             */
             std::map< std::string, std::unique_ptr< Gtk::Image > > _froppieFormes; 
 
 

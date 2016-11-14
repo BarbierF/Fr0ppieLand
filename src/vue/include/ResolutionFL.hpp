@@ -51,12 +51,24 @@ namespace froppieLand{
 
         protected:
 
+            /**
+             * les resolution minimale et maximale que peut prendre la grille
+             */
             unsigned int _resoMin, _resoMax;
         
+            /**
+             * la vue liant ResolutionFL au reste des elements de la vue
+             */
             FroppieVue* _vue;
 
+            /**
+             * les boutons permetant de regler la resolution
+             */
             Gtk::SpinButton _sButtons;
 
+            /**
+             * la boite englobant les boutons controlant la resolution
+             */
             Gtk::Box _manager;
 
         };

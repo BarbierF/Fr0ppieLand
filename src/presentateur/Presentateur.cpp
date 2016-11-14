@@ -1,5 +1,4 @@
 #include "Presentateur.hpp"
-#include <iostream>
 
 
 namespace froppieLand{
@@ -103,6 +102,7 @@ namespace froppieLand{
             if(froppie.getEtat().nomEtat() == "Mort" )
             {
                 _vue->finPartie(false);
+                return false;
             }    
             
             if(froppie.getPosition().getLigne() == _modele->getArrivee().getLigne()

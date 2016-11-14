@@ -64,12 +64,24 @@ namespace froppieLand{
         
         protected:
 
+            /**
+             * la vue liant FroppHealth au reste des elements de la vue
+             */
             FroppieVue& _vue; 
 
+            /**
+             * l'image du coeur representant l'etat de sante de froppie
+             */
             std::unique_ptr < Gtk::Image > _coeur;
 
+            /**
+             * l'affichage des points de vie restant
+             */
             Gtk::Label _labelPdv;
 
+            /**
+             * la boite contenant la vie de froppie
+             */
             Gtk::HBox _manager;
 
         };
